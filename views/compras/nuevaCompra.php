@@ -1,5 +1,5 @@
 <?php
-  $d = new DateTime();
+  $d = new DateTime(); 
 ?>
 <section class="content-header">
   <h1>
@@ -292,3 +292,4 @@
         });
       });
       </script>
+      
