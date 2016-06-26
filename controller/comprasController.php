@@ -60,9 +60,6 @@
      }
 
      public function agregar(){
-       $json = array();
-       $json['msj'] = 'Producto Agregado';
-       $json['success'] = true;
        $objProducto = new producto();
        if (isset($_GET['codigo']) && $_GET['codigo']!='' && isset($_GET['cantidad']) && $_GET['cantidad']!='') {
          try {

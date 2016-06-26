@@ -74,10 +74,14 @@ Class producto extends Conectar
       $descripcion = $producto->descripcion;
       $precio = $producto->precio;
       $total = $cantidad * $precio;
-      $_SESSION['detalle'][$codigo] = array('codigo'=>$codigo, 'descripcion'=>$descripcion, 'cantidad'=>$cantidad, 'precio'=>$precio, 'total'=>$total);
       $json = array();
-      $json['success'] = true;
-      $json['msj'] = 'Producto Agregado';
+      if(array_key_exists($codigo, $_SESSION['detalle'])){
+        $json['success'] = false;
+        $json['msj'] = 'El producto ya esta en el carrito';
+      }else{
+        $json['success'] = true;
+        $_SESSION['detalle'][$codigo] = array('codigo'=>$codigo, 'descripcion'=>$descripcion, 'cantidad'=>$cantidad, 'precio'=>$precio, 'total'=>$total);
+      }
       echo json_encode($json);
       $this->dbh = null;
     }catch (PDOException $e) 

@@ -123,14 +123,16 @@ if(codigo!=0){
         }
       },
       error: function(jqXHR, textStatus, error) {
-        alert(error);
+        alert(error.msj);
       }
     });
   }else{
     alert('Ingrese una cantidad');
+    $('#cantidad').focus();
   }
 }else{
   alert('Seleccione un producto');
+  $('#codigo').focus();
 }
 }
 
