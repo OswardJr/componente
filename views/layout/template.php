@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/plugins/sweetalert/sweetalert.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/css/boostrapAdmin.min.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/plugins/datatables/dataTables.bootstrap.css">
@@ -39,6 +40,7 @@
     <script src="<?php echo Conectar::ruta()?>public/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/plugins/sweetalert/sweetalert-dev.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/js/app.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/app.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/clientes.js"></script>
