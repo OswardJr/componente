@@ -97,59 +97,51 @@ function guardar_proveedor()
    }
 });
 }
+
+// crea un proveedor desde el modal de compras
 function crear_proveedor(){ // funcion para la compra
-  var data;
   //remove errors
   $('.form-group').removeClass('has-error');
   //validating form modals
   if ($("#rif").val() === "") {
     $('[name="rif"]').parent().parent().addClass('has-error'); 
-    $('[name="rif"]').next().text('Debes introducir el Rif');
   }else{
     if ($("#razon_social").val() === "") {
       $('[name="razon_social"]').parent().addClass('has-error'); 
-      $('[name="razon_social"]').next().text('Debes introducir la razon social');
     }else{
       if ($("#telefono").val() === "") {
         $('[name="telefono"]').parent().addClass('has-error'); 
-        $('[name="telefono"]').next().text('Debes introducir el telefono');
       }else{
         if ($("#email").val() === "") {
           $('[name="email"]').parent().addClass('has-error'); 
-          $('[name="email"]').next().text('Debes introducir el email');
         }else{
           if ($("#direccion").val() === "") {
             $('[name="direccion"]').parent().addClass('has-error'); 
-            $('[name="direccion"]').next().text('Debes introducir la direccion');
           }else{
             //post ajax form serialize
             $.ajax({
-              url : "?controller=proveedores&action=create",
+              url : "?controller=proveedores&action=createforjson",
               type: "POST",
               data: $('#form').serialize(),
-              dataType: "JSON",
+              dataType: "json",
               success: function(data)
               {
-                alert('ha sido actualizado');
-                $('#modal-id').modal('hide');
-                 $('.form')[0].reset(); // reset form on modals
-                 $('.form-group').removeClass('has-error'); // clear error class
-                 $('.help-block').empty()
-               },
-               error: function (jqXHR, textStatus, errorThrown)
-               {
-                 alert('ha sido actualizado');
-                 $('#modal-id').modal('hide');
-                 $('.form')[0].reset(); // reset form on modals
-                 $('.form-group').removeClass('has-error'); // clear error class
-                 $('.help-block').empty(); // clear error string
-               }
-             });
+                      alert(data.msj);
+                      $('#modal-id').modal('hide');
+                      $('.form-group').removeClass('has-error'); // clear error class
+                      $('.help-block').empty()
+                    },
+                    error: function(jqXHR, textStatus, error)
+                    {
+                      alert(error);
+                      $('#modal-id').modal('hide');
+                      $('.form-group').removeClass('has-error'); // clear error class
+                      $('.help-block').empty(); // clear error string
+                    }
+                  });
           }
         }
       }
     }
-
   }
-
 }

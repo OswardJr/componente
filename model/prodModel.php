@@ -10,7 +10,7 @@ Class producto extends Conectar
     {
       $query = $this->dbh->prepare(
         'SELECT
-        p.codigo,
+        p.cod_prod as codigo,
         p.descripcion,
         c.nombre as categoria,
         p.p_compra as compra,
@@ -21,10 +21,10 @@ Class producto extends Conectar
         productos AS p
         INNER JOIN
         categorias AS c 
-        ON p.id_categoria = c.id_cat
+        ON p.id_cat = c.id_cat
         WHERE
         STATUS = "activo"
-        ORDER BY codigo DESC;');
+        ORDER BY cod_prod DESC;');
       $query->execute();
       return $query->fetchAll();
       $this->dbh = null;
@@ -39,13 +39,13 @@ Class producto extends Conectar
     {
       $query = $this->dbh->prepare(
         'SELECT
-        codigo,
+        cod_prod as codigo,
         p_venta as precio,
         descripcion,
         stock,
         stock_minimo
         FROM productos 
-        WHERE codigo = ? ');
+        WHERE cod_prod= ? ');
       $query->bindParam(1, $codigo);
       $query->execute();
       $data = $query->fetch();
@@ -57,22 +57,20 @@ Class producto extends Conectar
     }
   }
 
-  public function agregar_producto($codigo,$cantidad)
+  public function agregar_producto($codigo,$cantidad,$precio)
   {
     try 
-    {
+    { 
       $query = $this->dbh->prepare(
         'SELECT
-        codigo,
-        p_venta as precio,
+        cod_prod as codigo,
         descripcion
         FROM productos 
-        WHERE codigo = ? ');
+        WHERE cod_prod = ? ');
       $query->bindParam(1, $codigo);
       $query->execute();
       $producto = $query->fetchObject();
       $descripcion = $producto->descripcion;
-      $precio = $producto->precio;
       $total = $cantidad * $precio;
       $json = array();
       if(array_key_exists($codigo, $_SESSION['detalle'])){
@@ -120,6 +118,34 @@ Class producto extends Conectar
   } catch (PDOException $e) {
     $e->getMessage();
   }
+}
+ public function create_producto_for_json($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria)
+  {
+   try
+   {
+    $query = $this->dbh->prepare('INSERT INTO productos VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
+    $query->bindParam(1, $codigo);
+    $query->bindParam(2, $descripcion);
+    $query->bindParam(3, $modelo);
+    $query->bindParam(4, $peso);
+    $query->bindParam(5, $color);
+    $query->bindParam(6, $garantia);
+    $query->bindParam(7, $p_compra);
+    $query->bindParam(8, $p_venta);
+    $query->bindParam(9, $stock);
+    $query->bindParam(10, $stock_min);
+    $query->bindParam(11, $status);
+    $query->bindParam(12, $procedencia);
+    $query->bindParam(13, $categoria);
+    $query->execute();
+    $json['msj'] = 'Registro exitoso';
+    echo json_encode($json);
+    $this->dbh = null;
+  } catch (PDOException $e) {
+    $json['msj'] = $e->getMessage();
+    echo json_encode($json);
+  }
+
 } 
 }
 

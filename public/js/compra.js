@@ -1,3 +1,5 @@
+
+
 function buscar_proveedor(){
   var rif=$('#rif-entrada').val();
 
@@ -12,19 +14,17 @@ function buscar_proveedor(){
       $('[name="razon_social"]').val(data.razon_social);
       $('[name="telefono"]').val(data.telefono);
       $('[name="direccion"]').val(data.direccion);
-      $('[name="rif-entrada"]').parent().parent().removeClass('has-error'); 
-      $('#mensaje').text(''); 
                 // habilita el poder agregar productos despues de añadir prov
       $('#codigo').removeAttr("disabled");
       $('#precio').removeAttr("disabled");
       $('#cantidad').removeAttr("disabled");
         if (data==1) {
-            $('[name="rif-entrada"]').parent().parent().addClass('has-error'); 
-            swal('Debes introducir el Rif'); 
+            $('#rif-entrada').focus();
+            alert('Debes introducir el Rif'); 
             $('#codigo').attr("disabled", "true");
         }else if (data == false) {
        // $('[name="rif-entrada"]').parent().parent().addClass('has-error'); 
-            swal('El proveedor no existe'); 
+            alert('El proveedor no existe'); 
             $('#codigo').attr("disabled", "true");
         };
    },
@@ -49,14 +49,12 @@ function buscar_producto(){
       $('[name="descripcion"]').val(data.descripcion);
       $('[name="stock"]').val(data.stock);
       $('[name="stock_m"]').val(data.stock_minimo);
-      $('[name="codigo-entrada"]').parent().parent().removeClass('has-error'); 
-      $('#mensaje1').text(''); 
       if (data==1) {
-        $('[name="codigo-entrada"]').parent().parent().addClass('has-error'); 
-        swal('Debes introducir el codigo'); 
+        $('#codigo').focus();
+        alert('Debes introducir el codigo'); 
       }else if (data == false) {
             // $('[name="codigo-entrada"]').parent().parent().addClass('has-error'); 
-            swal('El producto no existe'); 
+            alert('El producto no existe'); 
           };
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -66,48 +64,17 @@ function buscar_producto(){
      });
 }
 
-
-    function guardar_compra(){
-     $.ajax({
-       type: "POST",
-       url: "?controller=compras&action=create",
-       data: "+cod=" + $("#cod").val(),/* +"&cant=" + $("#cant").val(), /*+ "&id_prov=" + $("#id_prov").val()  + "&id_emp=" + $("#id_emp").val() + "&fecha=" + $("#fecha").val() +  "&forma_pago=" + $("#forma_pago").val() + "&iva=" + $("#iva").val() + "&subtotal=" + $("#subtotal").val() + "&total=" + $("#total").val() + "&codigo=" + $("#codigo").val() +  "&cantidad=" + $("#cantidad").val(),*/
-       success: function(data) {
-        console.log(data)
-      },
-      error: function (jqXHR, textStatus, errorThrown)
-      {
-       console.log(data)
-     }
-   });
-   }
-
-   function aagregar_carrito(){
-
-    $.ajax({
-      type: "POST",
-      url: "?controller=compras&action=create",
-      data: "+token=" + $("#token").val() +"&cod_factura=" + $("#cod_factura").val() + "&id_prov=" + $("#id_prov").val()  + "&id_emp=" + $("#id_emp").val() + "&fecha=" + $("#fecha").val() +  "&forma_pago=" + $("#forma_pago").val() + "&iva=" + $("#iva").val() + "&subtotal=" + $("#subtotal").val() + "&total=" + $("#total").val() + "&codigo=" + $("#codigo").val() +  "&cantidad=" + $("#cantidad").val(),
-      success: function(data) {
-        console.log(data)
-      },
-      error: function (jqXHR, textStatus, errorThrown)
-      {
-        console.log(data)
-      }
-    });
-  }
-
-  function agregar_carrito(){
+function agregar_carrito(){
 //funcion agregar al carrito
 var cantidad = $("#cantidad").val();
 var codigo = $("#codigo").val();
-if(codigo!=0){
+var precio = $("#precio").val();
+if(codigo!=''){
   if(cantidad!=''){
     $.ajax({
       url: '?controller=compras&action=agregar',
       type: 'GET',
-      data: {'codigo':codigo, 'cantidad':cantidad},
+      data: {'codigo':codigo, 'cantidad':cantidad, 'precio':precio},
       dataType: 'json',
       success: function(data) {
         if(data.success==true){
@@ -119,48 +86,39 @@ if(codigo!=0){
           $("#minimo").val('');
           $(".detalle-producto").load('views/compras/detalle.php');
         }else{
-          swal(data.msj);
+          alert(data.msj);
         }
       },
       error: function(jqXHR, textStatus, error) {
-        swal(error.msj);
+        alert(error.msj);
       }
     });
   }else{
-    swal('Ingrese una cantidad');
+    alert('Ingrese una cantidad');
     $('#cantidad').focus();
   }
 }else{
-  swal('Seleccione un producto');
+  alert('Seleccione un producto');
   $('#codigo').focus();
 }
 }
 
 //funcion eliminar
-function eliminar_carrito(codigo){
-  swal({ 
-    title: "Estas segur@?", 
-    text: "Esta acción no podra deshacerse!",  
-    type: "warning",   
-    showCancelButton: true,  
-    confirmButtonColor: "#DD6B55",   
-    confirmButtonText: "Si eliminar",  
-    cancelButtonText: "Cancelar",
-    closeOnConfirm: false }, 
-    function(){   
-      $.ajax({
-        url: '?controller=compras&action=eliminar',
-        type: 'post',
-        data: {'codigo':codigo},
-        dataType: 'json'
-      }).done(function(data){
-        if(data.success==true){
-          swal(data.msj,"","success");
-          $(".detalle-producto").load('views/compras/detalle.php');
-        }else{
-          swal(data.msj);
-        }
-      })
-    });
+function eliminar_carrito(codigo){  
+  if (confirm("¿ Realmente desea eliminarlo de la lista?"))
+ {
+  $.ajax({
+    url: '?controller=compras&action=eliminar',
+    type: 'post',
+    data: {'codigo':codigo},
+    dataType: 'json'
+  }).done(function(data){
+    if(data.success==true){
+     $(".detalle-producto").load('views/compras/detalle.php');
+   }else{
+    alert(data.msj);
+  }
+})
+}
 
 }

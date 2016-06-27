@@ -45,6 +45,7 @@
     <script src="<?php echo Conectar::ruta()?>public/js/app.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/clientes.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/proveedores.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/js/productos.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/usuarios.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/js/compra.js"></script>
   </body>

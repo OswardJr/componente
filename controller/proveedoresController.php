@@ -1,7 +1,7 @@
 <?php
 /**
 * controller for proveedores
-*/
+*/ 
 class ProveedoresController{
 
 	public function __construct()
@@ -57,6 +57,20 @@ class ProveedoresController{
 			$direccion = $_POST['direccion'];
 			$status = 'activo';
 			$proveedor->create_proveedor($rif,$razon_social,$telefono,$email,$direccion,$status);
+		}
+	}
+	/*crear proveedor*/
+	public function createforjson()
+	{
+		$proveedor = new proveedor;	
+		if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
+			$rif = $_POST['rif'];
+			$razon_social = $_POST['razon_social'];
+			$telefono = $_POST['telefono'];
+			$email = $_POST['email'];
+			$direccion = $_POST['direccion'];
+			$status = 'activo';
+			$proveedor->create_proveedor_for_json($rif,$razon_social,$telefono,$email,$direccion,$status);
 		}
 	}
 

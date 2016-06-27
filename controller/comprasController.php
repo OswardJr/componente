@@ -5,67 +5,57 @@
 	class ComprasController 
 	{
 		public function __construct(){
-      require_once("model/comprasModel.php");
-      require_once("model/prodModel.php");
+        require_once("model/comprasModel.php");
+        require_once("model/prodModel.php");
 
-      if (($_SESSION['id_emp']) == "") {
-        header("Location: ".Conectar::ruta()."?controller=login");
-      }
-
+        if (($_SESSION['id_emp']) == "") {
+          header("Location: ".Conectar::ruta()."?controller=login");
+        }
     }
     public function index(){
-     $c= new compra;	
-     $numorden = $c->numorden();
-     require_once("views/layout/template.php");
-     require_once("views/compras/nuevaCompra.php");
+        $c= new compra;	
+        $numorden = $c->numorden();
+        require_once("model/categoriaModel.php");
+        $c = new categoria();
+        $categorias = $c->get_categorias() ;
+        require_once("views/layout/template.php");
+        require_once("views/compras/nuevaCompra.php");
+    }
 
-   }
-
-   public function create(){
-    
-     if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
-       $compra = new compra;	
-       $cod_factura = $_POST['cod_factura'];
-       $id_prov = $_POST['id_prov'];
-       $id_emp = $_POST['id_emp'];
-       $fecha = $_POST['fecha'];
-       $forma_pago = $_POST['forma_pago'];
-       $subtotal = $_POST['subtotal'];
-       $impuesto = $_POST['impuesto'];
-       $total = $_POST['total'];
-       $status = 'activo';
-       $compra->create_compra($cod_factura,$id_prov,$id_emp,$fecha,$forma_pago,$subtotal,$impuesto,$total,$status);
-     }
-     $cod_factura = $_POST['cod_factura'];
-     if (!empty($cod_factura) and $cod_factura > 0){
-      $det_compra = new compra;	
-      $datos=array();
-      foreach ($_POST['cod'] as $key => $value) {
-       $datos[$key]['cod']=$value;
-     }
-     foreach ($_POST['cant'] as $key => $value) {
-       $datos[$key]['cant']=$value;
-     }
-     $det_compra->det_compra($cod_factura,$datos);
-   }
-   
-      /* $this->agregar_producto_factura($ultimo_id,$datos);
-			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
-				$det_compra = new compra;	
-			    $cod = $_POST['codigo'];
-			    $cod_factura = $_POST['cod_factura'];
-			    $cant = $_POST['cantidad'];
-			    $det_compra->det_compra($codigo,$cod_factura,$cantidad);
-       }*/
-     }
+    public function create(){
+        if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
+          $compra = new compra;	
+          $cod_compra = $_POST['cod_factura'];
+          $id_prov = $_POST['id_prov'];
+          $id_emp = $_POST['id_emp'];
+          $fecha_actual = $_POST['fecha'];
+          $forma_pago = $_POST['forma_pago'];
+          $impuesto = $_POST['impuesto'];
+          $subtot = $_POST['subtotal'];
+          $tot = $_POST['total'];
+          $status = 'activo';
+          $datos=array();
+              foreach ($_POST['cod'] as $key => $value) {
+                $datos[$key]['cod']=$value;
+              }
+              foreach ($_POST['cant'] as $key => $value) {
+                $datos[$key]['cant']=$value;
+              }
+              foreach ($_POST['precio_p'] as $key => $value) {
+                $datos[$key]['precio_p']=$value;
+              }
+            $compra->create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos);
+        }
+    }
 
      public function agregar(){
        $objProducto = new producto();
        if (isset($_GET['codigo']) && $_GET['codigo']!='' && isset($_GET['cantidad']) && $_GET['cantidad']!='') {
          try {
           $cantidad = $_GET['cantidad'];
-          $codigo = $_GET['codigo'];		
-          $producto = $objProducto->agregar_producto($codigo,$cantidad);
+          $codigo = $_GET['codigo'];
+          $precio = $_GET['precio'];
+          $producto = $objProducto->agregar_producto($codigo,$cantidad,$precio);
         } catch (PDOException $e) {
           $e->getMessage();
         }

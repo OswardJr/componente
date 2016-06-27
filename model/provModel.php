@@ -79,7 +79,28 @@
                 window.location='?controller=proveedores&action=index';
             </script>");
         } catch (PDOException $e) {
-            $e->getMessage();
+            echo $e->getMessage();
+            
+        }
+    }
+    public function create_proveedor_for_json($rif,$razon_social,$telefono,$email,$direccion,$status)
+    {
+        try {
+            $query = $this->dbh->prepare('INSERT INTO proveedores VALUES(null,?,?,?,?,?,?)');
+            $query->bindParam(1, $rif);
+            $query->bindParam(2, $razon_social);
+            $query->bindParam(3, $telefono);
+            $query->bindParam(4, $email);
+            $query->bindParam(5, $direccion);
+            $query->bindParam(6, $status);
+            $query->execute();      
+            $json['msj'] = 'Registro exitoso';
+            $json['success'] = true;
+            echo json_encode($json);
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $json['msj'] = $e->getMessage();
+            echo json_encode($json);
         }
     }
 

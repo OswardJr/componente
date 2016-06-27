@@ -58,10 +58,33 @@
 				$p_venta = $_POST['p_venta'];
 				$stock = $_POST['stock'];
 				$stock_min = $_POST['stock_min'];
-				$status =  $_POST['status'];
+				$status = 'activo';
 				$procedencia = $_POST['procedencia'];
 				$categoria = $_POST['categoria'];
 				$producto->create_producto($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria);
+			}
+			
+		}
+		public function createforjson(){
+			require_once("model/categoriaModel.php");
+			$c = new categoria();
+			$categorias = $c->get_categorias() ;
+			$producto = new producto;	
+			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
+				$codigo = $_POST['codigo'];
+				$descripcion = $_POST['descripcion'];
+				$modelo = $_POST['modelo'];
+				$peso = $_POST['peso'];
+				$color = $_POST['color'];
+				$garantia = $_POST['garantia'];
+				$p_compra = $_POST['p_compra'];
+				$p_venta = $_POST['p_venta'];
+				$stock = $_POST['stock'];
+				$stock_min = $_POST['stock_min'];
+				$status = 'activo';
+				$procedencia = $_POST['procedencia'];
+				$categoria = $_POST['categoria'];
+				$producto->create_producto_for_json($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria);
 			}
 			
 		}

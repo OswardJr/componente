@@ -1,5 +1,5 @@
 <?php
-  $d = new DateTime(); 
+  $d = new DateTime();  
 ?>
 <section class="content-header">
   <h1>
@@ -28,8 +28,7 @@
                     <input type="hidden" name="id_prov" id="id_prov" class="campo" style="width: 180px" />
                   </div>
                 </div>
-                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-id" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width: 37px;border-right-width: 1px;
-                "></div>
+                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-id" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width:8.3%;border-right-width: 1px;"></div>
                 <div class="form-group col-xs-6  ">
                   <p class="margin"><strong>Raz&oacuten social</strong></p>
                   <input type="text" name="razon_social" class="form-control" disabled>
@@ -75,16 +74,13 @@
                 <div class="form-group col-xs-3 " style="margin-bottom: 0px; height: 60px">
                   <p class="margin"><strong>Producto</strong></p>
                   <div class="input-group input-group-sm">
-                    <input id="codigo" name="codigo-entrada" type="text" class="form-control"  value="<? echo $rif?>" disabled>
+                    <input id="codigo" name="codigo-entrada" type="text" class="form-control" disabled>
                     <span class="input-group-btn">
                       <div data-toggle="tooltip" onclick="buscar_producto()" title="Buscar"  class="btn btn-ver btn-flat fa fa-search " ></div>
                     </span>
                   </div>
                 </div>
-                <div class="form-group col-xs-1">
-                  <button data-toggle="tooltip" title="Nuevo" class="btn boton btn-agregar fa fa-plus"></button>
-                </div>
-                <div class="form-group col-xs-3 ">
+                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-prod" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width:5.2%;border-right-width: 1px;margin-right: 3%;"></div>                <div class="form-group col-xs-3 ">
                   <p class="margin"><strong>Precio</strong></p>
                   <input type="text" name="precio" class="form-control" id="precio">
                 </div>
@@ -107,52 +103,52 @@
                   <p class="margin"><strong>Stock minimo</strong></p>
                   <input type="text" id="minimo" name="stock_m" class="form-control" id="stock_m"  disabled>
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="detalle-producto">
+    <div class="detalle-producto"> 
       <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Productos</h3>
-        </div>
-        <div class="box-body">
-          <div class="row">
-            <div class="col-xs-12 detalle-producto">
-              <table id="table1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Total neto</th>
-                    <th>Opciones</th>
-                  </tr>
-                </thead>
-                <?php if(count($_SESSION['detalle'])>0){?>
-                  <tbody>
-                    <?php foreach($_SESSION['detalle'] as $k => $detalle){ ?>
-                      <tr>
-                        <td><?php echo $detalle['codigo'];?></td>
-                        <input type='hidden' name='cod[]' value="<?php echo $detalle['codigo'];?>" >
-                        <td><?php echo $detalle['descripcion'];?></td>
-                        <input type='hidden' name='cant[]' value="<?php echo $detalle['cantidad'];?>" >
-                        <td><input style="width:100px;" type="text" class="form-control" value="<?php echo $detalle['precio'];?>"></td>
-                        <td><input style="width:56px;"  type="text" class="form-control" value="<?php echo $detalle['cantidad'];?>"></td>
-                        <td><?php echo $detalle['total'];?></td>
-                        <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito(<?php echo $detalle['codigo'];?>)"></div></td>
-                      </tr>
-                      <?php }?>
-                    </tbody>
-                    <?php }?>
-                  </table>
-                </div>
-              </div>
+            <div class="box-header with-border">
+              <h3 class="box-title">Productos</h3>
             </div>
+              <div class="box-body">
+                    <div class="row">
+                      <div class="col-xs-12 ">
+                        <table id="table1" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>Codigo</th>
+                              <th>Descripcion</th>
+                              <th>Precio</th>
+                              <th>Cantidad</th>
+                              <th>Total neto</th>
+                              <th>Opciones</th>
+                            </tr>
+                          </thead>
+                          <?php if(count($_SESSION['detalle'])>0){?>
+                            <tbody>
+                              <?php foreach($_SESSION['detalle'] as $k => $detalle){ ?>
+                                <tr>
+                                  <td><?php echo $detalle['codigo'];?></td>
+                                  <input type='hidden' name='cod[]' value="<?php echo $detalle['codigo'];?>" >
+                                  <td><?php echo $detalle['descripcion'];?></td>
+                                  <input type='hidden' name='cant[]' value="<?php echo $detalle['cantidad'];?>" >
+                                  <td><?php echo $detalle['precio'];?></td>
+                                  <input type="hidden" name='precio_p[]' value="<?php echo $detalle['precio'];?>">
+                                  <td><input style="width:56px;"  type="text" class="form-control" value="<?php echo $detalle['cantidad'];?>"></td>
+                                  <td><?php echo $detalle['total'];?></td>
+                                  <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito(<?php echo $detalle['codigo'];?>)"></div></td>
+                                </tr>
+                                <?php }?>
+                              </tbody>
+                              <?php }?>
+                        </table>
+                      </div> <!-- end detalleproducto -->
+                    </div> <!-- end row -->
+              </div> <!-- end box-body -->
           </div>
           <div  class="col-xs-3" style="padding-left: 0px;">
             <div class="box box-primary">
@@ -196,15 +192,15 @@
                         <?php } ?>
                         <tr >
                           <td class="col-xs-1">Subtotal</td>
-                          <td class="col-xs-2"><input id="subtotal" type="text" name="subtotal" class="form-control " value="<?php echo $subtotal;?>" disabled></td>
+                          <td class="col-xs-2"><input id="subtotal" type="text" name="subtotal" class="form-control " value="<?php echo $subtotal;?>" ></td>
                         </tr>
                         <tr>
                           <td class="col-xs-1">IVA</td>
-                          <td class="col-xs-2"><input id="iva" type="text" name="impuesto" class="form-control" value="<?php echo $iva;?>" disabled></td>
+                          <td class="col-xs-2"><input id="iva" type="text" name="impuesto" class="form-control" value="<?php echo $iva;?>" ></td>
                         </tr>
                         <tr>
                           <td class="col-xs-1">Total</td>
-                          <td class="col-xs-2"><input id="total" type="text" name="total" class="form-control" value="<?php echo $total_final;?>" disabled></td>
+                          <td class="col-xs-2"><input id="total" type="text" name="total" class="form-control" value="<?php echo $total_final;?>" ></td>
                         </tr>
                       </table>
                     </div>
@@ -224,6 +220,7 @@
           </div>
         </form>
       </section>
+<!-- modal para crear el proveedor desde aqui -->
       <div class="modal fade" id="modal-id" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -258,7 +255,7 @@
                   <div class="form-group">
                     <label class="control-label col-md-3">Email</label>
                     <div class="col-md-9">
-                      <input id="email" name="email" class="form-control" type="text" required >
+                      <input id="email" name="email" class="form-control" type="email" required >
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -276,20 +273,96 @@
                 <center>
                   <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
                   <button type="submit" id="btnSave" onclick="crear_proveedor()" data-toggle="tooltip" title="Guardar" class="btn btn-ver margin glyphicon glyphicon-floppy-disk"></button>
-                  <button type="button"  data-dismiss="modal" data-toggle="tooltip" title="Volver" class="btn btn-sucedio margin glyphicon glyphicon-arrow-left "></button>
+                  <button data-toggle="tooltip" title="Limpiar Formulario" type="reset" class="btn btn-sucedio margin glyphicon glyphicon-repeat"></button><br>
                 </center>
               </div>
             </form>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+<!-- modal para crear el producto desde aqui -->
+      <div class="modal fade" id="modal-prod" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3 class="modal-title"></h3>
+            </div>
+            <div class="modal-body form">
+              <form name="" id="form2" action="" method="post">
+                <div class="form-group col-xs-4" style="margin-bottom: 0px; height: 80px;">
+                  <label>Codigo de Producto<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                    <input type="text" name="codigo" id="codigo_p"  class="form-control" placeholder="XXX000000" required>
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group col-xs-4" style="margin-bottom: 0px; height: 80px;">
+                  <label>Descripción<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <textarea type="text" name="descripcion" id="descripcion_p" class="form-control" placeholder="" required></textarea>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Modelo<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <textarea type="text" name="modelo" id="modelo_p" class="form-control" placeholder=""required ></textarea>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Peso</label>
+                  <input type="text" name="peso" id="peso"  class="form-control" placeholder="" >
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Color</label>
+                  <input type="text" name="color" id="color"  class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Garantia</label>
+                  <input type="text" name="garantia" id="garantia"  class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Precio de compra<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <input type="text" name="p_compra" id="p_compra"  class="form-control" placeholder="" required>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Precio de venta<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <input type="text" name="p_venta" id="p_venta"  class="form-control" placeholder="" required>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Stock inicial<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <input type="text" name="stock" id="stock"  class="form-control" placeholder="" required>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Stock minimo<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <input type="text" name="stock_min" id="stock_min"  class="form-control" placeholder="" required>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Procedencia<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <select name="procedencia" id="procedencia" class="form-control" required>
+                    <option>-- Seleccione --</option>
+                    <option>Nacional</option>
+                    <option>Internacional</option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Categoria<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <select name="categoria" id="categoria" class="form-control" required>
+                    <option>-- Seleccione --</option>
+                    <?php foreach($categorias as $c): ?>
+                      <option value="<?php echo $c['id_cat'];?>"><?php echo $c['nombre'];?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <center>
+                  <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
+                  <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
+                  <button data-toggle="tooltip" title="Registrar" type="submit" class="btn btn-ver margin glyphicon glyphicon-floppy-disk" onclick="crear_producto()" ></button>
+                  <button data-toggle="tooltip" title="Limpiar Formulario" type="reset" class="btn btn-sucedio margin glyphicon glyphicon-repeat"></button><br>
+                </center>
+              </form>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
       <script type="text/javascript">
-        
-        $(document).ready(function() {
-        //datatables
-        table = $('#table').DataTable({
-          "scrollX": true
-        });
+          $(document).ready(function() {
+      //datatables
+      table = $('#table1').DataTable({
+        "scrollX": true
       });
-      </script>
-      
+    });
+  </script>

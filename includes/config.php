@@ -5,10 +5,11 @@ class Conectar
 {
     public $dbh;
 
+
     public function __construct()
     {
         try {
-            $this->dbh = new PDO('mysql:host=localhost;dbname=database', 'root', '00000000');
+            $this->dbh = new PDO('mysql:host=localhost;dbname=componente', 'root', '00000000');
             $this->dbh->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage();
@@ -35,5 +36,9 @@ class Conectar
 	     return $pageURL;
 	 }*/
     }
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', false);
+
     
     ?>
