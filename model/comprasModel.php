@@ -16,7 +16,6 @@ class compra extends Conectar
     $query->bindParam(8, $tot);
     $query->bindParam(9, $status);
     $query->execute();
-
         foreach ($datos as $d) {
         $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio) 
                 VALUES
@@ -56,8 +55,43 @@ public function numorden()
  {
   $e->getMessage();
 }
-
 }
+// public function reporte_factura()
+// {
+//    try
+//     {
+//      $query = $this->dbh->prepare('SELECT
+//       d.cod_compra AS numero,
+//       d.cod_prod AS cod,
+//       p.descripcion,
+//       d.cantidad AS cant,
+//       d.precio AS precio_unitario,
+//       (d.cantidad * p.p_venta) AS precio_total,
+//       c.subtot,
+//       c.impuesto,
+//       c.tot
+//       FROM
+//       det_compra AS d
+//       INNER JOIN
+//       compras AS c
+//       ON
+//       d.cod_compra = c.cod_compra
+//       INNER JOIN
+//       productos AS p
+//       ON
+//       d.cod_prod = p.cod_prod
+//       WHERE
+//       C.cod_compra = 3');
+//      $query->execute();
+//      return $query->fetch(PDO::FETCH_ASSOC);
+//      $this->dbh = null;
+//  }catch (PDOException $e)
+//  {
+//   $e->getMessage();
+//  }
+// }
+
+
 
 }
 

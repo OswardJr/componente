@@ -92,8 +92,12 @@
    }
 
    public function update(){
-			# code...
+      # code...
    }
+   // public function reporteFactura(){
+   //    $c = new compra();
+   //    $compras = $c->reporte_factura();
+   // }
 
    public function delete(){
       # code...
