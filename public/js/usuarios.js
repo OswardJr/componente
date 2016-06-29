@@ -12,7 +12,7 @@ function eliminarUsuario(identificador){
     {
        $.get('?controller=usuarios&action=delete',{cedula:identificador},function(data){
           recargar();
-          
+
       });
    }
 }
@@ -90,7 +90,7 @@ function guardar_usuario(){
       error: function (jqXHR, textStatus, errorThrown)
       {
        alert('Error');
-       
+
    }
 });
 }

@@ -1,6 +1,6 @@
 <?php
 class compra extends Conectar
-{ 
+{
   public function create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos)
   {
    try
@@ -17,7 +17,7 @@ class compra extends Conectar
     $query->bindParam(9, $status);
     $query->execute();
         foreach ($datos as $d) {
-        $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio) 
+        $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio)
                 VALUES
                   (?,?,?,?)";
         $this->dbh->prepare($sql)

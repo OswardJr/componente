@@ -2,11 +2,11 @@
 
 
 Class producto extends Conectar
-{ 
+{
 
   public function get_productos()
   {
-    try 
+    try
     {
       $query = $this->dbh->prepare(
         'SELECT
@@ -20,7 +20,7 @@ Class producto extends Conectar
         FROM
         productos AS p
         INNER JOIN
-        categorias AS c 
+        categorias AS c
         ON p.id_cat = c.id_cat
         WHERE
         STATUS = "activo"
@@ -28,30 +28,30 @@ Class producto extends Conectar
       $query->execute();
       return $query->fetchAll();
       $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
       $e->getMessage();
     }
-  } 
+  }
   public function buscar_producto($codigo)
   {
-    try 
+    try
     {
       $query = $this->dbh->prepare(
         'SELECT
         cod_prod as codigo,
-        p_venta as precio,
+        p_compra as precio,
         descripcion,
         stock,
         stock_minimo
-        FROM productos 
+        FROM productos
         WHERE cod_prod= ? ');
       $query->bindParam(1, $codigo);
       $query->execute();
       $data = $query->fetch();
       echo json_encode($data);
       $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
       $e->getMessage();
     }
@@ -59,13 +59,13 @@ Class producto extends Conectar
 
   public function agregar_producto($codigo,$cantidad,$precio)
   {
-    try 
-    { 
+    try
+    {
       $query = $this->dbh->prepare(
         'SELECT
         cod_prod as codigo,
         descripcion
-        FROM productos 
+        FROM productos
         WHERE cod_prod = ? ');
       $query->bindParam(1, $codigo);
       $query->execute();
@@ -82,7 +82,7 @@ Class producto extends Conectar
       }
       echo json_encode($json);
       $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
       $json['msj'] = $e->getMessage();
       $json['success'] = false;
@@ -146,7 +146,7 @@ Class producto extends Conectar
     echo json_encode($json);
   }
 
-} 
+}
 }
 
 ?>

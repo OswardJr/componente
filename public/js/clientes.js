@@ -2,8 +2,8 @@
 function buscarCliente(){
    var rif=document.getElementById("rif").value;
    $.get('?controller=clientes&action=getClienteByRif',{rif:rif},function(data){
-      $('[name="rif"]').parent().parent().addClass('has-error'); 
-      $('#mensaje').text(data); 
+      $('[name="rif"]').parent().parent().addClass('has-error');
+      $('#mensaje').text(data);
   });
 }
 
@@ -12,7 +12,7 @@ function eliminarCliente(identificador){
     {
        $.get('?controller=clientes&action=delete',{id_cliente:identificador},function(data){
           recargar();
-          
+
       });
    }
 }
@@ -92,7 +92,7 @@ function guardar_cliente(){
         error: function (jqXHR, textStatus, errorThrown)
         {
             alert('Error');
-            
+
         }
     });
 }

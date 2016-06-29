@@ -47,7 +47,7 @@
     {
      $.get('?controller=categorias&action=delete',{id_cat:identificador},function(data){
       recargar();
-      
+
     });
    }
  }
@@ -68,7 +68,7 @@
     error: function (jqXHR, textStatus, errorThrown)
     {
       alert('Error');
-      
+
     }
   });
 }

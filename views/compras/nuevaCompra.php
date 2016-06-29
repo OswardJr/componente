@@ -1,5 +1,5 @@
 <?php
-  $d = new DateTime();  
+  $d = new DateTime();
 ?>
 <section class="content-header">
   <h1>
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div class="detalle-producto"> 
+    <div class="detalle-producto">
       <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Productos</h3>

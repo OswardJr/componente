@@ -20,11 +20,11 @@ function buscar_proveedor(){
       $('#cantidad').removeAttr("disabled");
         if (data==1) {
             $('#rif-entrada').focus();
-            alert('Debes introducir el Rif'); 
+            alert('Debes introducir el Rif');
             $('#codigo').attr("disabled", "true");
         }else if (data == false) {
-       // $('[name="rif-entrada"]').parent().parent().addClass('has-error'); 
-            alert('El proveedor no existe'); 
+       // $('[name="rif-entrada"]').parent().parent().addClass('has-error');
+            alert('El proveedor no existe');
             $('#codigo').attr("disabled", "true");
         };
    },
@@ -51,10 +51,10 @@ function buscar_producto(){
       $('[name="stock_m"]').val(data.stock_minimo);
       if (data==1) {
         $('#codigo').focus();
-        alert('Debes introducir el codigo'); 
+        alert('Debes introducir el codigo');
       }else if (data == false) {
-            // $('[name="codigo-entrada"]').parent().parent().addClass('has-error'); 
-            alert('El producto no existe'); 
+            // $('[name="codigo-entrada"]').parent().parent().addClass('has-error');
+            alert('El producto no existe');
           };
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -104,7 +104,7 @@ if(codigo!=''){
 }
 
 //funcion eliminar
-function eliminar_carrito(codigo){  
+function eliminar_carrito(codigo){
   if (confirm("¿ Realmente desea eliminarlo de la lista?"))
  {
   $.ajax({
