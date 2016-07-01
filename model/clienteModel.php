@@ -3,28 +3,28 @@ Class cliente extends Conectar
 {
     public function get_clientes()
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM clientes WHERE status = "activo" ORDER BY id_cliente desc;');
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
-    } 
+    }
 
     public function get_cliente_by_rif($rif)
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM clientes WHERE rif = ? ');
             $query->bindParam(1, $rif);
             $query->execute();
             return $query->fetch();
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
@@ -33,7 +33,7 @@ Class cliente extends Conectar
 
     public function get_cliente_by_id($id_cliente)
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM clientes WHERE id_cliente = ? ');
             $query->bindParam(1, $id_cliente);
@@ -41,7 +41,7 @@ Class cliente extends Conectar
             $data = $query->fetch();
             echo json_encode($data);
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
@@ -89,7 +89,7 @@ Class cliente extends Conectar
             $e->getMessage();
         }
     }
-    
+
     public function delete_cliente($id_cliente)
     {
         try {
@@ -102,7 +102,7 @@ Class cliente extends Conectar
         }
     }
 
-    
+
 }
 
 ?>
