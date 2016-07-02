@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 28, 2016 at 06:15 PM
+-- Generation Time: Jul 02, 2016 at 10:58 AM
 -- Server version: 5.7.13-log
 -- PHP Version: 5.6.22
 
@@ -36,8 +36,6 @@ CREATE TABLE `categorias` (
 -- Dumping data for table `categorias`
 --
 
-INSERT INTO `categorias` (`id_cat`, `nombre`, `descripcion`) VALUES
-(1, 'Ferreteria', 'Articulos de ferreteria en general');
 
 -- --------------------------------------------------------
 
@@ -58,9 +56,6 @@ CREATE TABLE `clientes` (
 --
 -- Dumping data for table `clientes`
 --
-
-INSERT INTO `clientes` (`id_cliente`, `rif`, `razon_social`, `telefono`, `email`, `direccion`, `status`) VALUES
-(2, 'j-25065787-0', 'Distribuidora Ferretotal', '02443926896', 'jhonny@mail.com', 'villa de cura, avenida bolivar, sector centro, nro 48', 'activo');
 
 -- --------------------------------------------------------
 
@@ -84,17 +79,6 @@ CREATE TABLE `compras` (
 -- Dumping data for table `compras`
 --
 
-INSERT INTO `compras` (`cod_compra`, `id_prov`, `id_emp`, `fecha_actual`, `forma_pago`, `impuesto`, `subtot`, `tot`, `status`) VALUES
-(0, 24, 1, '2016-06-08', 'efectivo', 441, 4141, 141, 'activo'),
-(1, 24, 1, '2016-06-27', 'transferencia', 30, 250, 280, 'activo'),
-(2, 24, 1, '2016-06-27', 'deposito', 138200, 1151670, 1289870, 'activo'),
-(3, 24, 1, '2016-06-27', 'efectivo', 9858, 82150, 92008, 'activo'),
-(4, 24, 1, '2016-06-27', 'transferencia', 4320, 36000, 40320, 'activo'),
-(5, 24, 1, '2016-06-27', 'transferencia', 4320, 36000, 40320, 'activo'),
-(6, 24, 1, '2016-06-27', 'efectivo', 2400, 20000, 22400, 'activo'),
-(7, 24, 1, '2016-06-27', 'transferencia', 119760, 998001, 1117761, 'activo'),
-(8, 24, 1, '2016-06-28', 'efectivo', 84000, 700000, 784000, 'activo');
-
 -- --------------------------------------------------------
 
 --
@@ -111,41 +95,6 @@ CREATE TABLE `det_compra` (
 --
 -- Dumping data for table `det_compra`
 --
-
-INSERT INTO `det_compra` (`cod_compra`, `cod_prod`, `cantidad`, `precio`) VALUES
-(1, '1', 15, 1),
-(1, '213', 15, 1),
-(1, '200', 15, 1),
-(1, '23', 15, 23),
-(1, '2112', 12, 2),
-(1, 'ANGCANT006', 10, 10),
-(1, 'ANGCANT006', 1, 250),
-(2, 'ALDP000001', 123, 290),
-(2, 'ALDP000001', 123, 290),
-(2, 'ALDP000001', 123, 290),
-(2, 'ALDP000001', 123, 290),
-(2, 'ANGCANT006', 456, 250),
-(2, 'ALAMB00001', 334, 3000),
-(3, 'ALAMB00001', 15, 3000),
-(3, 'ALDP000001', 85, 290),
-(3, 'ANGCANT006', 50, 250),
-(3, 'ALAMB00001', 15, 3000),
-(3, 'ALDP000001', 85, 290),
-(3, 'ANGCANT006', 50, 250),
-(4, 'ALAMB00001', 12, 3000),
-(4, 'ALAMB00001', 12, 3000),
-(5, 'ALAMB00001', 12, 0),
-(5, 'ALDP000001', 12, 1500),
-(5, 'ANGCANT006', 12, 1500),
-(6, 'ALAMB00001', 10, 2000),
-(6, 'ALAMB00001', 10, 2000),
-(6, 'ALAMB00001', 10, 2000),
-(6, 'ALAMB00001', 10, 2000),
-(6, 'ALAMB00001', 10, 2000),
-(7, 'ANGCANT006', 999, 999),
-(7, 'ANGCANT006', 999, 999),
-(8, 'ALAMB00001', 100, 2500),
-(8, 'ALDP000001', 150, 3000);
 
 -- --------------------------------------------------------
 
@@ -193,9 +142,6 @@ CREATE TABLE `empleados` (
 -- Dumping data for table `empleados`
 --
 
-INSERT INTO `empleados` (`id_emp`, `ci_usuario`, `primer_nombre`, `primer_apellido`, `username`, `password`, `rol`) VALUES
-(1, 25065787, 'Jhonny', 'Arana', 'jhonny', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrador');
-
 -- --------------------------------------------------------
 
 --
@@ -241,11 +187,6 @@ CREATE TABLE `productos` (
 -- Dumping data for table `productos`
 --
 
-INSERT INTO `productos` (`cod_prod`, `descripcion`, `modelo`, `peso`, `color`, `garantia`, `p_compra`, `p_venta`, `stock`, `stock_minimo`, `status`, `procedencia`, `id_cat`) VALUES
-('ALAMB00001', 'ALAMBRE GALVANIZADO', NULL, '50 KG', NULL, NULL, 2500, 0, 152, 10, 'activo', 'nacional', 1),
-('ALDP000001', 'ALDABA PORTACANDADO', '38MM 1 1/2"', NULL, NULL, NULL, 3000, 0, 162, 15, 'activo', 'nacional', 1),
-('ANGCANT006', 'ANGULO CANTO', '4" X 4" IMP', NULL, NULL, NULL, 999, 0, 1011, 50, 'activo', 'nacional', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -265,9 +206,6 @@ CREATE TABLE `proveedores` (
 --
 -- Dumping data for table `proveedores`
 --
-
-INSERT INTO `proveedores` (`id_prov`, `rif`, `razon_social`, `telefono`, `email`, `direccion`, `status`) VALUES
-(24, '25065787', 'asdasd', '2', 'a@g.cailc.omasad', 'a', 'activo');
 
 -- --------------------------------------------------------
 
@@ -401,36 +339,36 @@ ALTER TABLE `proveedores`
 -- Constraints for table `compras`
 --
 ALTER TABLE `compras`
-  ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_prov`) REFERENCES `proveedores` (`id_prov`),
-  ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`);
+  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id_prov`) REFERENCES `proveedores` (`id_prov`),
+  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`);
 
 --
 -- Constraints for table `det_compra`
 --
 ALTER TABLE `det_compra`
-  ADD CONSTRAINT `compra_producto_ibfk_1` FOREIGN KEY (`cod_compra`) REFERENCES `compras` (`cod_compra`),
-  ADD CONSTRAINT `compra_producto_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
+  ADD CONSTRAINT `det_compra_ibfk_1` FOREIGN KEY (`cod_compra`) REFERENCES `compras` (`cod_compra`),
+  ADD CONSTRAINT `det_compra_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
 
 --
 -- Constraints for table `det_presu`
 --
 ALTER TABLE `det_presu`
-  ADD CONSTRAINT `presupuesto_producto_ibfk_1` FOREIGN KEY (`cod_presu`) REFERENCES `presupuestos` (`cod_presu`),
-  ADD CONSTRAINT `presupuesto_producto_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
+  ADD CONSTRAINT `det_presu_ibfk_1` FOREIGN KEY (`cod_presu`) REFERENCES `presupuestos` (`cod_presu`),
+  ADD CONSTRAINT `det_presu_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
 
 --
 -- Constraints for table `det_venta`
 --
 ALTER TABLE `det_venta`
-  ADD CONSTRAINT `venta_producto_ibfk_1` FOREIGN KEY (`cod_venta`) REFERENCES `ventas` (`cod_venta`),
-  ADD CONSTRAINT `venta_producto_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
+  ADD CONSTRAINT `det_venta_ibfk_1` FOREIGN KEY (`cod_venta`) REFERENCES `ventas` (`cod_venta`),
+  ADD CONSTRAINT `det_venta_ibfk_2` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`);
 
 --
 -- Constraints for table `presupuestos`
 --
 ALTER TABLE `presupuestos`
-  ADD CONSTRAINT `presupuesto_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`),
-  ADD CONSTRAINT `presupuesto_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`);
+  ADD CONSTRAINT `presupuestos_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`),
+  ADD CONSTRAINT `presupuestos_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`);
 
 --
 -- Constraints for table `productos`
@@ -442,8 +380,8 @@ ALTER TABLE `productos`
 -- Constraints for table `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`);
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
+  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`id_emp`) REFERENCES `empleados` (`id_emp`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
