@@ -1,4 +1,4 @@
-    /*  (function () {
+     (function () {
         $('#table').DataTable({
           "paging": true,
           "lengthChange":true,
@@ -7,13 +7,9 @@
           "info": true,
           "autoWidth":true
         });
-      });*/
+      });
 
 
-
- /*
-    recargar tablas
-    */
 
 
     function editar_categoria(valor){

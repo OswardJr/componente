@@ -1,8 +1,8 @@
 <?php
 	/**
-	* 
+	*
 	*/
-	class ComprasController 
+	class ComprasController
 	{
 		public function __construct(){
         require_once("model/comprasModel.php");
@@ -13,7 +13,7 @@
         }
     }
     public function index(){
-        $c= new compra;	
+        $c= new compra;
         $numorden = $c->numorden();
         require_once("model/categoriaModel.php");
         $c = new categoria();
@@ -24,7 +24,7 @@
 
     public function create(){
         if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
-          $compra = new compra;	
+          $compra = new compra;
           $cod_compra = $_POST['cod_factura'];
           $id_prov = $_POST['id_prov'];
           $id_emp = $_POST['id_emp'];
@@ -71,7 +71,7 @@
      {
        echo 1 ;
        exit;
-     }	
+     }
      $p = new proveedor();
      if (isset($_GET["rif"]) and $_GET["rif"] != "") {
        $proveedor = $p->buscar_proveedor($rif);
@@ -84,7 +84,7 @@
      {
        echo 1 ;
        exit;
-     }	
+     }
      $p = new producto();
      if (isset($_GET["codigo"]) and $_GET["codigo"] != "") {
        $proveedor = $p->buscar_producto($codigo);
@@ -102,19 +102,26 @@
    public function delete(){
       # code...
    }
+   public function destruirCarrito(){
+    try {
+      unset($_SESSION['detalle']);
+    } catch (PDOException $e) {
+       $e->getMessage();
+    }
+  }
    public function eliminar(){
 		$json = array();
     $json['msj'] = 'Producto Eliminado';
     $json['success'] = true;
-  
+
     if (isset($_POST['codigo'])) {
       try {
         $codigo = $_POST['codigo'];
         unset($_SESSION['detalle'][$codigo]);
         $json['success'] = true;
-  
+
         echo json_encode($json);
-  
+
       } catch (PDOException $e) {
         $json['msj'] = $e->getMessage();
         $json['success'] = false;

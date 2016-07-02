@@ -359,7 +359,7 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
       <script type="text/javascript">
-          $(document).ready(function() {
+      $(document).ready(function() {
       //datatables
       table = $('#table1').DataTable({
         "scrollX": true
