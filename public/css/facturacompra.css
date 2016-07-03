@@ -9,40 +9,40 @@ body{
 	background-color:#fff;
 	color:#000;
 	margin:0;
-	padding: 0;	
+	padding: 0;
 	height: 100%;
 	/*border: solid 1px;*/
 }
 header{
 	width: 100%;
 	margin: 0;
-	padding: 0;	
+	padding: 0;
 	height: 120px;
 }
-header img{	
+header img{
 	width:25%;
 	margin: 0;
-	height: 90px;	
-	padding-top: 1em;		
+	height: 90px;
+	padding-top: 1em;
 	padding-left: .2em;
 }
 header h2{
-	width:70%;		
-	font-size: 3.3em;			
+	width:70%;
+	font-size: 3.3em;
 	margin: 0;
 	margin-top: 0.5em;
 	padding: 0;
 	display: inline-block;
 }
-header h3{		
-	font-size: 1em;				
-	margin-left: 38%;	
+header h3{
+	font-size: 1em;
+	margin-left: 38%;
 }
-hr{	
+hr{
 	width: 100%;
 	margin: 0;
 	left: -5em;
-	top: 6em;	
+	top: 6em;
 }
 #me{
 	margin-top: 2em;
@@ -53,7 +53,7 @@ hr{
 	margin-left: -70px;
 }
 #me h2{
-	font-size: 2.8em;	
+	font-size: 2.8em;
 	margin: 0;
 	padding: 0;
 }
@@ -74,12 +74,12 @@ hr{
 #linea h3
 {
 	text-align: center;
-	line-height: 0.5;	
+	line-height: 0.5;
 	font-size: 1.5em;
 	color: #444;
 }
 #cuerpo{
-	width: 100%;	
+	width: 100%;
 }
 #cuerpo h2{
 	width: 100%;
@@ -101,16 +101,20 @@ thead {
 tbody {
   background-color: #ffffee;
 }
+th{
+border-right: 1px solid black;
 
+}
 th,td {
   padding: 3pt;
+
 }
 
 
 table.collapse {
   border-collapse: collapse;
-  border: 1px solid black; 
-  font-size: 14px; 
+  border: 1px solid black;
+  font-size: 14px;
 }
 
 table.collapse td {

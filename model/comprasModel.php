@@ -56,40 +56,72 @@ public function numorden()
   $e->getMessage();
 }
 }
-// public function reporte_factura()
-// {
-//    try
-//     {
-//      $query = $this->dbh->prepare('SELECT
-//       d.cod_compra AS numero,
-//       d.cod_prod AS cod,
-//       p.descripcion,
-//       d.cantidad AS cant,
-//       d.precio AS precio_unitario,
-//       (d.cantidad * p.p_venta) AS precio_total,
-//       c.subtot,
-//       c.impuesto,
-//       c.tot
-//       FROM
-//       det_compra AS d
-//       INNER JOIN
-//       compras AS c
-//       ON
-//       d.cod_compra = c.cod_compra
-//       INNER JOIN
-//       productos AS p
-//       ON
-//       d.cod_prod = p.cod_prod
-//       WHERE
-//       C.cod_compra = 3');
-//      $query->execute();
-//      return $query->fetch(PDO::FETCH_ASSOC);
-//      $this->dbh = null;
-//  }catch (PDOException $e)
-//  {
-//   $e->getMessage();
-//  }
-// }
+public function detalle_compra()
+{
+   try
+    {
+     $query = $this->dbh->prepare('SELECT
+      d.cod_prod AS codigo,
+      p.descripcion,
+      d.cantidad AS cantidad,
+      d.precio AS precio
+      FROM
+      det_compra AS d
+      INNER JOIN
+      compras AS c
+      ON
+      d.cod_compra = c.cod_compra
+      INNER JOIN
+      productos AS p
+      ON
+      d.cod_prod = p.cod_prod
+      WHERE
+      c.cod_compra = 1') ;
+     $query->execute();
+     return $query->fetchAll(PDO::FETCH_ASSOC);
+     $this->dbh = null;
+ }catch (PDOException $e)
+ {
+  $e->getMessage();
+ }
+}
+public function obtener_compra()
+{
+ try
+ {
+   $query = $this->dbh->prepare('SELECT
+    c.cod_compra AS codigo,
+    c.fecha_actual AS fecha,
+    e.primer_nombre AS nombre,
+    e.primer_apellido AS apellido,
+    p.razon_social,
+    p.direccion,
+    p.rif,
+    p.telefono,
+    c.forma_pago,
+    c.impuesto,
+    c.subtot,
+    c.tot
+    FROM
+    compras AS c
+    INNER JOIN
+    empleados AS e
+    ON
+    c.id_emp = e.id_emp
+    INNER JOIN
+    proveedores AS p
+    ON
+    p.id_prov = p.id_prov
+    WHERE
+    c.cod_compra = 1') ;
+   $query->execute();
+   return $query->fetchAll();
+   $this->dbh = null;
+ }catch (PDOException $e)
+ {
+  $e->getMessage();
+}
+}
 
 
 
