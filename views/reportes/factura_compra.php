@@ -5,8 +5,8 @@ require_once '../../model/comprasModel.php';
 $cod_compra = $_GET["cod_compra"];
 $dc = new compra();
 $c = new compra();
-$det_compra = $dc->detalle_compra();
-$compra = $c->obtener_compra();
+$det_compra = $dc->detalle_compra($cod_compra);
+$compra = $c->obtener_compra($cod_compra);
 session_start();
 $codigo='<html>
 <head>

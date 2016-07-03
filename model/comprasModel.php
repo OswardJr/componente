@@ -32,10 +32,11 @@ class compra extends Conectar
         $this->dbh->prepare($sql)
                   ->execute();
   }
-    echo utf8_decode("<script type='text/javascript'>
-               alert('Compra guardada exitosamente');
-               window.location='';
-           </script>");
+  header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
+    // echo utf8_decode("<script type='text/javascript'>
+    //            alert('Compra guardada exitosamente');
+    //            window.location='';
+    //        </script>");
     $this->dbh = null;
     unset($_SESSION['detalle']);
   } catch (PDOException $e) {
@@ -56,7 +57,7 @@ public function numorden()
   $e->getMessage();
 }
 }
-public function detalle_compra()
+public function detalle_compra($cod_compra)
 {
    try
     {
@@ -76,7 +77,8 @@ public function detalle_compra()
       ON
       d.cod_prod = p.cod_prod
       WHERE
-      c.cod_compra = 1') ;
+      c.cod_compra = ?');
+     $query->bindParam(1, $cod_compra);
      $query->execute();
      return $query->fetchAll(PDO::FETCH_ASSOC);
      $this->dbh = null;
@@ -85,7 +87,7 @@ public function detalle_compra()
   $e->getMessage();
  }
 }
-public function obtener_compra()
+public function obtener_compra($cod_compra)
 {
  try
  {
@@ -113,7 +115,8 @@ public function obtener_compra()
     ON
     p.id_prov = p.id_prov
     WHERE
-    c.cod_compra = 1') ;
+    c.cod_compra = ?') ;
+    $query->bindParam(1, $cod_compra);
    $query->execute();
    return $query->fetchAll();
    $this->dbh = null;
