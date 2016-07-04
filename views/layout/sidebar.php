@@ -23,7 +23,7 @@
       <li class="header">MENU</li>
       <!-- Optionally, you can add icons to the links -->
       <!-- Registros Menu -->
-      
+
       <li class="treeview" id="scrollspy-components">
         <a href="#">
           <span>Registros</span>
@@ -56,7 +56,7 @@
           </li>
         </ul>
       </li>
-      
+
       <!-- Compras Menu -->
       <li class="treeview id="scrollspy-components"">
         <a href="#">
@@ -173,7 +173,7 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="">
+                <a href="?controller=compras&action=listado">
                   <i class="fa  fa-file-text"></i>
                   <span>Listado general</span>
                 </a>

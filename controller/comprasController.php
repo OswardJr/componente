@@ -21,6 +21,25 @@
         require_once("views/layout/template.php");
         require_once("views/compras/nuevaCompra.php");
     }
+  public function all()
+  {
+    $c = new compra();
+    $compras = $c->get_compras() ;
+    $data = array();
+    foreach ($compras as $com) {
+      $row = array($com['codigo'],
+        $com['proveedor'],
+        $com['fecha'],
+        $com['monto'],
+        '<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick=""><i class=" btn btn-xs btn-ver
+        glyphicon glyphicon-eye-open"></i></a>
+          <a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="" ><i class=" btn btn-xs btn-delete
+            glyphicon glyphicon-trash"></i></a>');
+      $data[] = $row;
+    }
+    $output = array("data" => $data);
+    echo json_encode($output);
+  }
 
     public function create(){
         if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
@@ -61,8 +80,9 @@
         }
       }
     }
-    public function getById(){
-			# code...
+    public function listado(){
+      require_once("views/layout/template.php");
+      require_once("views/compras/listadoCompras.php");
     }
     public function buscarProveedor(){
      require_once("model/provModel.php");

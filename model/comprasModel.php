@@ -1,6 +1,32 @@
 <?php
 class compra extends Conectar
 {
+  public function get_compras()
+  {
+    try
+    {
+      $query = $this->dbh->prepare('
+        SELECT
+        c.cod_compra AS codigo,
+        p.razon_social AS proveedor,
+        c.fecha_actual AS fecha,
+        c.tot AS monto
+        FROM
+        compras AS c
+        INNER JOIN
+        proveedores AS p
+        ORDER BY
+        c.cod_compra
+        DESC
+        ');
+      $query->execute();
+      return $query->fetchAll();
+      $this->dbh = null;
+    }catch (PDOException $e)
+    {
+      $e->getMessage();
+    }
+  }
   public function create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos)
   {
    try
@@ -16,23 +42,23 @@ class compra extends Conectar
     $query->bindParam(8, $tot);
     $query->bindParam(9, $status);
     $query->execute();
-        foreach ($datos as $d) {
-        $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio)
-                VALUES
-                  (?,?,?,?)";
-        $this->dbh->prepare($sql)
-                  ->execute(
-                    array(
-                      $cod_compra,
-                      $d['cod'],
-                      $d['cant'],
-                      $d['precio_p']
-                      ));
-        $sql = "UPDATE productos SET stock = stock +'" . $d['cant'] . "', p_compra='". $d['precio_p'] ."'WHERE cod_prod = '". $d['cod']."'";
-        $this->dbh->prepare($sql)
-                  ->execute();
-  }
-  header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
+    foreach ($datos as $d) {
+      $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio)
+      VALUES
+      (?,?,?,?)";
+      $this->dbh->prepare($sql)
+      ->execute(
+        array(
+          $cod_compra,
+          $d['cod'],
+          $d['cant'],
+          $d['precio_p']
+          ));
+      $sql = "UPDATE productos SET stock = stock +'" . $d['cant'] . "', p_compra='". $d['precio_p'] ."'WHERE cod_prod = '". $d['cod']."'";
+      $this->dbh->prepare($sql)
+      ->execute();
+    }
+    header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
     // echo utf8_decode("<script type='text/javascript'>
     //            alert('Compra guardada exitosamente');
     //            window.location='';
@@ -40,7 +66,7 @@ class compra extends Conectar
     $this->dbh = null;
     unset($_SESSION['detalle']);
   } catch (PDOException $e) {
-      $e->getMessage();
+    $e->getMessage();
   }
 }
 
@@ -59,33 +85,33 @@ public function numorden()
 }
 public function detalle_compra($cod_compra)
 {
-   try
-    {
-     $query = $this->dbh->prepare('SELECT
-      d.cod_prod AS codigo,
-      p.descripcion,
-      d.cantidad AS cantidad,
-      d.precio AS precio
-      FROM
-      det_compra AS d
-      INNER JOIN
-      compras AS c
-      ON
-      d.cod_compra = c.cod_compra
-      INNER JOIN
-      productos AS p
-      ON
-      d.cod_prod = p.cod_prod
-      WHERE
-      c.cod_compra = ?');
-     $query->bindParam(1, $cod_compra);
-     $query->execute();
-     return $query->fetchAll(PDO::FETCH_ASSOC);
-     $this->dbh = null;
+ try
+ {
+   $query = $this->dbh->prepare('SELECT
+    d.cod_prod AS codigo,
+    p.descripcion,
+    d.cantidad AS cantidad,
+    d.precio AS precio
+    FROM
+    det_compra AS d
+    INNER JOIN
+    compras AS c
+    ON
+    d.cod_compra = c.cod_compra
+    INNER JOIN
+    productos AS p
+    ON
+    d.cod_prod = p.cod_prod
+    WHERE
+    c.cod_compra = ?');
+   $query->bindParam(1, $cod_compra);
+   $query->execute();
+   return $query->fetchAll(PDO::FETCH_ASSOC);
+   $this->dbh = null;
  }catch (PDOException $e)
  {
   $e->getMessage();
- }
+}
 }
 public function obtener_compra($cod_compra)
 {
@@ -116,7 +142,7 @@ public function obtener_compra($cod_compra)
     p.id_prov = p.id_prov
     WHERE
     c.cod_compra = ?') ;
-    $query->bindParam(1, $cod_compra);
+   $query->bindParam(1, $cod_compra);
    $query->execute();
    return $query->fetchAll();
    $this->dbh = null;

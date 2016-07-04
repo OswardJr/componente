@@ -9,6 +9,9 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[**.php]
+indent_style = space
+indent_size = 2
 # Spaces
 [**.css]
 indent_style = space
@@ -21,9 +24,6 @@ indent_size = 2
 # Tabs in
 
 
-[**.php]
-indent_style = space
-indent_size = 2
 
 [**.html]
 indent_style = tab
