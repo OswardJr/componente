@@ -18,12 +18,27 @@ gulp.task('css', () => {
 
 //minificar los js y concatenarlos
 gulp.task('js', () => {
+  gulp
+    .src('public/src/js/*.js')
+    .pipe(concat('scripts.js'))
+    .pipe(uglify())
+    .pipe( gulp.dest('public/dist/js/') )
+})
+
+//minificar los js de los plugins
+gulp.task('pluginsjs', () => {
+  gulp
+    .src('public/src/plugins/**/js/*.js')
+    .pipe(uglify())
+    .pipe( gulp.dest('public/dist/plugins/') )
+})
+//minificar los css de los plugins
+gulp.task('pluginscss', () => {
 	gulp
-		.src('public/src/js/*.js')
-		.pipe(concat('scripts.js'))
-		.pipe(uglify())
-		.pipe( gulp.dest('public/dist/js/') )
+    .src('public/src/plugins/**/css/*.css')
+    .pipe(minifycss())
+    .pipe(gulp.dest('public/dist/plugins/'))
 })
 
 //ejecutar las tareas
-gulp.task('default', ['css', 'js'])
+gulp.task('default', ['css', 'js','pluginsjs','pluginscss'])
