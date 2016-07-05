@@ -1,3 +1,4 @@
 .DS_Store
 /includes/dompdf/
 /dompdf/
+/node_modules/

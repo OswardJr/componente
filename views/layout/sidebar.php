@@ -7,9 +7,9 @@
       <div class="pull-left image">
         <?php
         if ( $_SESSION['rol'] == "Administrador") {
-          echo "<img src='public/dist/img/avatar5.png' class='img-circle' alt='User Image'>";
+          echo "<img src='public/img/avatar5.png' class='img-circle' alt='User Image'>";
         }else{
-          echo "<img src='public/dist/img/avatar3.png' class='img-circle' alt='User Image'>";
+          echo "<img src='public/img/avatar3.png' class='img-circle' alt='User Image'>";
         }
         ?>
       </div>
