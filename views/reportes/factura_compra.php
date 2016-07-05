@@ -10,7 +10,7 @@ $compra = $c->obtener_compra($cod_compra);
 session_start();
 $codigo='<html>
 <head>
-  <link rel="stylesheet" href="../../public/css/facturacompra.css" type="text/css" />
+  <link rel="stylesheet" href="../../public/src/css/facturas/facturacompra.css" type="text/css" />
 </head>
 <body>
   <header>
@@ -26,27 +26,28 @@ $codigo='<html>
   <div id="linea">
     <h3>Orden de compra</h3>
   </div>';
-  $codigo.='<table class="encabezado" style="width:735px;">';
+  $codigo.='<table class="encabezado " style="width:100%;">';
 foreach ($compra as $k => $det_c) {
   $fecha = date_create($det_c['fecha']);//funcion para voltear la fecha
   $codigo.='
   <tr>
-    <td style="text-align:left;" colspan="7">N° de orden: '.$det_c['codigo'].'</td>
-    <td style="text-align:left;" colspan="7">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
-    <td style="text-align:left;" colspan="4">Empleado: '. $det_c['nombre'].' '. $det_c['apellido'].'</td>
+    <td style="text-align:left;">N° de orden: '.$det_c['codigo'].'</td>
+    <td style="text-align:left;">Forma de pago: '. $det_c['forma_pago'].'</td>
+    <td style="text-align:left;">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
   </tr>
   <tr>
+    <td style="text-align:left;" >Rif: '.$det_c['rif'].'</td>
     <td style="text-align:left;" >Razon social: '. $det_c['razon_social'].'</td>
+    <td style="text-align:left;" >Telefono: '.$det_c['telefono'].'</td>
   </tr>
+  </table>
+  <table class="encabezado" style="margin-top:0px;width:100%;">
   <tr>
     <td style="text-align:left;" >Domicilio: '.$det_c['direccion'].'</td>
   </tr>
-  <tr>
-    <td style="text-align:left;" colspan="7">Rif: '.$det_c['rif'].'</td>
-    <td style="text-align:left;" colspan="7">Telefono: '.$det_c['telefono'].'</td>
-    <td style="text-align:left;" colspan="7">Forma de pago: '. $det_c['forma_pago'].'</td>';
+
+    ';
   }
-    $codigo.='</tr>';
     $codigo.='</table>';
     $codigo.='<br/><table class="collapse">';
     $codigo.='<thead>
@@ -58,7 +59,7 @@ foreach ($compra as $k => $det_c) {
     </tr>
     </thead>';
     $cont = count($det_compra);
-    $filas = 25 - $cont;
+    $filas = 24 - $cont;
 foreach ($det_compra as $k => $detalle) {
   $codigo.='<tr>
     <td style="width:100px;text-align:left;">'. $detalle['codigo'].'</td>

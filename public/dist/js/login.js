@@ -1,1 +1,0 @@
-function login(){var o=$("[name=username]")[0].value,n=$("[name=password]")[0].value;$.ajax({type:"POST",url:"?controller=login&action=login",data:{usuario:o,clave:n}}).done(function(o){1==o?location.replace("?controller=index"):(alert("Usuario o Password Incorrectos"),location.reload())})}$(function(){$("#login").click(function(o){o.preventDefault(),login()})});
