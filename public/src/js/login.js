@@ -17,7 +17,7 @@
         // alert(response);
         if(response == 1){
           //location.reload();
-          location.replace("?controller=index");          
+          location.replace("?controller=index");
         }else{
           alert("Usuario o Password Incorrectos");
           location.reload();

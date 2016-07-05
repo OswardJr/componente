@@ -46,7 +46,7 @@ body {
 .form-group > p{
 	  margin-top: 0px;
 }
-/*topbar*/
+
 .skin-blue-light .main-header .navbar {
     background-color: #039be0;
 }
@@ -173,7 +173,6 @@ body {
 .form > .col-md-4{
     padding-right: 0px;
 }
-
 .form > .col-md-1{
     padding-left: 0px;
     padding-right: 0px;

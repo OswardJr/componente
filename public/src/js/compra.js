@@ -1,8 +1,5 @@
-
-
 function buscar_proveedor(){
   var rif=$('#rif-entrada').val();
-
   $.ajax({
     url : "?controller=compras&action=buscarProveedor&rif=" + rif,
     type: "GET",
@@ -35,9 +32,7 @@ function buscar_proveedor(){
  });
 }
 function buscar_producto(){
-
   var codigo=$('#codigo').val();
-
   $.ajax({
     url : "?controller=compras&action=buscarProducto&codigo=" + codigo,
     type: "GET",
