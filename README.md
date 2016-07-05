@@ -1,3 +1,9 @@
-# componente 
-##software administrarivo m & e plus
-###desarrollado en php, ajax, mysql y jquery.
+## Componente de software administrativo para "M & E plus C.A"
+#### desarrollado en:
+
+* Php
+* Bootstrap 3
+* Dompdf
+* Ajax
+* Mysql [PDO]
+* Jquery.
