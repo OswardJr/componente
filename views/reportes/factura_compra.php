@@ -28,10 +28,11 @@ $codigo='<html>
   </div>';
   $codigo.='<table class="encabezado" style="width:735px;">';
 foreach ($compra as $k => $det_c) {
+  $fecha = date_create($det_c['fecha']);//funcion para voltear la fecha
   $codigo.='
   <tr>
     <td style="text-align:left;" colspan="7">N° de orden: '.$det_c['codigo'].'</td>
-    <td style="text-align:left;" colspan="7">Fecha: '. $det_c['fecha'].'</td>
+    <td style="text-align:left;" colspan="7">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
     <td style="text-align:left;" colspan="4">Empleado: '. $det_c['nombre'].' '. $det_c['apellido'].'</td>
   </tr>
   <tr>

@@ -27,9 +27,10 @@
     $compras = $c->get_compras() ;
     $data = array();
     foreach ($compras as $com) {
-      $row = array($com['codigo'],
+        $fecha = date_create($com['fecha']);//funcion para voltear la fecha
+        $row = array($com['codigo'],
         $com['proveedor'],
-        $com['fecha'],
+        date_format($fecha, 'd-m-Y'),//se voltea la fecha
         $com['monto'],
         '<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick=""><i class=" btn btn-xs btn-ver
         glyphicon glyphicon-eye-open"></i></a>
