@@ -102,6 +102,9 @@ body {
   font-weight: 600;
 
 }
+
+
+
 .btn:hover{
     -webkit-box-shadow:  0 5px 11px 0 rgba(0, 0, 0, 0.20), 0 4px 15px 0 rgba(0, 0, 0, 0.20);
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.20), 0 4px 15px 0 rgba(0, 0, 0, 0.20);
@@ -187,4 +190,3 @@ body {
     padding-right: 0px;
     transition:
 }
-

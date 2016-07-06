@@ -9,9 +9,6 @@
   });
 });
 
-
-
-
 function editar_categoria(valor){
   save_method = 'update';
   //$('#form')[0].reset(); // reset form on modals
