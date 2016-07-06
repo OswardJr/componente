@@ -59,6 +59,15 @@ body {
     background-color: #038cca;
     text-decoration: none;
 }
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid #039be0;
+}
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
 .box-header {
     background: rgba(137, 143, 146, 0.60);
 }

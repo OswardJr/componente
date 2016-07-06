@@ -65,21 +65,3 @@
 <script src="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap/js/bootstrap.js"></script>
 <script src="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/js/app.js"></script>
 <script src="<?php echo Conectar::ruta()?>public/dist/js/scripts.js"></script>
-
-<?PHP
-/*BOOTSTRAP.CSS: 4643
-
-.skin-blue-light .main-header .navbar {
-    background-color: #039be0;
-}
-.skin-blue-light .main-header .logo {
-    background-color: #039be0;;
-    color: #ffffff;
-    border-bottom: 0 solid transparent;
-}
-.skin-blue-light .main-header .logo:hover {
-    background-color: #038cca;
-    text-decoration: none;
-}
-*/
-?>
