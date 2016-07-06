@@ -6,7 +6,7 @@
 <!-- Main content -->
 <section class="content">
     <div col-md-4>
-        <?php
+<!--         <?php
         $d = new DateTime();
         print 'Hoy es';
         print "\n";
@@ -39,6 +39,6 @@
         echo "rol: ".$_SESSION['rol'];
         echo "<br>";
         echo "token: ".$_SESSION['token']; //Genera un token aleatorio
-        ?>
+        ?> -->
     </div>
 </section>
