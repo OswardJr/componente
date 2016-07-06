@@ -17,12 +17,12 @@
             <!-- text input -->
             <div class="form-group">
               <label>Nombre<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-              <input type="text" name="nombre" id="nombre" class="form-control" placeholder="" required>
+              <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre de la categoria" required>
             </div>
             <div class="form-group">
               <label for="textareaDes" class="control-label">Descripcion</label>
               <div class="">
-                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required></textarea>
+                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Breve descripción" required></textarea>
               </div>
             </div>
             <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />

@@ -18,7 +18,7 @@
             <div class="form-group col-xs-6"  style="margin-bottom: 0px; height: 60px">
               <label>Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
               <div class="input-group input-group-sm">
-                <input type="text" name="rif" id="rif" class="form-control" placeholder="" value="<? echo $rif?>" required>
+                <input type="text" name="rif" id="rif" class="form-control" placeholder="J-12345678-9" value="<? echo $rif?>" required>
                 <span class="input-group-btn">
                   <button  data-toggle="tooltip" title="Consultar" class="btn btn-info btn-flat fa fa-search
                   " type="button"  onClick="buscarProv()" name="btn-search"></button>
