@@ -4,7 +4,7 @@ class usuario extends Conectar
 {
 
     public function get_users(){
-       try 
+       try
        {
         $query = $this->dbh->prepare(
             'SELECT
@@ -19,13 +19,13 @@ class usuario extends Conectar
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
         $e->getMessage();
     }
 }
 public function get_user_by_cedula($cedula){
-    try 
+    try
     {
         $query = $this->dbh->prepare('SELECT * FROM empleados where ci_emp = ? ');
         $query->bindParam(1, $cedula);
@@ -33,7 +33,7 @@ public function get_user_by_cedula($cedula){
         $data = $query->fetch();
         echo json_encode($data);
         $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
         $e->getMessage();
     }
@@ -41,14 +41,14 @@ public function get_user_by_cedula($cedula){
 
 public function comprobar_user($cedula)
 {
-    try 
+    try
     {
         $query = $this->dbh->prepare('SELECT * FROM empleados where ci_emp = ? ');
         $query->bindParam(1, $cedula);
         $query->execute();
         return $query->fetch();
         $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
         $e->getMessage();
     }
@@ -76,7 +76,7 @@ public function create_user($cedula,$nombre,$apellido,$username,$password,$rol,$
 
     } catch (PDOException $e) {
         $e->getMessage();
-    }     
+    }
 
 }
 public function delete_user($cedula)
@@ -108,13 +108,13 @@ public function update_user($cedula,$nombre,$apellido,$username,$rol,$id_emp){
 
     } catch (PDOException $e) {
         $e->getMessage();
-    }     
+    }
 
 }
 
 public function login($username, $contrasena)
 {
-    try 
+    try
     {
         $query = $this->dbh->prepare('SELECT * FROM empleados where username=? and password=?');
         $query->bindParam(1, $username);
@@ -135,11 +135,11 @@ public function login($username, $contrasena)
                     echo 0; // retorno que no se logueo
                 }
                 $this->dbh = null;
-            }catch (PDOException $e) 
+            }catch (PDOException $e)
             {
                 $e->prueba();
             }
-        } 
+        }
 
     }
 

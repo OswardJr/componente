@@ -1,22 +1,21 @@
 <?php
-session_start();
 class categoria extends Conectar
 {
 
     public function get_categorias(){
-       try 
+       try
        {
         $query = $this->dbh->prepare('SELECT * FROM categorias');
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
         $e->getMessage();
     }
 }
 public function get_categoria_by_id($id_cat){
-    try 
+    try
     {
         $query = $this->dbh->prepare('SELECT * FROM categorias WHERE id_cat = ? ');
         $query->bindParam(1, $id_cat);
@@ -24,7 +23,7 @@ public function get_categoria_by_id($id_cat){
         $data = $query->fetch();
         echo json_encode($data);
         $this->dbh = null;
-    }catch (PDOException $e) 
+    }catch (PDOException $e)
     {
         $e->getMessage();
     }
@@ -47,7 +46,7 @@ public function create_categoria($nombre,$descripcion)
 
     } catch (PDOException $e) {
         $e->getMessage();
-    }     
+    }
 
 }
 public function delete_categoria($id_cat)
@@ -76,9 +75,9 @@ public function update_categoria($nombre,$descripcion,$id_cat){
 
     } catch (PDOException $e) {
         $e->getMessage();
-    }     
+    }
 
-} 
+}
 
 }
 

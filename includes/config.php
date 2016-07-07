@@ -1,7 +1,8 @@
 <?php
 
+session_start();
 
-class Conectar 
+class Conectar
 {
     public $dbh;
 
@@ -16,7 +17,7 @@ class Conectar
             die();
         }
     }
-    
+
     public static function ruta()
     {
         return "http://localhost/Desarrollo/componente/";
@@ -40,5 +41,5 @@ class Conectar
     error_reporting(E_ALL);
     ini_set('display_errors', false);
 
-    
+
     ?>
