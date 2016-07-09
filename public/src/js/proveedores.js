@@ -6,7 +6,7 @@ function buscarProv(){
   data: {'rif':rif},
   dataType: 'json',
   success: function(data) {
-    alert(data.msj)
+    swal(data.msj)
   },
 });
 }
@@ -44,7 +44,7 @@ function ver_proveedor(valor)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error get data from ajax');
+            swal('Error get data from ajax');
         }
     });
 }
@@ -75,7 +75,7 @@ function editar_proveedor(valor)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error get data from ajax');
+            swal('Error get data from ajax');
         }
     });
 }
@@ -88,13 +88,13 @@ function guardar_proveedor()
         dataType: "JSON",
         success: function(data)
         {
-          alert('ha sido actualizado');
+          swal('ha sido actualizado');
           $('#modal_form1').modal('hide');
           recargar();
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-       alert('Error');
+       swal('Error');
    }
 });
 }
@@ -126,14 +126,14 @@ function crear_proveedor(){ // funcion para la compra
               dataType: "json",
               success: function(data)
               {
-                      alert(data.msj);
+                      swal(data.msj);
                       $('#modal-id').modal('hide');
                       $('.form-group').removeClass('has-error'); // clear error class
                       $('.help-block').empty()
                     },
                     error: function(jqXHR, textStatus, error)
                     {
-                      alert(error);
+                      swal(error);
                       $('#modal-id').modal('hide');
                       $('.form-group').removeClass('has-error'); // clear error class
                       $('.help-block').empty(); // clear error string

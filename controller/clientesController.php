@@ -69,7 +69,7 @@ class ClientesController{
     }else if($_GET['rif']==''){
      $data = array();
      $data['success'] = true;
-     $data['msj'] = 'debes introducir el rif';
+     $data['msj'] = 'Debes introducir el Rif';
      echo json_encode($data);
    }
 

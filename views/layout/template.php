@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/css/dataTables.bootstrap.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/skins/skin-blue-light.css">
+  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/skins/skin-blue-light.css">  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/plugins/sweetalert/css/sweetalert.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/css/estilos.css">
 </head>
 <body class="skin-blue-light fixed body">
@@ -35,6 +35,7 @@
     -->
 
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/jQuery/js/jQuery-2.1.4.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/plugins/sweetalert/js/sweetalert.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/js/jquery.dataTables.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/js/dataTables.bootstrap.js"></script>

@@ -7,7 +7,7 @@ function buscarProducto(){
       data: {'codigo':codigo},
       dataType: 'json',
       success: function(data) {
-        alert(data.msj)
+        swal(data.msj)
       },
     });
 }
@@ -44,14 +44,14 @@ function crear_producto(){
                         dataType: "JSON",
                             success: function(data)
                             {
-                              alert(data.msj);
+                              swal(data.msj);
                               $('#modal-prod').modal('hide');
                               $('.form-group').removeClass('has-error'); // clear error class
                               $('.help-block').empty()
                             },
                             error: function (jqXHR, textStatus, errorThrown)
                             {
-                              alert(error);
+                              swal(error);
                               $('#modal-prod').modal('hide');
                               $('.form-group').removeClass('has-error'); // clear error class
                               $('.help-block').empty(); // clear error string

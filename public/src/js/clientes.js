@@ -7,7 +7,7 @@ function buscarCliente(){
   data: {'rif':rif},
   dataType: 'json',
   success: function(data) {
-    alert(data.msj)
+    swal(data.msj)
   },
 });
 }
