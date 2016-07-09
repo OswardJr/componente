@@ -1,7 +1,7 @@
 <?php
 /**
 * controller for proveedores
-*/ 
+*/
 class ProveedoresController{
 
 	public function __construct()
@@ -29,11 +29,11 @@ class ProveedoresController{
 				$person['razon_social'],
 				$person['direccion'],
 				$person['telefono'],
-				'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_proveedor('."'".$person['id_prov']."'".')"><i class=" btn btn-xs btn-ver 
+				'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_proveedor('."'".$person['id_prov']."'".')"><i class=" btn btn-xs btn-ver
 				glyphicon glyphicon-eye-open"></i></a>
 				<a  data-toggle="tooltip" title="Editar" href="javascript:void(0)" onclick="javascript:editar_proveedor('."'".$person['id_prov']."'".')"><i class=" btn btn-xs btn-editar
 					glyphicon glyphicon-pencil"></i></a>
-					<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarProv('."'".$person['id_prov']."'".')" ><i class=" btn btn-xs btn-delete 
+					<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarProv('."'".$person['id_prov']."'".')" ><i class=" btn btn-xs btn-delete
 						glyphicon glyphicon-trash"></i></a>');
 			$data[] = $row;
 		}
@@ -47,8 +47,8 @@ class ProveedoresController{
 	{
 		require_once("views/layout/template.php");
 		require_once("views/proveedores/crear_proveedor.php");
- 
-		$proveedor = new proveedor;	
+
+		$proveedor = new proveedor;
 		if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 			$rif = $_POST['rif'];
 			$razon_social = $_POST['razon_social'];
@@ -62,7 +62,7 @@ class ProveedoresController{
 	/*crear proveedor*/
 	public function createforjson()
 	{
-		$proveedor = new proveedor;	
+		$proveedor = new proveedor;
 		if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 			$rif = $_POST['rif'];
 			$razon_social = $_POST['razon_social'];
@@ -74,30 +74,24 @@ class ProveedoresController{
 		}
 	}
 
-	/*comprobar si existe un proveedor*/
-	public function getProveedorByRif()
-	{
-		$rif = $_GET["rif"];
-		if(empty($_GET["rif"]))
-		{
-			echo "Debe introducir un Rif";
-			exit;
-		}	
-		$p = new proveedor();
-		if (isset($_GET["rif"]) and $_GET["rif"] != "") {
-			$proveedor = $p->get_proveedor_by_rif($rif);
-			if ($proveedor > 0) {
-				echo "El proveedor ya existe";
-			}else{
-				echo "El proveedor no existe";
-			}
-		}
+  /*comprobar si existe un proveedor*/
+  public function getProvByRif(){
+    $objProducto = new proveedor();
+    if ($_GET['rif']!=''){
+      $rif = $_GET['rif'];
+      $producto = $objProducto->get_prov_by_rif($rif);
+    }else if($_GET['rif']==''){
+     $data = array();
+     $data['success'] = true;
+     $data['msj'] = 'debes introducir el rif';
+     echo json_encode($data);
+   }
 
-	}
+ }
 	/*obtener datos de un proveedor*/
 	public function searchproveedorByid()
 	{
-		$id_prov = $_GET["id_prov"];	
+		$id_prov = $_GET["id_prov"];
 		$c = new proveedor();
 		if (isset($_GET["id_prov"]) and $_GET["id_prov"] != "") {
 			$proveedor = $c->get_proveedor_by_id($id_prov);
@@ -108,7 +102,7 @@ class ProveedoresController{
 	/*actualizar proveedor*/
 	public function update()
 	{
-		$proveedor = new proveedor;	
+		$proveedor = new proveedor;
 		if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 			$rif = $_POST['rif'];
 			$razon_social = $_POST['razon_social'];
@@ -133,7 +127,7 @@ class ProveedoresController{
 			exit();
 		}
 	}
-	
+
 }
 
 

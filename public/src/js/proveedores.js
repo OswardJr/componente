@@ -1,9 +1,14 @@
 function buscarProv(){
-   var rif=document.getElementById("rif").value;
-   $.get('?controller=proveedores&action=getProveedorByRif',{rif:rif},function(data){
-       $('[name="rif"]').parent().parent().addClass('has-error'); 
-       $('#mensaje').text(data); 
-   });
+ var rif=$("#rif").val();
+ $.ajax({
+  url: '?controller=proveedores&action=getProvByRif',
+  type: 'GET',
+  data: {'rif':rif},
+  dataType: 'json',
+  success: function(data) {
+    alert(data.msj)
+  },
+});
 }
 function eliminarProv(identificador){
     if (confirm("¿ Realmente desea eliminar este registro ?"))
@@ -89,7 +94,7 @@ function guardar_proveedor()
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-       alert('Error');       
+       alert('Error');
    }
 });
 }
@@ -99,19 +104,19 @@ function crear_proveedor(){ // funcion para la compra
   $('.form-group').removeClass('has-error');
   //validating form modals
   if ($("#rif").val() === "") {
-    $('[name="rif"]').parent().parent().addClass('has-error'); 
+    $('[name="rif"]').parent().parent().addClass('has-error');
   }else{
     if ($("#razon_social").val() === "") {
-      $('[name="razon_social"]').parent().addClass('has-error'); 
+      $('[name="razon_social"]').parent().addClass('has-error');
     }else{
       if ($("#telefono").val() === "") {
-        $('[name="telefono"]').parent().addClass('has-error'); 
+        $('[name="telefono"]').parent().addClass('has-error');
       }else{
         if ($("#email").val() === "") {
-          $('[name="email"]').parent().addClass('has-error'); 
+          $('[name="email"]').parent().addClass('has-error');
         }else{
           if ($("#direccion").val() === "") {
-            $('[name="direccion"]').parent().addClass('has-error'); 
+            $('[name="direccion"]').parent().addClass('has-error');
           }else{
             //post ajax form serialize
             $.ajax({

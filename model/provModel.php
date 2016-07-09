@@ -16,20 +16,30 @@
         }
     }
 
-    public function get_proveedor_by_rif($rif)
+     public function  get_prov_by_rif($rif)
+  {
+    try
     {
-        try
-        {
-            $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE rif = ? ');
-            $query->bindParam(1, $rif);
-            $query->execute();
-            return $query->fetch();
-            $this->dbh = null;
-        }catch (PDOException $e)
-        {
-            $e->getMessage();
-        }
+      $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE rif = ? ');
+      $query->bindParam(1, $rif);
+      $query->execute();
+      $query->fetch();
+      $contar = $query->rowCount();
+      $data = array();
+      if ($contar > 0) {
+        $data['success'] = true;
+        $data['msj'] = 'El proveedor ya existe';
+      }else{
+        $data['success'] = true;
+        $data['msj'] = 'El proveedor no existe';
+      }
+      echo json_encode($data);
+      $this->dbh = null;
+    }catch (PDOException $e)
+    {
+      $e->getMessage();
     }
+  }
     public function buscar_proveedor($rif)
     {
         try
