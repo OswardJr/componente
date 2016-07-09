@@ -230,53 +230,39 @@
             </div>
             <div class="modal-body form">
               <form action="" id="form" class="form-horizontal" method="POST">
-                <div class="form-body">
-                  <div class="form-group">
-                    <label class="control-label col-md-3">Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                    <div class="col-md-9">
+                  <div class="form-group col-xs-6"  style="margin-right: 25px; ">
+                    <label class="">Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <input id="rif" name="rif" class="form-control" type="text" required >
                       <span class="help-block"></span>
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3">Razon social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                    <div class="col-md-9">
+                  <div class="form-group col-xs-6" >
+                    <label >Razon social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <input id="razon_social" name="razon_social"  class="form-control" type="text" required >
                       <span class="help-block"></span>
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3">Telefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                    <div class="col-md-9">
+                  <div class="form-group col-xs-6" style="margin-right: 25px;">
+                    <label >Telefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <input id="telefono" name="telefono"  class="form-control" type="text" required >
                       <span class="help-block"></span>
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3">Email</label>
-                    <div class="col-md-9">
+                  <div class="form-group col-xs-6">
+                    <label >Email</label>
                       <input id="email" name="email" class="form-control" type="email" required >
                       <span class="help-block"></span>
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-3">Direccion<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                    <div class="col-md-9">
+                  <div class="form-group col-xs-6 " style="margin-left: 25%;margin-right: 25%;">
+                    <label >Direccion<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <textarea id="direccion" name="direccion"  class="form-control" required ></textarea>
                       <span class="help-block"></span>
-                    </div>
                   </div>
                   <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>" />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <center>
+                <center class="">
                   <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
                   <button type="button" id="btnSave" onclick="crear_proveedor()" data-toggle="tooltip" title="Guardar" class="btn btn-ver margin glyphicon glyphicon-floppy-disk"></button>
                   <button data-toggle="tooltip" title="Limpiar Formulario" type="reset" class="btn btn-sucedio margin glyphicon glyphicon-repeat"></button><br>
                 </center>
-              </div>
             </form>
+            </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
