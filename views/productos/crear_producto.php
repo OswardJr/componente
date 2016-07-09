@@ -14,14 +14,15 @@
         </div><!-- /.box-header -->
         <div class="box-body">
           <form name="crear_producto" action="" method="post" id="form">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-xs-4 " style="margin-bottom: 0px; height: 60px">
               <label>Codigo de Producto<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-              <div class="input-group input-group-sm">
-                <input type="text" name="codigo"  class="form-control" placeholder="XXX000000" required>
+              <div class="input-group input-group-sm" >
+                <input type="text" id="codigo" name="codigo"  class="form-control" placeholder="XXX000000" required>
                 <span class="input-group-btn">
-                  <button class="btn btn-info btn-flat fa fa-search" type="button"></button>
+                  <button  onClick="buscarProducto()" class="btn btn-info btn-flat fa fa-search" type="button"></button>
                 </span>
               </div>
+              <center><span id="mensaje" class="help-block"></span></center>
             </div>
             <div class="form-group col-xs-4">
               <label>Descripción<a class="campos-required" title="Campo Obligatorio."> *</a></label>

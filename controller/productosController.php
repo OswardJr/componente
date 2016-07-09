@@ -1,8 +1,8 @@
 <?php
 	/**
-	* 
+	*
 	*/
-	class ProductosController 
+	class ProductosController
 	{
 		public function __construct(){
 			require_once("model/prodModel.php");
@@ -28,11 +28,11 @@
 					$p['venta'],
 					$p['stock_minimo'],
 					$p['stock'],
-					'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_cliente('."'".$p['codigo']."'".')"><i class=" btn btn-xs btn-ver 
+					'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_cliente('."'".$p['codigo']."'".')"><i class=" btn btn-xs btn-ver
 					glyphicon glyphicon-eye-open"></i></a>
 					<a  data-toggle="tooltip" title="Editar" href="javascript:void(0)" onclick="javascript:editar_cliente('."'".$p['codigo']."'".')"><i class=" btn btn-xs btn-editar
 						glyphicon glyphicon-pencil"></i></a>
-						<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarCliente('."'".$p['codigo']."'".')" ><i class=" btn btn-xs btn-delete 
+						<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarCliente('."'".$p['codigo']."'".')" ><i class=" btn btn-xs btn-delete
 							glyphicon glyphicon-trash"></i></a>');
 				$data[] = $row;
 			}
@@ -46,7 +46,7 @@
 			$categorias = $c->get_categorias() ;
 			require_once("views/layout/template.php");
 			require_once("views/productos/crear_producto.php");
-			$producto = new producto;	
+			$producto = new producto;
 			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 				$codigo = $_POST['codigo'];
 				$descripcion = $_POST['descripcion'];
@@ -63,13 +63,13 @@
 				$categoria = $_POST['categoria'];
 				$producto->create_producto($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria);
 			}
-			
+
 		}
 		public function createforjson(){
 			require_once("model/categoriaModel.php");
 			$c = new categoria();
 			$categorias = $c->get_categorias() ;
-			$producto = new producto;	
+			$producto = new producto;
 			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 				$codigo = $_POST['codigo'];
 				$descripcion = $_POST['descripcion'];
@@ -86,20 +86,31 @@
 				$categoria = $_POST['categoria'];
 				$producto->create_producto_for_json($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria);
 			}
-			
+
 		}
-		public function getById(){
+		public function getByCod(){
+      $objProducto = new producto();
+      if ($_GET['codigo']!=''){
+        $codigo = $_GET['codigo'];
+        $producto = $objProducto->chequear_producto($codigo);
+      }else if($_GET['codigo']==''){
+       $data = array();
+       $data['success'] = true;
+       $data['msj'] = 'debes introducir el rif';
+       echo json_encode($data);
+     }
+
+   }
+
+
+   public function update(){
 			# code...
-		}
+   }
 
-		public function update(){
+   public function delete(){
 			# code...
-		}
-
-		public function delete(){
-			# code...
-		}
-	}
+   }
+ }
 
 
-	?>
+ ?>

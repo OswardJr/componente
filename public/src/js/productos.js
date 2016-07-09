@@ -1,3 +1,16 @@
+function buscarProducto(){
+//funcion agregar al carrito
+ var codigo=$("#codigo").val();
+    $.ajax({
+      url: '?controller=productos&action=getByCod',
+      type: 'GET',
+      data: {'codigo':codigo},
+      dataType: 'json',
+      success: function(data) {
+        alert(data.msj)
+      },
+    });
+}
 // crea un producto desde el modal de compras
 function crear_producto(){
   var codigo
