@@ -1,7 +1,6 @@
 // inicializamos las variables
 // si queremos solamente comprimir sin concatenar
 // se quita .pipe(concat(''))
-
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
