@@ -1,5 +1,4 @@
 #!/bin/sh
 git add .
 git commit -m "Automatic commit"
-
-# este script hace commit automaticamente
+# este script agrega archivos y hace commit automaticamente
