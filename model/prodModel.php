@@ -111,7 +111,7 @@ Class producto extends Conectar
     $query->execute();
     echo utf8_decode("<script type='text/javascript'>
       alert('Registro exitoso.');
-      window.location='?controller=productos&action=index';
+      window.location='?controller=productos&action=create';
     </script>");
     $this->dbh = null;
 

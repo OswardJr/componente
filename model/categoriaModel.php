@@ -40,7 +40,7 @@ public function create_categoria($nombre,$descripcion)
         /* Alerta de notificacion de registro */
         echo utf8_decode("<script type='text/javascript'>
             alert('Registro exitoso.');
-            window.location='?controller=categorias&action=index';
+            window.location='?controller=categorias&action=create';
         </script>");
         exit();
 

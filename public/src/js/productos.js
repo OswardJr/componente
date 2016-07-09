@@ -5,23 +5,23 @@ function crear_producto(){
   $('.form-group').removeClass('has-error');
   //validating form modals
     if ($("#codigo_p").val() === "") {
-      $('[name="codigo"]').parent().addClass('has-error'); 
+      $('[name="codigo"]').parent().addClass('has-error');
     }else if ($("#descripcion_p").val() === "") {
-        $('[name="descripcion"]').parent().addClass('has-error'); 
+        $('[name="descripcion"]').parent().addClass('has-error');
       }else if ($("#modelo_p").val() === "") {
-          $('[name="modelo"]').parent().addClass('has-error'); 
+          $('[name="modelo"]').parent().addClass('has-error');
         }else if ($("#p_compra").val() === "") {
-            $('[name="p_compra"]').parent().addClass('has-error'); 
+            $('[name="p_compra"]').parent().addClass('has-error');
           }else if ($("#p_venta").val() === "") {
               $('[name="p_venta"]').parent().addClass('has-error');
             }else if ($("#stock").val() === "") {
-                $('[name="stock"]').parent().addClass('has-error'); 
+                $('[name="stock"]').parent().addClass('has-error');
               }else if ($("#stock_min").val() === "") {
-                  $('[name="stock_min"]').parent().addClass('has-error'); 
+                  $('[name="stock_min"]').parent().addClass('has-error');
                 }else if ($("#procedencia").val() === "") {
                     $('[name="procedencia"]').parent().addClass('has-error');
                   }else if ($("#categoria").val() === "") {
-                      $('[name="categoria"]').parent().addClass('has-error'); 
+                      $('[name="categoria"]').parent().addClass('has-error');
                     }else{
                       //post ajax form serialize
                       $.ajax({
@@ -45,6 +45,6 @@ function crear_producto(){
                             }
                       });
                     }
-    
+
 }//end function
-  
+

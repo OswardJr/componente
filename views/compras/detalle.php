@@ -104,10 +104,15 @@
         </div>
 
         <script type="text/javascript">
-          $(document).ready(function() {
-      //datatables
-      table = $('#table1').DataTable({
-        "scrollX": true
-      });
-    });
+    //       $(document).ready(function() {
+    //   //datatables
+    //   table = $('#example1').DataTable({
+    //     "paging": true,
+    //     "lengthChange":true,
+    //     "searching":true,
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth":true
+    //   });
+    // });
   </script>

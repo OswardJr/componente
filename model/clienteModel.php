@@ -62,7 +62,7 @@ Class cliente extends Conectar
             /* Alerta de notificacion de registro */
             echo utf8_decode("<script type='text/javascript'>
                alert('Registro exitoso.');
-               window.location='?controller=clientes&action=index';
+               window.location='?controller=clientes&action=create';
            </script>");
             exit();
 

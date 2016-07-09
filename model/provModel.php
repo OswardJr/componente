@@ -4,35 +4,35 @@
 
     public function get_proveedores()
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE status = "activo" order by id_prov desc;');
             $query->execute();
             return $query->fetchAll();
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
-    } 
+    }
 
     public function get_proveedor_by_rif($rif)
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE rif = ? ');
             $query->bindParam(1, $rif);
             $query->execute();
             return $query->fetch();
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
     }
     public function buscar_proveedor($rif)
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE rif = ? ');
             $query->bindParam(1, $rif);
@@ -40,7 +40,7 @@
             $data = $query->fetch();
             echo json_encode($data);
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
@@ -48,7 +48,7 @@
 
     public function get_proveedor_by_id($id_prov)
     {
-        try 
+        try
         {
             $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE id_prov = ? ');
             $query->bindParam(1, $id_prov);
@@ -56,7 +56,7 @@
             $data = $query->fetch();
             echo json_encode($data);
             $this->dbh = null;
-        }catch (PDOException $e) 
+        }catch (PDOException $e)
         {
             $e->getMessage();
         }
@@ -72,15 +72,15 @@
             $query->bindParam(4, $email);
             $query->bindParam(5, $direccion);
             $query->bindParam(6, $status);
-            $query->execute();      
+            $query->execute();
             /* Alerta de notificacion de registro */
             echo utf8_decode("<script type='text/javascript'>
                 alert('Registro exitoso.');
-                window.location='?controller=proveedores&action=index';
+                window.location='?controller=proveedores&action=create';
             </script>");
         } catch (PDOException $e) {
             echo $e->getMessage();
-            
+
         }
     }
     public function create_proveedor_for_json($rif,$razon_social,$telefono,$email,$direccion,$status)
@@ -93,7 +93,7 @@
             $query->bindParam(4, $email);
             $query->bindParam(5, $direccion);
             $query->bindParam(6, $status);
-            $query->execute();      
+            $query->execute();
             $json['msj'] = 'Registro exitoso';
             $json['success'] = true;
             echo json_encode($json);
@@ -122,7 +122,7 @@
             $e->getMessage();
         }
     }
-    
+
     public function delete_proveedor($id_prov)
     {
         try {
@@ -135,7 +135,7 @@
         }
     }
 
-    
+
 }
 
 ?>

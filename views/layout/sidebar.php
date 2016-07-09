@@ -31,25 +31,25 @@
         </a>
         <ul class="treeview-menu">
           <li class="">
-            <a href="?controller=clientes&action=index">
+            <a href="?controller=clientes&action=create">
               <i class="fa  fa-users"></i>
               <span>Clientes</span>
             </a>
           </li>
           <li class="">
-            <a href="?controller=proveedores&action=index">
+            <a href="?controller=proveedores&action=create">
               <i class="fa fa-truck"></i>
               <span>Proveedores</span>
             </a>
           </li>
           <li class="">
-            <a href="?controller=productos&action=index">
+            <a href="?controller=productos&action=create">
               <i class="fa fa-dropbox"></i>
               <span>Productos</span>
             </a>
           </li>
           <li class="">
-            <a href="?controller=categorias&action=index">
+            <a href="?controller=categorias&action=create">
               <i class="fa fa-th-list"></i>
               <span>Categorias</span>
             </a>

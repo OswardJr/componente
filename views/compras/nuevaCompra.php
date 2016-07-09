@@ -272,7 +272,7 @@
               <div class="modal-footer">
                 <center>
                   <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
-                  <button type="submit" id="btnSave" onclick="crear_proveedor()" data-toggle="tooltip" title="Guardar" class="btn btn-ver margin glyphicon glyphicon-floppy-disk"></button>
+                  <button type="button" id="btnSave" onclick="crear_proveedor()" data-toggle="tooltip" title="Guardar" class="btn btn-ver margin glyphicon glyphicon-floppy-disk"></button>
                   <button data-toggle="tooltip" title="Limpiar Formulario" type="reset" class="btn btn-sucedio margin glyphicon glyphicon-repeat"></button><br>
                 </center>
               </div>
@@ -351,7 +351,7 @@
                 <center>
                   <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
                   <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
-                  <button data-toggle="tooltip" title="Registrar" type="submit" class="btn btn-ver margin glyphicon glyphicon-floppy-disk" onclick="crear_producto()" ></button>
+                  <button data-toggle="tooltip" title="Registrar" type="button" class="btn btn-ver margin glyphicon glyphicon-floppy-disk" onclick="crear_producto()" ></button>
                   <button data-toggle="tooltip" title="Limpiar Formulario" type="reset" class="btn btn-sucedio margin glyphicon glyphicon-repeat"></button><br>
                 </center>
               </form>
@@ -359,10 +359,10 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
       <script type="text/javascript">
-      $(document).ready(function() {
-      //datatables
-      table = $('#table1').DataTable({
-        "scrollX": true
-      });
-    });
+    //   $(document).ready(function() {
+    //   //datatables
+    //   table = $('#table1').DataTable({
+    //     "scrollX": true
+    //   });
+    // });
   </script>

@@ -12,7 +12,9 @@
         header("Location: ".Conectar::ruta()."?controller=login");
       }
     }
+    //carga la vista de nueva compra
     public function index(){
+     unset($_SESSION['detalle']);
       $c= new compra;
       $numorden = $c->numorden();
       require_once("model/categoriaModel.php");
@@ -21,6 +23,7 @@
       require_once("views/layout/template.php");
       require_once("views/compras/nuevaCompra.php");
     }
+    //carga todas las compras realizadas
     public function all()
     {
       $c = new compra();
@@ -41,7 +44,7 @@
       $output = array("data" => $data);
       echo json_encode($output);
     }
-
+    // crear compra
     public function create(){
       if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
         $compra = new compra;
@@ -67,7 +70,7 @@
         $compra->create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos);
       }
     }
-
+    // agrega producto al carrito de compras
     public function agregar(){
      $objProducto = new producto();
      if (isset($_GET['codigo']) && $_GET['codigo']!='' && isset($_GET['cantidad']) && $_GET['cantidad']!='') {
@@ -81,10 +84,12 @@
       }
     }
   }
+  // muestra la pantalla de todas las compras y all(pasa el listado por json a datables)
   public function listado(){
     require_once("views/layout/template.php");
     require_once("views/compras/listadoCompras.php");
   }
+  //busca un proveedor
   public function buscarProveedor(){
    require_once("model/provModel.php");
    $rif = $_GET["rif"];
@@ -98,7 +103,8 @@
      $proveedor = $p->buscar_proveedor($rif);
    }
  }
- public function buscarProducto(){
+  //busca un producto
+   public function buscarProducto(){
    require_once("model/prodModel.php");
    $codigo = $_GET["codigo"];
    if(empty($_GET["codigo"]))
@@ -123,6 +129,7 @@
  public function delete(){
       # code...
  }
+ //eliminina el carrito de compras
  public function destruirCarrito(){
   try {
     unset($_SESSION['detalle']);
@@ -130,6 +137,7 @@
    $e->getMessage();
  }
 }
+//elimina un item del carrito de compras
 public function eliminar(){
   $json = array();
   $json['msj'] = 'Producto Eliminado';
