@@ -1,4 +1,3 @@
-
 function buscarProv(){
    var rif=document.getElementById("rif").value;
    $.get('?controller=proveedores&action=getProveedorByRif',{rif:rif},function(data){
@@ -6,7 +5,6 @@ function buscarProv(){
        $('#mensaje').text(data); 
    });
 }
-
 function eliminarProv(identificador){
     if (confirm("¿ Realmente desea eliminar este registro ?"))
     {
@@ -76,7 +74,6 @@ function editar_proveedor(valor)
         }
     });
 }
-
 function guardar_proveedor()
 {
     $.ajax({
@@ -92,12 +89,10 @@ function guardar_proveedor()
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-       alert('Error');
-       
+       alert('Error');       
    }
 });
 }
-
 // crea un proveedor desde el modal de compras
 function crear_proveedor(){ // funcion para la compra
   //remove errors
