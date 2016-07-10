@@ -2,3 +2,5 @@
 /includes/dompdf/
 /dompdf/
 /node_modules/
+.bot-git.sh
+.bot-gulp.sh
