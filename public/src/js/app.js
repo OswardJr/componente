@@ -31,7 +31,7 @@ function editar_categoria(valor){
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
-      alert('Error get data from ajax');
+      swal('Error get data from ajax');
     }
   });
 }
@@ -54,13 +54,13 @@ function guardar_categoria(){
     dataType: "JSON",
     success: function(data)
     {
-      alert('ha sido actualizado');
+      swal('ha sido actualizado');
       $('#modal_form1').modal('hide');
       recargar();
     },
     error: function (jqXHR, textStatus, errorThrown)
     {
-      alert('Error');
+      swal('Error');
 
     }
   });

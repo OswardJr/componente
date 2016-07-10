@@ -16,14 +16,13 @@
      </div>
    </div>
  </header>
-
  <body>
   <div class="container">
     <div id="loginbox" style="margin-top:3.5%;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
       <div class="panel panel-primary" >
         <div class="panel-heading">
           <center><div class="panel-title"><strong>Identifiquese para Iniciar Sesión</strong></div></center>
-          <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+          <!-- <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div> -->
         </div>
 
         <div style="padding-top:30px" class="panel-body" >

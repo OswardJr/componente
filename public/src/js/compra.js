@@ -17,11 +17,11 @@ function buscar_proveedor(){
       $('#cantidad').removeAttr("disabled");
         if (data==1) {
             $('#rif-entrada').focus();
-            alert('Debes introducir el Rif');
+            swal('Debes introducir el Rif');
             $('#codigo').attr("disabled", "true");
         }else if (data == false) {
        // $('[name="rif-entrada"]').parent().parent().addClass('has-error');
-            alert('El proveedor no existe');
+            swal('El proveedor no existe');
             $('#codigo').attr("disabled", "true");
         };
    },
@@ -46,10 +46,10 @@ function buscar_producto(){
       $('[name="stock_m"]').val(data.stock_minimo);
       if (data==1) {
         $('#codigo').focus();
-        alert('Debes introducir el codigo');
+        swal('Debes introducir el codigo');
       }else if (data == false) {
             // $('[name="codigo-entrada"]').parent().parent().addClass('has-error');
-            alert('El producto no existe');
+            swal('El producto no existe');
           };
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -75,25 +75,27 @@ if(codigo!=''){
         if(data.success==true){
           $("#codigo").val('');
           $("#descripcion").val('');
+          $("#descripcion_p").val('');
           $("#precio").val('');
           $("#cantidad").val('');
           $("#existencia").val('');
+          $("#stock").val('');
           $("#minimo").val('');
           $(".detalle-producto").load('views/compras/detalle.php');
         }else{
-          alert(data.msj);
+          swal(data.msj);
         }
       },
       error: function(jqXHR, textStatus, error) {
-        alert(error.msj);
+        swal(error.msj);
       }
     });
   }else{
-    alert('Ingrese una cantidad');
+    swal('Ingrese una cantidad');
     $('#cantidad').focus();
   }
 }else{
-  alert('Seleccione un producto');
+  swal('Seleccione un producto');
   $('#codigo').focus();
 }
 }
@@ -111,7 +113,7 @@ function eliminar_carrito(codigo){
     if(data.success==true){
      $(".detalle-producto").load('views/compras/detalle.php');
    }else{
-    alert(data.msj);
+    swal(data.msj);
   }
 })
 }

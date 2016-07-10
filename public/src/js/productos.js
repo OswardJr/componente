@@ -42,11 +42,22 @@ function crear_producto(){
                         type: "POST",
                         data: $('#form2').serialize(),
                         dataType: "JSON",
-                            success: function(data)
-                            {
-                              swal(data.msj);
-                              $('#modal-prod').modal('hide');
+                        success: function(data)
+                        {
+                          swal(data.msj);
+                          $('#modal-prod').modal('hide');
                               $('.form-group').removeClass('has-error'); // clear error class
+                              $("#codigo_p").val('');
+                              $("#modelo_p").val('');
+                              $("#descripcion_p").val('');
+                              $("#p_venta").val('');
+                              $("#p_compra").val('');
+                              $("#stock").val('');
+                              $("#existencia").val('');
+                              $("#stock_min").val('');
+                              $("#garantia").val('');
+                              $("#precio").val('');
+                              $("#color").val('');
                               $('.help-block').empty()
                             },
                             error: function (jqXHR, textStatus, errorThrown)
