@@ -13,7 +13,7 @@
                 <div class="box box-primary">
 
                     <div class="box-header">
-                        <h3 class="box-title"><strong>Ultimas Compras realizadas</strong></h3>
+                        <h3 class="box-title"><strong>Listado de compras</strong></h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table id="table" class="table table-bordered table-striped">

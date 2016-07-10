@@ -109,30 +109,22 @@
         </a>
         <ul class="treeview-menu">
           <li class="treeview">
-            <a href="">
-              <i class="fa  fa-angle-left pull-right"></i>
+            <a href="?controller=productos&action=index">
+              <i class=""></i>
               <span>Productos</span>
             </a>
-            <ul class="treeview-menu">
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
-                  <span>Listado general</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
-                  <span>Por categoria</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
-                  <span>Por stock minimo</span>
-                </a>
-              </li>
-            </ul>
+          </li>
+          <li class="treeview">
+            <a href="?controller=clientes&action=index">
+              <i class=""></i>
+              <span>Clientes</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="?controller=proveedores&action=index">
+              <i class=""></i>
+              <span>Proveedores</span>
+            </a>
           </li>
           <li class="treeview">
             <a href="">
@@ -156,12 +148,6 @@
                 <a href="">
                   <i class="fa  fa-file-text"></i>
                   <span>Por fecha</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
-                  <span>Por Nro de control</span>
                 </a>
               </li>
             </ul>

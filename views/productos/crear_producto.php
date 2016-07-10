@@ -33,18 +33,6 @@
               <textarea type="text" name="modelo" id="modelo" class="form-control" placeholder=""required ></textarea>
             </div>
             <div class="form-group col-xs-4">
-              <label>Peso</label>
-              <input type="text" name="peso"  class="form-control" placeholder="" >
-            </div>
-            <div class="form-group col-xs-4">
-              <label>Color</label>
-              <input type="text" name="color"  class="form-control" placeholder="">
-            </div>
-            <div class="form-group col-xs-4">
-              <label>Garantia</label>
-              <input type="text" name="garantia"  class="form-control" placeholder="">
-            </div>
-            <div class="form-group col-xs-4">
               <label>Precio de compra<a class="campos-required" title="Campo Obligatorio."> *</a></label>
               <input type="text" name="p_compra"  class="form-control" placeholder="" required>
             </div>
@@ -62,7 +50,7 @@
             </div>
             <input type="hidden" name="status" id="grabar" value="activo"/>
             <div class="form-group col-xs-4">
-              <label><a class="campos-required" title="Campo Obligatorio.">*</a>Procedencia</label>
+              <label>Procedencia<a class="campos-required" title="Campo Obligatorio."> *</a></label>
               <select name="procedencia" id="inputSelect" class="form-control" required>
                 <option>-- Seleccione --</option>
                 <option>Nacional</option>
@@ -70,13 +58,25 @@
               </select>
             </div>
             <div class="form-group col-xs-4">
-              <label><a class="campos-required" title="Campo Obligatorio.">*</a>Categoria</label>
+              <label>Categoria<a class="campos-required" title="Campo Obligatorio."> *</a></label>
               <select name="categoria" id="inputSelect" class="form-control" required>
                 <option>-- Seleccione --</option>
                 <?php foreach($categorias as $c): ?>
                   <option value="<?php echo $c['id_cat'];?>"><?php echo $c['nombre'];?></option>
                 <?php endforeach; ?>
               </select>
+            </div>
+            <div class="form-group col-xs-4">
+              <label>Peso</label>
+              <input type="text" name="peso"  class="form-control" placeholder="" >
+            </div>
+            <div class="form-group col-xs-4">
+              <label>Color</label>
+              <input type="text" name="color"  class="form-control" placeholder="">
+            </div>
+            <div class="form-group col-xs-4">
+              <label>Garantia</label>
+              <input type="text" name="garantia"  class="form-control" placeholder="">
             </div>
             <center>
               <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>

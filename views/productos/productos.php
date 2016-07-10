@@ -3,18 +3,15 @@
     Productos
     <small></small>
   </h1>
-  <ol class="breadcrumb">
-    <a  href="?controller=productos&action=create" role="button" class="btn btn-sucedio" data-toggle="modal"><span class="fa fa-plus"></span> Nuevo Producto</a>
-  </ol>
 </section>
 <hr>
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
       <div class="box box-primary">
-        
+
         <div class="box-header">
-          <h3 class="box-title">Productos Registrados</h3>
+          <h3 class="box-title">Listado de productos</h3>
         </div>
         <div class="box-body">
           <table id="table" class="table table-bordered table-striped">

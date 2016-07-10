@@ -59,10 +59,6 @@ class compra extends Conectar
       ->execute();
     }
     header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
-    // echo utf8_decode("<script type='text/javascript'>
-    //            alert('Compra guardada exitosamente');
-    //            window.location='';
-    //        </script>");
     $this->dbh = null;
     unset($_SESSION['detalle']);
   } catch (PDOException $e) {
@@ -139,12 +135,12 @@ public function obtener_compra($cod_compra)
     INNER JOIN
     proveedores AS p
     ON
-    p.id_prov = p.id_prov
+    c.id_prov = p.id_prov
     WHERE
     c.cod_compra = ?') ;
    $query->bindParam(1, $cod_compra);
    $query->execute();
-   return $query->fetchAll();
+   return $query->fetchAll(PDO::FETCH_ASSOC);
    $this->dbh = null;
  }catch (PDOException $e)
  {

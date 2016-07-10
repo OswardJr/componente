@@ -74,7 +74,7 @@
                 <div class="form-group col-xs-3 " style="margin-bottom: 0px; height: 60px">
                   <p class="margin"><strong>Producto</strong></p>
                   <div class="input-group input-group-sm">
-                    <input id="codigo" name="codigo-entrada" type="text" class="form-control" disabled>
+                    <input id="codigo" name="codigo-entrada" type="text" class="form-control" placeholder="XXX000" disabled>
                     <span class="input-group-btn">
                       <div data-toggle="tooltip" onclick="buscar_producto()" title="Buscar"  class="btn btn-ver btn-flat fa fa-search " ></div>
                     </span>
@@ -290,18 +290,6 @@
                   <textarea type="text" name="modelo" id="modelo_p" class="form-control" placeholder=""required ></textarea>
                 </div>
                 <div class="form-group col-xs-4">
-                  <label>Peso</label>
-                  <input type="text" name="peso" id="peso"  class="form-control" placeholder="" >
-                </div>
-                <div class="form-group col-xs-4">
-                  <label>Color</label>
-                  <input type="text" name="color" id="color"  class="form-control" placeholder="">
-                </div>
-                <div class="form-group col-xs-4">
-                  <label>Garantia</label>
-                  <input type="text" name="garantia" id="garantia"  class="form-control" placeholder="">
-                </div>
-                <div class="form-group col-xs-4">
                   <label>Precio de compra<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                   <input type="text" name="p_compra" id="p_compra"  class="form-control" placeholder="" required>
                 </div>
@@ -333,6 +321,18 @@
                       <option value="<?php echo $c['id_cat'];?>"><?php echo $c['nombre'];?></option>
                     <?php endforeach; ?>
                   </select>
+                </div>
+                 <div class="form-group col-xs-4">
+                  <label>Peso</label>
+                  <input type="text" name="peso" id="peso"  class="form-control" placeholder="" >
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Color</label>
+                  <input type="text" name="color" id="color"  class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Garantia</label>
+                  <input type="text" name="garantia" id="garantia"  class="form-control" placeholder="">
                 </div>
                 <center>
                   <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>

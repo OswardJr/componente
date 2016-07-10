@@ -3,9 +3,6 @@
         Proveedores
         <small></small>
     </h1>
-    <ol class="breadcrumb">
-        <a  href="?controller=proveedores&action=create" role="button" class="btn btn-sucedio"><span class="fa fa-pencil"></span> Nuevo Proveedor</a>
-    </ol>
 </section>
 <hr>
 <section class="content">
@@ -13,7 +10,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Ultimos proveedores registrados</h3>
+                    <h3 class="box-title">Listado de provedores</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="table" class="table table-bordered table-striped">
@@ -29,7 +26,7 @@
                     </table>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
-            
+
         </div><!-- /.col -->
     </div><!-- /.row -->
 </section><!-- /.content -->

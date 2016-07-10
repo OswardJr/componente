@@ -25,10 +25,10 @@
   font-family: "Roboto";
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff"), url("../fonts/Roboto-Bold.ttf") format("truetype");
   font-weight: 700; }
-
 a {
-  text-decoration: none; }
-
+    color: #dd4b39;
+    text-decoration: none;
+}
 body {
   line-height: 1.5;
   font-family: "Roboto", sans-serif;

@@ -3,8 +3,6 @@
         Clientes
         <small></small>
     </h1>
-    <ol class="breadcrumb">
-        <a  href="?controller=clientes&action=create" role="button" class="btn btn-sucedio"><span class="glyphicon glyphicon-plus"></span> Nuevo cliente</a>
     </section>
     <hr>
     <section class="content">
@@ -13,7 +11,7 @@
                 <div class="box box-primary">
 
                     <div class="box-header">
-                        <h3 class="box-title"><strong>Ultimos clientes registrados</strong></h3>
+                        <h3 class="box-title"><strong>Listado de clientes</strong></h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <table id="table" class="table table-bordered table-striped">
