@@ -141,12 +141,6 @@
               <li>
                 <a href="">
                   <i class="fa  fa-file-text"></i>
-                  <span>Por cliente</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
                   <span>Por fecha</span>
                 </a>
               </li>
@@ -167,12 +161,6 @@
               <li>
                 <a href="">
                   <i class="fa  fa-file-text"></i>
-                  <span>Por prooveedor</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
                   <span>Por fecha</span>
                 </a>
               </li>
@@ -188,12 +176,6 @@
                 <a href="">
                   <i class="fa  fa-file-text"></i>
                   <span>Listado general</span>
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <i class="fa  fa-file-text"></i>
-                  <span>Por cliente</span>
                 </a>
               </li>
               <li>

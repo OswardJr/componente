@@ -15,6 +15,7 @@ class compra extends Conectar
         compras AS c
         INNER JOIN
         proveedores AS p
+        ON c.id_prov = p.id_prov
         ORDER BY
         c.cod_compra
         DESC

@@ -83,7 +83,7 @@ class ProveedoresController{
     }else if($_GET['rif']==''){
      $data = array();
      $data['success'] = true;
-     $data['msj'] = 'Debes introducir el Rif';
+     $data['msj'] = 'Debes introducir un Rif';
      echo json_encode($data);
    }
 

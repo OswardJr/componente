@@ -96,7 +96,7 @@
       }else if($_GET['codigo']==''){
        $data = array();
        $data['success'] = true;
-       $data['msj'] = 'Debes introducir el codigo';
+       $data['msj'] = 'Debes introducir un codigo';
        echo json_encode($data);
      }
 
