@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/css/dataTables.bootstrap.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/skins/skin-blue-light.css">  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/plugins/sweetalert/css/sweetalert.css">
-  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/css/estilos.css">
+  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/css/app.css">
 </head>
 <body class="skin-blue-light fixed body">
   <?php
@@ -41,6 +41,12 @@
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/slimScroll/js/jquery.slimscroll.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/js/app.js"></script>
-    <script src="<?php echo Conectar::ruta()?>public/dist/js/scripts.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/app.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/clientes.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/login.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/productos.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/compra.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/proveedores.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/usuarios.js"></script>
   </body>
   </html>
