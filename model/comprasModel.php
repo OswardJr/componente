@@ -59,7 +59,10 @@ class compra extends Conectar
       $this->dbh->prepare($sql)
       ->execute();
     }
-    header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
+    // header('location:' . Conectar::ruta() .'views/reportes/factura_compra.php?cod_compra='.$cod_compra);
+    $json = array();
+    $json['success'] = true;
+    echo json_encode($json);
     $this->dbh = null;
     unset($_SESSION['detalle']);
   } catch (PDOException $e) {

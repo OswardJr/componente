@@ -80,7 +80,7 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="?controller=ventas&action=create">
+            <a href="?controller=ventas&action=index">
               <i class="fa  fa-plus"></i>
               <span>Nueva venta</span>
             </a>
@@ -95,7 +95,7 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="?controller=presupuestos&action=create">
+            <a href="?controller=presupuestos&action=index">
               <i class="fa  fa-plus"></i>
               <span>Nuevo presupuesto</span>
             </a>
@@ -173,7 +173,7 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="">
+                <a href="?controller=presupuestos&action=Reporte">
                   <i class="fa  fa-file-text"></i>
                   <span>Listado general</span>
                 </a>

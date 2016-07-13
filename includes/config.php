@@ -19,7 +19,7 @@ class Conectar
 
     public static function ruta()
     {
-        return "http://localhost/Desarrollo/componente/";
+        return "http://localhost/componente/";
     }
 
 

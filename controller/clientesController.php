@@ -86,6 +86,20 @@ class ClientesController{
 
 }
 
+	public function createforjson()
+		{
+			$cliente = new cliente;
+			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
+				$rif = $_POST['rif'];
+				$razon_social = $_POST['razon_social'];
+				$telefono = $_POST['telefono'];
+				$email = $_POST['email'];
+				$direccion = $_POST['direccion'];
+				$status = 'activo';
+				$cliente->create_cliente_for_json($rif,$razon_social,$telefono,$email,$direccion,$status);
+			}
+		}
+
 /*actualizar clientes*/
 public function update()
 {

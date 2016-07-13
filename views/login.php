@@ -9,19 +9,34 @@
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/css/estilos.css">
 </head>
 <header>
+
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
        <a class="navbar-brand" href="index.php">M & E PLUS. C.A</a>
      </div>
-   </div>
+     </nav>
+   </div><div class="row">
+  <div class="col-md-2">
+  <img src="public/img/jol.png" class="img-responsive" alt="Image">
+
+  </div>
+  <div class="col-md-8">
+<center><h3>Componente de software administrativo, compras, ventas, y presupuestos de la comunidad M & E plus.</h3></center>
+  </div><div class="col-md-2">
+  <img src="public/img/logo.png" class="img-responsive" alt="Image" style="
+    padding-top: 15%;">
+  </div>
+</div>
+
  </header>
  <body>
   <div class="container">
+
     <div id="loginbox" style="margin-top:3.5%;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
       <div class="panel panel-primary" >
         <div class="panel-heading">
-          <center><div class="panel-title"><strong>Identifiquese para Iniciar Sesión</strong></div></center>
+          <center><div class="panel-title"><strong>Iniciar Sesión</strong></div></center>
           <!-- <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div> -->
         </div>
 

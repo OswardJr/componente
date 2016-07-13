@@ -1,21 +1,21 @@
 <?php
 	/**
-	* 
+	*
 	*/
-	class UsuariosController 
+	class UsuariosController
 	{
-		
+
 		public function __construct(){
 			require_once("model/usuariosModel.php");
 			if (($_SESSION['id_emp']) == "") {
 				header("Location: ".Conectar::ruta()."?controller=login");
 			}
 		}
-		
+
 		public function index(){
 			require_once("views/layout/template.php");
 			require_once("views/usuarios/usuarios.php");
-			
+
 		}
 		public function all(){
 			$u = new usuario();
@@ -27,22 +27,22 @@
 					$person['apellido'],
 					$person['username'],
 					$person['rol'],
-					'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_usuario('."'".$person['cedula']."'".')"><i class=" btn btn-xs btn-ver 
+					'<a  data-toggle="tooltip" title="Ver" href="javascript:void(0)" onclick="javascript:ver_usuario('."'".$person['cedula']."'".')"><i class=" btn btn-xs btn-ver
 					glyphicon glyphicon-eye-open"></i></a>
 					<a  data-toggle="tooltip" title="Editar" href="javascript:void(0)" onclick="javascript:editar_usuario('."'".$person['cedula']."'".')"><i class=" btn btn-xs btn-editar
 						glyphicon glyphicon-pencil"></i></a>
-						<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarUsuario('."'".$person['cedula']."'".')" ><i class=" btn btn-xs btn-delete 
+						<a  data-toggle="tooltip" title="Eliminar" href="javascript:void(0)" onclick="javascript:eliminarUsuario('."'".$person['cedula']."'".')" ><i class=" btn btn-xs btn-delete
 							glyphicon glyphicon-trash"></i></a>');
 				$data[] = $row;
 			}
 			$output = array("data" => $data);
-			echo json_encode($output);			
+			echo json_encode($output);
 		}
 
 		public function create(){
 			require_once("views/layout/template.php");
 			require_once("views/usuarios/crear_usuario.php");
-			$usuario = new usuario;	
+			$usuario = new usuario;
 			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 				$cedula = $_POST['cedula'];
 				$nombre = $_POST['nombre'];
@@ -56,7 +56,7 @@
 		}
 
 		public function getUserByCedula(){
-			$cedula = $_GET["cedula"];	
+			$cedula = $_GET["cedula"];
 			$u = new usuario();
 			if (isset($_GET["cedula"]) and $_GET["cedula"] != "") {
 				$usuario = $u->get_user_by_cedula($cedula);
@@ -68,7 +68,7 @@
 			{
 				echo "<span class='label label-danger'>Debes introducir la cedula.</span>";
 				exit;
-			}	
+			}
 			$u= new usuario();
 			if (isset($_GET["cedula"]) and $_GET["cedula"] != "") {
 				$usuario = $u->comprobar_user($cedula);
@@ -82,7 +82,7 @@
 		}
 
 		public function update(){
-			$usuario = new usuario;	
+			$usuario = new usuario;
 			if((isset($_SESSION['token'])) && ($_POST['token'] == $_SESSION['token'])){
 				$cedula = $_POST['cedula'];
 				$nombre = $_POST['nombre'];

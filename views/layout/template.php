@@ -48,5 +48,7 @@
     <script src="<?php echo Conectar::ruta()?>public/src/js/compra.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/proveedores.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/usuarios.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/presupuesto.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/venta.js"></script>
   </body>
   </html>

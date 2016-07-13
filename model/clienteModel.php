@@ -15,6 +15,22 @@ Class cliente extends Conectar
     }
   }
 
+  public function buscar_cliente($rif)
+      {
+          try
+          {
+              $query = $this->dbh->prepare('SELECT * FROM clientes WHERE rif = ? ');
+              $query->bindParam(1, $rif);
+              $query->execute();
+              $data = $query->fetch();
+              echo json_encode($data);
+              $this->dbh = null;
+          }catch (PDOException $e)
+          {
+              $e->getMessage();
+          }
+      }
+
   public function  get_cliente_by_rif($rif)
   {
     try
@@ -70,7 +86,7 @@ Class cliente extends Conectar
       $this->dbh = null;
       /* Alerta de notificacion de registro */
       echo utf8_decode("<script type='text/javascript'>
-       alert('Registro exitoso.');
+       swal('Registro exitoso.');
        window.location='?controller=clientes&action=create';
      </script>");
       exit();
@@ -80,6 +96,26 @@ Class cliente extends Conectar
     }
   }
 
+    public function create_cliente_for_json($rif,$razon_social,$telefono,$email,$direccion,$status)
+    {
+        try {
+            $query = $this->dbh->prepare('INSERT INTO clientes VALUES(null,?,?,?,?,?,?)');
+            $query->bindParam(1, $rif);
+            $query->bindParam(2, $razon_social);
+            $query->bindParam(3, $telefono);
+            $query->bindParam(4, $email);
+            $query->bindParam(5, $direccion);
+            $query->bindParam(6, $status);
+            $query->execute();
+            $json['msj'] = 'Registro exitoso';
+            $json['success'] = true;
+            echo json_encode($json);
+            $this->dbh = null;
+        } catch (PDOException $e) {
+            $json['msj'] = $e->getMessage();
+            echo json_encode($json);
+        }
+    }
   public function update_cliente($rif,$razon_social,$telefono,$email,$direccion, $id_cliente)
   {
     try {

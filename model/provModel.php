@@ -85,7 +85,7 @@
             $query->execute();
             /* Alerta de notificacion de registro */
             echo utf8_decode("<script type='text/javascript'>
-                alert('Registro exitoso.');
+                swal('Registro exitoso.');
                 window.location='?controller=proveedores&action=create';
             </script>");
         } catch (PDOException $e) {
