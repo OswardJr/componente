@@ -32,7 +32,7 @@
                                   <input type="hidden" name='precio_p[]' value="<?php echo $detalle['precio'];?>">
                                   <td><input style="width:56px;"  type="text" class="form-control" value="<?php echo $detalle['cantidad'];?>"></td>
                                   <td><?php echo $detalle['total'];?></td>
-                                  <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito('<?php echo $detalle['codigo'];?>')"></div></td>
+                                  <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito_compra('<?php echo $detalle['codigo'];?>')"></div></td>
                                 </tr>
                                 <?php }?>
                               </tbody>

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 
 Class producto extends Conectar
@@ -90,6 +90,7 @@ Class producto extends Conectar
     }
   }
 
+
   public function create_producto($codigo,$descripcion,$modelo,$peso,$color,$garantia,$p_compra,$p_venta,$stock,$stock_min,$status,$procedencia,$categoria)
   {
    try
@@ -110,7 +111,7 @@ Class producto extends Conectar
     $query->bindParam(13, $categoria);
     $query->execute();
     echo utf8_decode("<script type='text/javascript'>
-      alert('Registro exitoso.');
+      swal('Registro exitoso.');
       window.location='?controller=productos&action=create';
     </script>");
     $this->dbh = null;

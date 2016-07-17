@@ -8,7 +8,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
-  <form role="form" class="form" action="?controller=compras&action=create" method="POST">
+  <form role="form" class="form" id="form_compra" method="POST">
     <div class="row" id="row">
       <div class="col-xs-8">
         <div class="box box-primary">
@@ -76,7 +76,7 @@
                   <div class="input-group input-group-sm">
                     <input id="codigo" name="codigo-entrada" type="text" class="form-control" placeholder="XXX000" disabled>
                     <span class="input-group-btn">
-                      <div data-toggle="tooltip" onclick="buscar_producto()" title="Buscar"  class="btn btn-ver btn-flat fa fa-search " ></div>
+                      <div data-toggle="tooltip" onclick="buscar_producto_compra()" title="Buscar"  class="btn btn-ver btn-flat fa fa-search " ></div>
                     </span>
                   </div>
                 </div>
@@ -89,7 +89,7 @@
                   <input type="text" id="cantidad" class="form-control"  disabled >
                 </div>
                 <div class="form-group col-xs-1">
-                  <div class="btn boton btn-ver fa fa-shopping-cart btn-agregar-producto" onClick="agregar_carrito()"> Añadir</div>
+                  <div class="btn boton btn-ver fa fa-shopping-cart btn-agregar-producto" onClick="agregar_carrito_compra()"> Añadir</div>
                 </div>
                 <div class="form-group col-xs-4 ">
                   <label>Descripcion</label>
@@ -140,7 +140,7 @@
                                   <input type="hidden" name='precio_p[]' value="<?php echo $detalle['precio'];?>">
                                   <td><input style="width:56px;"  type="text" class="form-control" value="<?php echo $detalle['cantidad'];?>"></td>
                                   <td><?php echo $detalle['total'];?></td>
-                                  <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito(<?php echo $detalle['codigo'];?>)"></div></td>
+                                  <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito_compra(<?php echo $detalle['codigo'];?>)"></div></td>
                                 </tr>
                                 <?php }?>
                               </tbody>
@@ -212,7 +212,8 @@
           </div>
           <div class="row">
             <div class="col-md-offset-4 col-md-2">
-              <button class="btn btn-ver glyphicon glyphicon-floppy-saved" type="submit"> GUARDAR</button>
+              <a class="btn btn-ver glyphicon glyphicon-floppy-saved" href="javascript:guardar_compra()" type="submit"
+               > GUARDAR</a>
             </div>
             <div class="col-md-2">
               <button class="btn btn-sucedio glyphicon glyphicon-arrow-left"> VOLVER</button>

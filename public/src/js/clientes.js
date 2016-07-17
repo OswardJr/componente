@@ -1,3 +1,49 @@
+function crear_cliente(){ // funcion para la compra
+  //remove errors
+  $('.form-group').removeClass('has-error');
+  //validating form modals
+  if ($("#rif").val() === "") {
+    $('[name="rif"]').parent().parent().addClass('has-error');
+  }else{
+    if ($("#razon_social").val() === "") {
+      $('[name="razon_social"]').parent().addClass('has-error');
+    }else{
+      if ($("#telefono").val() === "") {
+        $('[name="telefono"]').parent().addClass('has-error');
+      }else{
+        if ($("#email").val() === "") {
+          $('[name="email"]').parent().addClass('has-error');
+        }else{
+          if ($("#direccion").val() === "") {
+            $('[name="direccion"]').parent().addClass('has-error');
+          }else{
+            //post ajax form serialize
+            $.ajax({
+              url : "?controller=clientes&action=crearforjson",
+              type: "POST",
+              data: $('#form').serialize(),
+              dataType: "json",
+              success: function(data)
+              {
+                      swal(data.msj);
+                      $('#modal-id').modal('hide');
+                      $('.form-group').removeClass('has-error'); // clear error class
+                      $('.help-block').empty()
+                    },
+                    error: function(jqXHR, textStatus, error)
+                    {
+                      swal(error);
+                      $('#modal-id').modal('hide');
+                      $('.form-group').removeClass('has-error'); // clear error class
+                      $('.help-block').empty(); // clear error string
+                    }
+                  });
+          }
+        }
+      }
+    }
+  }
+}
 
 function buscarCliente(){
  var rif=$("#rif").val();
@@ -47,7 +93,7 @@ function ver_cliente(valor){
           },
           error: function (jqXHR, textStatus, errorThrown)
           {
-            alert('Error get data from ajax');
+            swal('Error get data from ajax');
           }
         });
   }
@@ -77,7 +123,7 @@ function ver_cliente(valor){
           },
           error: function (jqXHR, textStatus, errorThrown)
           {
-            alert('Error get data from ajax');
+            swal('Error get data from ajax');
           }
         });
   }
@@ -90,13 +136,13 @@ function ver_cliente(valor){
       dataType: "JSON",
       success: function(data)
       {
-        alert('ha sido actualizado');
+        swal('ha sido actualizado');
         $('#modal_form1').modal('hide');
         recargar();
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        alert('Error');
+        swal('Error');
 
       }
     });

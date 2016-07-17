@@ -39,7 +39,7 @@ public function create_categoria($nombre,$descripcion)
         $this->dbh = null;
         /* Alerta de notificacion de registro */
         echo utf8_decode("<script type='text/javascript'>
-            alert('Registro exitoso.');
+            swal('Registro exitoso.');
             window.location='?controller=categorias&action=create';
         </script>");
         exit();

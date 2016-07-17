@@ -1,3 +1,35 @@
+function guardar_compra(){
+  var id_compra = $('#cod_factura').val();
+  var id_prov = $("#id_prov").val();
+  var codigo = $("#codigo").val();
+  var forma_pago = $("#forma_pago").val();
+  if(id_prov===''){
+    swal('Debes introducir el proveedor');
+  }else if(forma_pago===''){
+      swal('Debes elegir la forma de pago');
+    }else{
+        $.ajax({
+          url: '?controller=compras&action=create',
+          type: "POST",
+          data: $('#form_compra').serialize(),
+          dataType: "JSON",
+          success: function(data)
+          {
+            window.open(`views/reportes/factura_compra.php?cod_compra=${id_compra}`, '_blank')
+
+           location.reload()
+
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            alert('Error');
+
+          }
+        });
+      }
+}
+
+
 function buscar_proveedor(){
   var rif=$('#rif-entrada').val();
   $.ajax({
@@ -31,7 +63,7 @@ function buscar_proveedor(){
    }
  });
 }
-function buscar_producto(){
+function buscar_producto_compra(){
   var codigo=$('#codigo').val();
   $.ajax({
     url : "?controller=compras&action=buscarProducto&codigo=" + codigo,
@@ -59,7 +91,7 @@ function buscar_producto(){
      });
 }
 
-function agregar_carrito(){
+function agregar_carrito_compra(){
 //funcion agregar al carrito
 var cantidad = $("#cantidad").val();
 var codigo = $("#codigo").val();
@@ -101,7 +133,7 @@ if(codigo!=''){
 }
 
 //funcion eliminar
-function eliminar_carrito(codigo){
+function eliminar_carrito_compra(codigo){
   if (confirm("¿ Realmente desea eliminarlo de la lista?"))
  {
   $.ajax({

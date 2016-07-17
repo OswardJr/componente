@@ -8,14 +8,14 @@ class usuario extends Conectar
        {
         $query = $this->dbh->prepare(
             'SELECT
-            ci_emp AS cedula,
+            ci_usuario AS cedula,
             primer_nombre AS nombre,
             primer_apellido AS apellido,
             username,
             rol
             FROM
             empleados
-            WHERE status = "activo"');
+            ');
         $query->execute();
         return $query->fetchAll();
         $this->dbh = null;
@@ -27,7 +27,7 @@ class usuario extends Conectar
 public function get_user_by_cedula($cedula){
     try
     {
-        $query = $this->dbh->prepare('SELECT * FROM empleados where ci_emp = ? ');
+        $query = $this->dbh->prepare('SELECT * FROM empleados where ci_usuario = ? ');
         $query->bindParam(1, $cedula);
         $query->execute();
         $data = $query->fetch();
@@ -43,7 +43,7 @@ public function comprobar_user($cedula)
 {
     try
     {
-        $query = $this->dbh->prepare('SELECT * FROM empleados where ci_emp = ? ');
+        $query = $this->dbh->prepare('SELECT * FROM empleados where ci_usuario = ? ');
         $query->bindParam(1, $cedula);
         $query->execute();
         return $query->fetch();
@@ -57,19 +57,18 @@ public function comprobar_user($cedula)
 public function create_user($cedula,$nombre,$apellido,$username,$password,$rol,$status)
 {
     try {
-        $query = $this->dbh->prepare('INSERT INTO empleados VALUES(null,?,?,?,?,?,?,?)');
+        $query = $this->dbh->prepare('INSERT INTO empleados VALUES(null,?,?,?,?,?,?)');
         $query->bindParam(1, $cedula);
         $query->bindParam(2, $nombre);
         $query->bindParam(3, $apellido);
         $query->bindParam(4, $username);
         $query->bindParam(5, $password);
         $query->bindParam(6, $rol);
-        $query->bindParam(7, $status);
         $query->execute();
         $this->dbh = null;
         /* Alerta de notificacion de registro */
         echo utf8_decode("<script type='text/javascript'>
-            alert('Registro exitoso.');
+            swal('Registro exitoso.');
             window.location='?controller=usuarios&action=index';
         </script>");
         exit();
@@ -82,7 +81,7 @@ public function create_user($cedula,$nombre,$apellido,$username,$password,$rol,$
 public function delete_user($cedula)
 {
     try {
-        $query = $this->dbh->prepare('UPDATE empleados SET status = "inactivo" where ci_emp = ?');
+        $query = $this->dbh->prepare('UPDATE empleados SET status = "inactivo" where ci_usuario = ?');
         $query->bindParam(1, $cedula);
         $query->execute();
         $this->dbh = null;
@@ -93,7 +92,7 @@ public function delete_user($cedula)
 
 public function update_user($cedula,$nombre,$apellido,$username,$rol,$id_emp){
     try {
-        $query = $this->dbh->prepare('UPDATE empleados SET ci_emp = ?, primer_nombre = ?, primer_apellido = ?, username = ?, rol = ?  WHERE id_emp = ?');
+        $query = $this->dbh->prepare('UPDATE empleados SET ci_usuario = ?, primer_nombre = ?, primer_apellido = ?, username = ?, rol = ?  WHERE id_emp = ?');
         $query->bindParam(1, $cedula);
         $query->bindParam(2, $nombre);
         $query->bindParam(3, $apellido);
@@ -124,7 +123,7 @@ public function login($username, $contrasena)
         $contar = $query->rowCount();
         if($contar > 0){
             $_SESSION['id_emp'] = $data[0];
-            $_SESSION['ci_emp'] = $data[1];
+            $_SESSION['ci_usuario'] = $data[1];
             $_SESSION['nombre'] = $data[2];
             $_SESSION['apellido'] = $data[3];
             $_SESSION['username'] = $data[4];

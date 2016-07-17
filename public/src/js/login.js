@@ -19,7 +19,7 @@
           //location.reload();
           location.replace("?controller=index");
         }else{
-          alert("Usuario o Password Incorrectos");
+          swal("Usuario o Password Incorrectos");
           location.reload();
         }
       });
