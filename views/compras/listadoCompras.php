@@ -22,7 +22,6 @@
                         <th>Proveedor</th>
                         <th>Fecha</th>
                         <th>Monto</th>
-                        <th style="width: 80px;" >Acci&oacuten</th>
                       </tr>
                     </thead>
                   </table>

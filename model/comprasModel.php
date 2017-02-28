@@ -8,6 +8,7 @@ class compra extends Conectar
       $query = $this->dbh->prepare('
         SELECT
         c.cod_compra AS codigo,
+        p.rif AS prov,
         p.razon_social AS proveedor,
         c.fecha_actual AS fecha,
         c.tot AS monto
@@ -28,20 +29,52 @@ class compra extends Conectar
       $e->getMessage();
     }
   }
-  public function create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos)
+
+    public function get_compras_by_id($rif)
+  {
+    try
+    {
+      $query = $this->dbh->prepare('
+  SELECT
+        p.id_prov AS xx,
+        f.rif AS rif,
+        f.razon_social AS prov,
+        p.tot AS total
+      FROM
+        compras AS p
+      LEFT JOIN
+        proveedores AS f
+      ON
+        p.id_prov = f.id_prov
+      WHERE
+        f.rif = ?
+        ');
+      $query->execute();
+      return $query->fetchAll();
+      $this->dbh = null;
+    }catch (PDOException $e)
+    {
+      $e->getMessage();
+    }
+  }
+
+  public function create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$banco,$nro_cuenta,$nro_comprobante,$impuesto,$subtot,$tot,$status,$datos)
   {
    try
    {
-    $query = $this->dbh->prepare('INSERT INTO compras VALUES(?,?,?,?,?,?,?,?,?)');
+    $query = $this->dbh->prepare('INSERT INTO compras VALUES(?,?,?,?,?,?,?,?,?,?,?,?)');
     $query->bindParam(1, $cod_compra);
     $query->bindParam(2, $id_prov);
     $query->bindParam(3, $id_emp);
     $query->bindParam(4, $fecha_actual);
     $query->bindParam(5, $forma_pago);
-    $query->bindParam(6, $impuesto);
-    $query->bindParam(7, $subtot);
-    $query->bindParam(8, $tot);
-    $query->bindParam(9, $status);
+    $query->bindParam(6, $banco);
+    $query->bindParam(7, $nro_cuenta);
+    $query->bindParam(8, $nro_comprobante);
+    $query->bindParam(9, $impuesto);
+    $query->bindParam(10, $subtot);
+    $query->bindParam(11, $tot);
+    $query->bindParam(12, $status);
     $query->execute();
     foreach ($datos as $d) {
       $sql = "INSERT INTO det_compra(cod_compra,cod_prod,cantidad,precio)
@@ -63,6 +96,11 @@ class compra extends Conectar
     $json = array();
     $json['success'] = true;
     echo json_encode($json);
+    //bitacora
+    $utilidades = new utilidadesController;
+    $responsable = $_SESSION['nombre'];
+    $accion = 'Realizó una nueva compra';
+    $utilidades->setMovimientos($responsable,$accion);
     $this->dbh = null;
     unset($_SESSION['detalle']);
   } catch (PDOException $e) {
@@ -83,6 +121,7 @@ public function numorden()
   $e->getMessage();
 }
 }
+
 public function detalle_compra($cod_compra)
 {
  try
@@ -113,6 +152,7 @@ public function detalle_compra($cod_compra)
   $e->getMessage();
 }
 }
+
 public function obtener_compra($cod_compra)
 {
  try
@@ -127,6 +167,9 @@ public function obtener_compra($cod_compra)
     p.rif,
     p.telefono,
     c.forma_pago,
+    c.banco,
+    c.nro_cuenta,
+    c.nro_comprobante,
     c.impuesto,
     c.subtot,
     c.tot

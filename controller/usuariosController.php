@@ -48,10 +48,12 @@
 				$nombre = $_POST['nombre'];
 				$apellido = $_POST['apellido'];
 				$username = $_POST['username'];
-				$password= sha1($_POST['password']);
-				$rol= $_POST['rol'];
+				$password= md5($_POST['password']);
+                $rol= $_POST['rol'];
+                $pregunta= $_POST['pregunta'];
+				$respuesta= $_POST['respuesta'];
 				$status= $_POST['status'];
-				$usuario->create_user($cedula,$nombre,$apellido,$username,$password,$rol,$status);
+				$usuario->create_user($cedula,$nombre,$apellido,$username,$password,$rol,$pregunta, $respuesta,$status);
 			}
 		}
 
@@ -88,9 +90,11 @@
 				$nombre = $_POST['nombre'];
 				$apellido = $_POST['apellido'];
 				$username = $_POST['username'];
-				$rol= $_POST['rol'];
+                $rol= $_POST['rol'];
+                $pregunta= $_POST['pregunta'];
+				$respuesta= $_POST['respuesta'];
 				$id_emp= $_POST['id_emp'];
-				$usuario->update_user($cedula,$nombre,$apellido,$username,$rol,$id_emp);
+				$usuario->update_user($cedula,$nombre,$apellido,$username,$rol,$pregunta,$respuesta,$id_emp);
 			}
 		}
 

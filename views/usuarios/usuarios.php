@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
-                
+
                 <div class="box-header">
                     <h3 class="box-title"><strong>Usuarios registrados</strong></h3>
                 </div><!-- /.box-header -->
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Cedula</label>
                             <div class="col-md-9">
-                                <input name="cedula" class="form-control" type="text" disabled="true" >
+                                <input name="cedula" id="cedula1" class="form-control" type="text" disabled="true" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -80,6 +80,13 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Pregunta secreta</label>
+                            <div class="col-md-9">
+                                <input name="pregunta" class="form-control" type="text" disabled="true" >
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -104,7 +111,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Cedula</label>
                             <div class="col-md-9">
-                                <input name="cedula" class="form-control" type="text" >
+                                <input name="cedula"  id="cedula2" class="form-control" type="text" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -137,6 +144,24 @@
                                     <option id="rol" value="Secretaria">Secretaria</option>
                                     <option id="rol" value="Administrador">Administrador</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Pregunta secreta</label>
+                            <div class="col-md-9">
+                                 <select name="pregunta" id="preguntaselect" class="form-control" required="true">
+                                    <option id="pregunta" value="">Seleccione</option>
+                                    <option id="pregunta" value="Lugar de nacimiento de la madre">Lugar de nacimiento de la madre</option>
+                                    <option id="pregunta" value="Nombre de su abuela">Nombre de su abuela</option>
+                                    <option id="pregunta" value="Nombre de su primera mascota">Nombre de su primera mascota</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Respuesta</label>
+                            <div class="col-md-9">
+                                <input name="respuesta"  class="form-control" type="text" >
+                                <span class="help-block"></span>
                             </div>
                         </div>
                         <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />

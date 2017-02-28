@@ -8,6 +8,7 @@ class venta extends Conectar
       $query = $this->dbh->prepare('
         SELECT
         c.cod_venta AS codigo,
+        p.rif AS rif,
         p.razon_social AS cliente,
         c.fecha_actual AS fecha,
         c.tot AS monto
@@ -15,6 +16,7 @@ class venta extends Conectar
         ventas AS c
         INNER JOIN
         clientes AS p
+        ON c.id_cliente = p.id_cliente
         ORDER BY
         c.cod_venta
         DESC
@@ -27,49 +29,53 @@ class venta extends Conectar
       $e->getMessage();
     }
   }
-  public function create_venta($cod_venta,$id_cliente,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos)
-  {
-   try
-   {
-    $query = $this->dbh->prepare('INSERT INTO ventas VALUES(?,?,?,?,?,?,?,?,?)');
-    $query->bindParam(1, $cod_venta);
-    $query->bindParam(2, $id_cliente);
-    $query->bindParam(3, $id_emp);
-    $query->bindParam(4, $fecha_actual);
-    $query->bindParam(5, $forma_pago);
-    $query->bindParam(6, $impuesto);
-    $query->bindParam(7, $subtot);
-    $query->bindParam(8, $tot);
-    $query->bindParam(9, $status);
-    $query->execute();
-    foreach ($datos as $d) {
-      $sql = "INSERT INTO det_venta(cod_venta,cod_prod,cantidad,precio)
-      VALUES
-      (?,?,?,?)";
-      $this->dbh->prepare($sql)
-      ->execute(
-        array(
-          $cod_venta,
-          $d['cod'],
-          $d['cant'],
-          $d['precio_p']
-          ));
-      $sql = "UPDATE productos SET stock = stock -'" . $d['cant'] . "', p_venta='". $d['precio_p'] ."'WHERE cod_prod = '". $d['cod']."'";
-      $this->dbh->prepare($sql)
-      ->execute();
-    }
-    header('location:' . Conectar::ruta() .'views/reportes/factura_venta.php?cod_venta='.$cod_venta);
-    // echo utf8_decode("<script type='text/javascript'>
-    //            alert('Compra guardada exitosamente');
-    //            window.location='';
-    //        </script>");
-    $this->dbh = null;
-    unset($_SESSION['detalle']);
-  } catch (PDOException $e) {
-    $e->getMessage();
-  }
-}
+  public function create_venta($cod_venta,$id_cliente,$id_emp,$fecha_actual,$forma_pago,$banco,$nro_cuenta,$nro_comprobante,$impuesto,$descuento,$subtot,$tot,$status,$datos)
+            {
+                try
+                     {
+                      $query = $this->dbh->prepare('INSERT INTO ventas VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
+                      $query->bindParam(1, $cod_venta);
+                      $query->bindParam(2, $id_cliente);
+                      $query->bindParam(3, $id_emp);
+                      $query->bindParam(4, $fecha_actual);
+                      $query->bindParam(5, $forma_pago);
+                      $query->bindParam(6, $banco);
+                      $query->bindParam(7, $nro_cuenta);
+                      $query->bindParam(8, $nro_comprobante);
+                      $query->bindParam(9, $impuesto);
+                      $query->bindParam(10, $descuento);
+                      $query->bindParam(11, $subtot);
+                      $query->bindParam(12, $tot);
+                      $query->bindParam(13, $status);
+                      $query->execute();
 
+                          foreach ($datos as $d) {
+                          $sql = "INSERT INTO det_venta(cod_venta,cod_prod,cantidad,precio)
+                                  VALUES
+                                    (?,?,?,?)";
+                          $this->dbh->prepare($sql)
+                                    ->execute(
+                                      array(
+                                        $cod_venta,
+                                        $d['cod'],
+                                        $d['cant'],
+                                        $d['precio_p']
+                                        ));
+                          $sql = "UPDATE productos SET stock = stock -'" . $d['cant'] . "', p_venta='". $d['precio_p'] ."'WHERE cod_prod = '". $d['cod']."'";
+                          $this->dbh->prepare($sql)
+                                    ->execute();
+                    }
+                //    header('location:' . Conectar::ruta() .'views/reportes/factura_venta.php?cod_venta='.$cod_venta);
+
+                    $json = array();
+                    $json['success'] = true;
+                    echo json_encode($json);
+                    $this->dbh = null;
+                    unset($_SESSION['detalle']);
+                  } catch (PDOException $e) {
+                      $e->getMessage();
+                  }
+                }
 public function numorden()
 {
   try
@@ -88,7 +94,7 @@ public function detalle_venta($cod_venta)
  try
  {
    $query = $this->dbh->prepare('SELECT
-    d.cod_venta AS codigo,
+    d.cod_prod AS codigo,
     p.descripcion,
     d.cantidad AS cantidad,
     d.precio AS precio
@@ -118,41 +124,43 @@ public function obtener_venta($cod_venta)
  try
  {
    $query = $this->dbh->prepare('SELECT
-    c.cod_venta AS codigo,
-    c.fecha_actual AS fecha,
+    a.cod_venta AS codigo,
+    a.fecha_actual AS fecha,
     e.primer_nombre AS nombre,
     e.primer_apellido AS apellido,
     p.razon_social,
     p.direccion,
     p.rif,
     p.telefono,
-    c.forma_pago,
-    c.impuesto,
-    c.subtot,
-    c.tot
+    a.forma_pago,
+    a.banco,
+    a.nro_cuenta,
+    a.nro_comprobante,
+    a.impuesto,
+    a.descuento,
+    a.subtot,
+    a.tot
     FROM
-    ventas AS c
+    ventas AS a
     INNER JOIN
     empleados AS e
     ON
-    c.id_emp = e.id_emp
+    a.id_emp = e.id_emp
     INNER JOIN
     clientes AS p
     ON
-    p.id_cliente = p.id_cliente
+    a.id_cliente = p.id_cliente
     WHERE
-    c.cod_venta = ?') ;
+    a.cod_venta = ?') ;
    $query->bindParam(1, $cod_venta);
    $query->execute();
-   return $query->fetchAll();
+   return $query->fetchAll(PDO::FETCH_ASSOC);
    $this->dbh = null;
  }catch (PDOException $e)
  {
   $e->getMessage();
 }
 }
-
-
 
 }
 

@@ -1,4 +1,4 @@
-#### Componente de software administrativo para "M & E plus C.A"
+#### Componente de software administrativo para la comunidad "M & E plus C.A"
 
 * * *
 

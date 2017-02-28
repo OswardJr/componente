@@ -1,10 +1,12 @@
 <?php
   $d = new DateTime();
 ?>
-<section class="content-header">
+<section class="content-header" style="padding-top: 0px;">
+<center>
   <h1>
-    Nueva compra
+    Nueva Compra
   </h1>
+</center>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -17,27 +19,28 @@
           </div>
           <div class="box-body">
             <div class="row">
-              <div class="col-md-12">
-                <div class="form-group col-xs-5" style="margin-bottom: 0px; height: 60px">
+              <div class="col-xs-12">
+                <div class="form-group col-xs-5" style="margin-bottom: 0px; height: 60px; padding-top: 20px;">
                   <p class="margin"><strong>Rif</strong></p>
                   <div class="input-group input-group-sm">
-                    <input id="rif-entrada" name="rif-entrada" type="text" class="form-control"  value="<? echo $rif?>" required="true" maxlength="12" placeholder="J-01234567-0">
-                    <span class="input-group-btn">
+                   <label for="rif-entrada"></label>
+                    <input id="rif-entrada" name="rif-entrada" type="text" class="form-control"  value="<?php echo $rif ?>" onkeyup="this.value=this.value.toUpperCase()" required="true" pattern="^([JVEG]{1})-([0-9]{8})-([0-9]{1})$" placeholder="J-01234567-0" />
+                    <span class="input-group-btn" >
                       <button data-toggle="tooltip" title="Buscar"  class="btn btn-ver btn-flat fa fa-search" type="button"  onClick="buscar_proveedor()"></button>
                     </span>
                     <input type="hidden" name="id_prov" id="id_prov" class="campo" style="width: 180px" />
                   </div>
                 </div>
-                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-id" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width:8.3%;border-right-width: 1px;"></div>
-                <div class="form-group col-xs-6  ">
+                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-id" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 51px;padding-right: 0px;padding-left: 0px;width:8.3%;border-right-width: 1px;"></div>
+                <div class="form-group col-xs-6  " style="padding-top: 20px">
                   <p class="margin"><strong>Raz&oacuten social</strong></p>
                   <input type="text" name="razon_social" class="form-control" disabled>
                 </div>
-                <div class="form-group col-xs-6  ">
-                  <p class="margin"><strong>Telef&oacuteno</strong></p>
+                <div class="form-group col-xs-6  " style="padding-top: 20px">
+                  <p class="margin"><strong>Teléfono</strong></p>
                   <input type="text" name="telefono" class="form-control" disabled>
                 </div>
-                <div class="form-group col-xs-6 ">
+                <div class="form-group col-xs-6 " style="padding-top: 20px">
                   <p class="margin"><strong>Direcci&oacuten</strong></p>
                   <input type="text" name="direccion" class="form-control" disabled>
                 </div>
@@ -49,12 +52,13 @@
       <div class="col-xs-4">
         <div class="box box-primary box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title">Orden de compra</h3>
+            <h3 class="box-title">Registro de compra</h3>
           </div><!-- /.box-header -->
           <div class="box-body">
             <?php foreach($numorden as $key): ?>
-              <h5><strong>Numero:</strong> <?php echo $key+1; ?></h5>
-              <input type="hidden" name="cod_factura" id="cod_factura" class="campo" value="<?php echo $key+1; ?>" />
+                <?php $key = $key+1; ?>
+              <h5><strong>Número:</strong> <?php echo $code =  str_pad($key, 6, "0", STR_PAD_LEFT) ?></h5>
+              <input type="hidden" name="cod_factura" id="cod_factura" class="campo" value="<?php echo $key; ?>" />
             <?php endforeach; ?>
             <h5><strong>Fecha Actual:</strong><?php  echo "\n" . $d -> format('d/m/Y'); ?></h5>
             <input type="hidden" name="fecha" id="fecha" class="campo" value="<?php  echo $d -> format('Y-m-d'); ?>"/>
@@ -62,11 +66,66 @@
             <input type="hidden" name="id_emp" id="id_emp" class="campo" value="<?php echo $_SESSION['id_emp']; ?>"/>
           </div>
         </div>
+
+        <div  class="col-xs-12" style="padding-left: -30px;">
+            <div class="box box-primary box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Forma de Pago</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                  <div class="col-xs-12">
+
+                    <select id="sel1" name="forma_pago" class="form-control">
+                        <option selected></option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="deposito / transferencia">Depósito y/o Transferencia</option>
+                    </select>
+
+
+                    <div id="test2" class="hideable">
+                      <center><strong><p>Has seleccionado pagar en efectivo.</p></strong></center>
+
+                  </div>
+
+                  <div id="test3" class="hideable">
+                      <p>Nombre</p>
+
+                      <select name="banco" class="form-control" required="required">
+                        <option></option>
+                        <?php foreach($bancos as $b): ?>
+                            <option><?php echo $b;?></option>
+                        <?php endforeach; ?>
+                      </select>
+
+                      <p>Número de Cuenta</p>
+                      <input type="text" name="nro_cuenta" class="form-control" id="" placeholder="Ingrese el num" value="">
+
+                      <p>Número del Comprobante</p>
+                      <input type="text" name="nro_comprobante" id="" class="form-control" placeholder="Ingrese el compr" value="">
+
+                      <center><p>
+                        <button href="#" id="alternar-respuesta-ej1" type="button" class="btn btn-default btn-xs">Ocultar</button>
+                        <div id="respuesta-ej1" style="display:none"></div>
+                    </p></center>
+                </div>
+                <div id="test4" class="hideable">
+                  <center><strong><p>Has seleccionado pagar a crédito.</p></strong></center>
+
+              </div>
+
+          </div>
       </div>
+  </div>
+</div>
+</div>
+</div>
+
+
       <div class="col-xs-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Agregar productos</h3>
+            <h3 class="box-title">Agregar Productos</h3>
           </div>
           <div class="box-body">
             <div class="row">
@@ -74,34 +133,36 @@
                 <div class="form-group col-xs-3 " style="margin-bottom: 0px; height: 60px">
                   <p class="margin"><strong>Producto</strong></p>
                   <div class="input-group input-group-sm">
-                    <input id="codigo" name="codigo-entrada" type="text" class="form-control" placeholder="XXX000" disabled>
+                  <label for="codigo"></label>
+                    <input id="codigo" name="codigo-entrada" type="text" class="form-control" placeholder="XXX000"  disabled>
                     <span class="input-group-btn">
                       <div data-toggle="tooltip" onclick="buscar_producto_compra()" title="Buscar"  class="btn btn-ver btn-flat fa fa-search " ></div>
                     </span>
                   </div>
                 </div>
-                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-prod" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width:5.2%;border-right-width: 1px;margin-right: 3%;"></div>                <div class="form-group col-xs-3 ">
-                  <p class="margin"><strong>Precio</strong></p>
-                  <input type="text" name="precio" class="form-control" id="precio">
-                </div>
+                <div title="Nuevo" class="form-group col-xs-1 btn boton btn-agregar fa fa-plus" data-toggle="modal" href="#modal-prod" style="padding-bottom: 4px;padding-top: 4px;margin-bottom: 0px;margin-top: 31px;padding-right: 0px;padding-left: 0px;width:5.2%;border-right-width: 1px;margin-right: 3%;"></div>
                 <div class="form-group col-xs-3 ">
+                  <p class="margin"><strong>Precio de Compra</strong></p>
+                  <input type="text" name="precio" placeholder="BsF" class="form-control" id="precio">
+                </div>
+                <div class="form-group col-xs-4">
+                  <label>Descripción</label>
+                  <textarea type="text" name="descripcion" id="descripcion" class="form-control" disabled ></textarea>
+                </div>
+                <div class="form-group col-xs-2 ">
+                  <p class="margin"><strong>Existencia</strong></p>
+                  <input type="text" id="existencia" name="stock" class="form-control" id="stock"  disabled>
+                </div>
+                <div class="form-group col-xs-2 ">
+                  <label style="margin-bottom: 10px;"><strong>Stock Mínimo</strong></label>
+                  <input type="text" id="minimo" name="stock_m" class="form-control" id="stock_m"  disabled>
+                </div>
+                  <div class="form-group col-xs-2 ">
                   <p class="margin"><strong>Cantidad</strong></p>
                   <input type="text" id="cantidad" class="form-control"  disabled >
                 </div>
                 <div class="form-group col-xs-1">
                   <div class="btn boton btn-ver fa fa-shopping-cart btn-agregar-producto" onClick="agregar_carrito_compra()"> Añadir</div>
-                </div>
-                <div class="form-group col-xs-4 ">
-                  <label>Descripcion</label>
-                  <textarea type="text" name="descripcion" id="descripcion" class="form-control" disabled ></textarea>
-                </div>
-                <div class="form-group col-xs-3 ">
-                  <p class="margin"><strong>Existencia</strong></p>
-                  <input type="text" id="existencia" name="stock" class="form-control" id="stock"  disabled>
-                </div>
-                <div class="form-group col-xs-3 ">
-                  <p class="margin"><strong>Stock minimo</strong></p>
-                  <input type="text" id="minimo" name="stock_m" class="form-control" id="stock_m"  disabled>
                 </div>
               </div>
             </div>
@@ -120,11 +181,11 @@
                         <table id="table1" class="table table-bordered table-striped">
                           <thead>
                             <tr>
-                              <th>Codigo</th>
-                              <th>Descripcion</th>
+                              <th>Código</th>
+                              <th>Descripción</th>
                               <th>Precio</th>
                               <th>Cantidad</th>
-                              <th>Total neto</th>
+                              <th>Total Neto</th>
                               <th>Opciones</th>
                             </tr>
                           </thead>
@@ -138,7 +199,7 @@
                                   <input type='hidden' name='cant[]' value="<?php echo $detalle['cantidad'];?>" >
                                   <td><?php echo $detalle['precio'];?></td>
                                   <input type="hidden" name='precio_p[]' value="<?php echo $detalle['precio'];?>">
-                                  <td><input style="width:56px;"  type="text" class="form-control" value="<?php echo $detalle['cantidad'];?>"></td>
+                                  <td><?php echo $detalle['cantidad'];?></td>
                                   <td><?php echo $detalle['total'];?></td>
                                   <td><div class="btn btn-sm btn-delete fa fa-trash eliminar-producto" onClick="eliminar_carrito_compra(<?php echo $detalle['codigo'];?>)"></div></td>
                                 </tr>
@@ -150,27 +211,9 @@
                     </div> <!-- end row -->
               </div> <!-- end box-body -->
           </div>
-          <div  class="col-xs-3" style="padding-left: 0px;">
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Forma de pago</h3>
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <select name="forma_pago" id="forma_pago" class="form-control" required="required">
-                      <option value=""></option>
-                      <option value="efectivo">efectivo</option>
-                      <option value="transferencia">transferencia</option>
-                      <option value="deposito">deposito</option>
-                      <option value="credito">credito</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-4  col-xs-offset-5 " style="padding-right: 0px;">
+ <div class="row">
+      <div class="col-xs-12">
+          <div class="col-xs-4  col-xs-offset-8 " style="padding-right: 0px;">
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">Total</h3>
@@ -183,9 +226,10 @@
                       <?php if(count($_SESSION['detalle'])>0){?>
                         <?php
                         $subtotal = 0;
+                        $valoriva = $impuesto[0];
                         foreach($_SESSION['detalle'] as $k => $detalle){
                           $subtotal += $detalle['total'];
-                          $iva = ($subtotal * 12) / 100;
+                          $iva = ($subtotal * $valorva) / 100;
                           $total_final = $subtotal+$iva;
                         }
                         ?>
@@ -195,7 +239,7 @@
                           <td class="col-xs-2"><input id="subtotal" type="text" name="subtotal" class="form-control " value="<?php echo $subtotal;?>" ></td>
                         </tr>
                         <tr>
-                          <td class="col-xs-1">IVA</td>
+                          <td class="col-xs-1">IVA: <?php echo $impuesto[0];?>%</td>
                           <td class="col-xs-2"><input id="iva" type="text" name="impuesto" class="form-control" value="<?php echo $iva;?>" ></td>
                         </tr>
                         <tr>
@@ -210,13 +254,15 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
           <div class="row">
-            <div class="col-md-offset-4 col-md-2">
-              <a class="btn btn-ver glyphicon glyphicon-floppy-saved" href="javascript:guardar_compra()" type="submit"
-               > GUARDAR</a>
+            <div class="col-xs-offset-5 col-xs-1">
+              <a class="btn btn-ver glyphicon glyphicon-floppy-saved" href="javascript:guardar_compra()" title="GUARDAR" type="submit"
+               > </a>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-sucedio glyphicon glyphicon-arrow-left"> VOLVER</button>
+            <div class="col-xs-1">
+              <a class="btn btn-sucedio glyphicon glyphicon-arrow-left" href="javascript:history.go(-1)" title="VOLVER" > </a>
             </div>
           </div>
         </form>
@@ -237,12 +283,12 @@
                       <span class="help-block"></span>
                   </div>
                   <div class="form-group col-xs-6" >
-                    <label >Razon social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                    <label >Razón social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <input id="razon_social" name="razon_social"  class="form-control" type="text" required >
                       <span class="help-block"></span>
                   </div>
                   <div class="form-group col-xs-6" style="margin-right: 25px;">
-                    <label >Telefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                    <label >Teléfono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <input id="telefono" name="telefono"  class="form-control" type="text" required >
                       <span class="help-block"></span>
                   </div>
@@ -252,7 +298,7 @@
                       <span class="help-block"></span>
                   </div>
                   <div class="form-group col-xs-6 " style="margin-left: 25%;margin-right: 25%;">
-                    <label >Direccion<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                    <label >Dirección<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                       <textarea id="direccion" name="direccion"  class="form-control" required ></textarea>
                       <span class="help-block"></span>
                   </div>
@@ -278,7 +324,7 @@
             <div class="modal-body form">
               <form name="" id="form2" action="" method="post">
                 <div class="form-group col-xs-4" style="margin-bottom: 0px; height: 80px;">
-                  <label>Codigo de Producto<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <label>Código de Producto<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                     <input type="text" name="codigo" id="codigo_p"  class="form-control" placeholder="XXX000000" required>
                     <span class="help-block"></span>
                 </div>
@@ -303,7 +349,7 @@
                   <input type="text" name="stock" id="stock"  class="form-control" placeholder="" required>
                 </div>
                 <div class="form-group col-xs-4">
-                  <label>Stock minimo<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <label>Stock Mínimo<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                   <input type="text" name="stock_min" id="stock_min"  class="form-control" placeholder="" required>
                 </div>
                 <div class="form-group col-xs-4">
@@ -315,7 +361,7 @@
                   </select>
                 </div>
                 <div class="form-group col-xs-4">
-                  <label>Categoria<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                  <label>Categoría<a class="campos-required" title="Campo Obligatorio."> *</a></label>
                   <select name="categoria" id="categoria" class="form-control" required>
                     <option>-- Seleccione --</option>
                     <?php foreach($categorias as $c): ?>
@@ -332,7 +378,7 @@
                   <input type="text" name="color" id="color"  class="form-control" placeholder="">
                 </div>
                 <div class="form-group col-xs-4">
-                  <label>Garantia</label>
+                  <label>Garantía</label>
                   <input type="text" name="garantia" id="garantia"  class="form-control" placeholder="">
                 </div>
                 <center>
@@ -353,3 +399,37 @@
     //   });
     // });
   </script>
+
+
+  <script>
+  $(function() {
+    $("#rif-entrada").autocomplete({
+      source: '?controller=compras&action=autoProv'
+    });
+  });
+  </script>
+  <script>
+  $(function() {
+    $("#codigo").autocomplete({
+      source: '?controller=compras&action=autoProd'
+    });
+  });
+  </script>
+
+<script>
+  $(document).ready(function(){
+   $('#alternar-respuesta-ej1').on('click',function(){
+      $('#test3').toggle();
+   });
+});
+</script>
+
+<script>
+        $(function() {
+    $("#sel1").on("change",function() {
+       $(".hideable").hide();
+       var id = "#test"+(this.selectedIndex+1);
+       $(id).show();
+    }).change();
+});
+      </script>

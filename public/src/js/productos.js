@@ -11,6 +11,102 @@ function buscarProducto(){
       },
     });
 }
+
+function borrarProducto(identificador){
+    if (confirm("¿Desea eliminar este producto?"))
+    {
+       $.get('?controller=productos&action=borrar',{cod_prod:identificador},function(data){
+          recargar();
+      });
+   }
+}
+
+function ver_producto(valor){
+  save_method = 'update';
+   // $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+
+    //Ajax Load data from ajax
+    $.ajax({
+      url : "?controller=productos&action=searchProductoBycod&cod_prod=" + valor,
+      type: "GET",
+      dataType: "JSON",
+      success: function(data)
+      {
+
+        $('[name="cod_prod"]').val(data.cod_prod);
+        $('[name="descripcion"]').val(data.descripcion);
+        $('[name="modelo"]').val(data.modelo);
+        $('[name="p_compra"]').val(data.p_compra);
+        $('[name="p_venta"]').val(data.p_venta);
+        $('[name="color"]').val(data.color);
+        $('[name="stock"]').val(data.stock);
+
+            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+            $('.modal-title').text('Ver Producto'); // Set title to Bootstrap modal title
+
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            swal('Error');
+          }
+        });
+  }
+
+  function editar_producto(valor){
+    save_method = 'modificar';
+    //$('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+
+    //Ajax Load data from ajax
+    $.ajax({
+      url : "?controller=productos&action=searchProductoBycod&cod_prod=" + valor,
+      type: "GET",
+      dataType: "JSON",
+      success: function(data)
+      {
+        $('[name="descripcion"]').val(data.descripcion);
+        $('[name="modelo"]').val(data.modelo);
+        $('[name="p_compra"]').val(data.p_compra);
+        $('[name="p_venta"]').val(data.p_venta);
+        $('[name="color"]').val(data.color);
+        $('[name="stock"]').val(data.stock);
+        $('[name="cod_prod"]').val(data.cod_prod);
+
+            $('#modal_form1').modal('show'); // show bootstrap modal when complete loaded
+            $('.modal-title').text('Editar Producto'); // Set title to Bootstrap modal title
+
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            swal('Error get data from ajax');
+          }
+        });
+  }
+
+  function guardar_producto(){
+    $.ajax({
+      url : "?controller=productos&action=modificar",
+      type: "POST",
+      data: $('#form').serialize(),
+      dataType: "JSON",
+      success: function(data)
+      {
+        swal('Ha sido actualizado');
+        $('#modal_form1').modal('hide');
+        recargar();
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        swal('Error');
+
+      }
+    });
+  }
+
+
 // crea un producto desde el modal de compras
 function crear_producto(){
   var codigo

@@ -37,10 +37,14 @@ public function create_categoria($nombre,$descripcion)
         $query->bindParam(2, $descripcion);
         $query->execute();
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Creó una nueva categoria';
+        $utilidades->setMovimientos($responsable,$accion);
         /* Alerta de notificacion de registro */
         echo utf8_decode("<script type='text/javascript'>
             swal('Registro exitoso.');
-            window.location='?controller=categorias&action=create';
         </script>");
         exit();
 
@@ -56,6 +60,11 @@ public function delete_categoria($id_cat)
         $query->bindParam(1, $id_cat);
         $query->execute();
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Eliminó una categoria';
+        $utilidades->setMovimientos($responsable,$accion);
     } catch (PDOException $e) {
         $e->getMessage();
     }
@@ -71,8 +80,12 @@ public function update_categoria($nombre,$descripcion,$id_cat){
         $data = "1";
         echo json_encode($data);
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Actualizó una categoria';
+        $utilidades->setMovimientos($responsable,$accion);
         exit();
-
     } catch (PDOException $e) {
         $e->getMessage();
     }

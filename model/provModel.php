@@ -1,7 +1,6 @@
  <?php
  Class proveedor extends Conectar
  {
-
     public function get_proveedores()
     {
         try
@@ -74,6 +73,18 @@
 
     public function create_proveedor($rif,$razon_social,$telefono,$email,$direccion,$status)
     {
+        $query = $this->dbh->prepare('SELECT * FROM proveedores WHERE rif = ? ');
+        $query->bindParam(1, $rif);
+        $query->execute();
+        $query->fetch();
+        //realizo validacion
+        $contar = $query->rowCount();
+        if ($contar > 0) {
+           echo utf8_decode("<script type='text/javascript'>
+            swal('El proveedor ya existe.');
+           </script>");
+           exit();
+       }else{
         try {
             $query = $this->dbh->prepare('INSERT INTO proveedores VALUES(null,?,?,?,?,?,?)');
             $query->bindParam(1, $rif);
@@ -83,16 +94,23 @@
             $query->bindParam(5, $direccion);
             $query->bindParam(6, $status);
             $query->execute();
+             //bitacora
+            $utilidades = new utilidadesController;
+            $responsable = $_SESSION['nombre'];
+            $accion = 'Registró un nuevo proveedor';
+            $utilidades->setMovimientos($responsable,$accion);
             /* Alerta de notificacion de registro */
             echo utf8_decode("<script type='text/javascript'>
                 swal('Registro exitoso.');
-                window.location='?controller=proveedores&action=create';
             </script>");
         } catch (PDOException $e) {
             echo $e->getMessage();
 
         }
     }
+
+    }
+
     public function create_proveedor_for_json($rif,$razon_social,$telefono,$email,$direccion,$status)
     {
         try {
@@ -107,6 +125,10 @@
             $json['msj'] = 'Registro exitoso';
             $json['success'] = true;
             echo json_encode($json);
+            $utilidades = new utilidadesController;
+            $responsable = $_SESSION['nombre'];
+            $accion = 'Registró un nuevo proveedor';
+            $utilidades->setMovimientos($responsable,$accion);
             $this->dbh = null;
         } catch (PDOException $e) {
             $json['msj'] = $e->getMessage();
@@ -126,6 +148,10 @@
             $query->bindParam(6, $id_prov);
             $query->execute();
             $data = "1";
+            $utilidades = new utilidadesController;
+            $responsable = $_SESSION['nombre'];
+            $accion = 'Actualizó los datos de un proveedor';
+            $utilidades->setMovimientos($responsable,$accion);
             echo json_encode($data);
             $this->dbh = null;
         } catch (PDOException $e) {
@@ -140,11 +166,33 @@
             $query->bindParam(1, $id_prov);
             $query->execute();
             $this->dbh = null;
+            $utilidades = new utilidadesController;
+            $responsable = $_SESSION['nombre'];
+            $accion = 'Eliminó un proveedor';
+            $utilidades->setMovimientos($responsable,$accion);
         } catch (PDOException $e) {
             $e->getMessage();
         }
     }
 
+ public function auto_prov($searchTerm)
+    {
+      $return_arr = array();
+     try {
+      $query = $this->dbh->prepare('SELECT rif FROM proveedores WHERE rif LIKE :term');
+      $query->bindValue("term", "%$searchTerm%");
+      $query->execute();
+      while ($row = $query->fetch()) {
+        $return_arr[] = $row['rif'];
+      }
+      echo json_encode($return_arr);
+      $this->dbh = null;
+    } catch (PDOException $e) {
+      $e->getMessage();
+    }
+
+
+  }
 
 }
 

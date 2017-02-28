@@ -44,7 +44,6 @@ function crear_cliente(){ // funcion para la compra
     }
   }
 }
-
 function buscarCliente(){
  var rif=$("#rif").val();
  $.ajax({
@@ -136,7 +135,7 @@ function ver_cliente(valor){
       dataType: "JSON",
       success: function(data)
       {
-        swal('ha sido actualizado');
+        swal('Ha sido actualizado');
         $('#modal_form1').modal('hide');
         recargar();
       },

@@ -1,4 +1,5 @@
 <?php session_start();
+date_default_timezone_set('America/Los_Angeles');
 require_once("includes/config.php");
 	//Funciones para el controlador
 require_once("includes/baseController.php");
@@ -10,5 +11,4 @@ if(isset($_GET["controller"])){
 	$controllerObj=cargarControlador(CONTROLADOR_DEFECTO);
 	lanzarAccion($controllerObj);
 }
-
 ?>

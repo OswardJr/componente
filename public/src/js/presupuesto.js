@@ -31,6 +31,7 @@ function buscar_cliente_presu(){
    }
  });
 }
+
 function buscar_producto_presu(){
 
   var codigo=$('#codigo').val();
@@ -59,6 +60,39 @@ function buscar_producto_presu(){
          console.log("error")
        }
      });
+}
+
+function guardar_presu(){
+  var id_presu = $('#cod_factura').val();
+  var id_cliente = $("#id_cliente").val();
+  var codigo = $("#codigo").val();
+  var fecha_vencimiento = $("#fecha_vencimiento").val();
+  if(id_cliente===''){
+    swal('Ingrese el cliente por favor');
+  }else if(fecha_vencimiento===''){
+      swal('Indique la fecha de caducidad');
+    }else{
+        $.ajax({
+          url: '?controller=presupuestos&action=create',
+          type: "POST",
+          data: $('#form_presu').serialize(),
+          dataType: "JSON",
+          success: function(data)
+          {
+           //  window.open(`views/reportes/factura_presu.php?cod_presu=${id_presu}`, '_blank')
+
+           // location.reload()
+             window.open(`?controller=index&action=presupuesto&cod=${id_presu}`, '_self')
+
+
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+            swal('Error');
+
+          }
+        });
+      }
 }
 
 function agregar_carrito_presu(){
@@ -113,8 +147,47 @@ function eliminar_carrito_presu(codigo){
      $(".aux-produc").load('views/presupuestos/auxiliar.php');
    }else{
     swal(data.msj);
-  }
-})
+        }
+      })
+   }
+
 }
 
+function borrar_presupuesto(identificador){
+    if (confirm("¿Desea eliminar el presupuesto..?"))
+    {
+       $.get('?controller=presupuestos&action=delete',{cod_presu:identificador},function(data){
+           location.reload()
+
+      });
+   }
+}
+
+function ver_presupuesto(valor){
+    save_method = 'update';
+   // $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+
+    //Ajax Load data from ajax
+    $.ajax({
+        url : "?controller=presupuestos&action=buscarPresupuestoPorCod&cod_presu=" + valor,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+
+            $('[name="id_cliente"]').val(data.id_cliente);
+            $('[name="fecha_actual"]').val(data.fecha_actual);
+            $('[name="tot"]').val(data.tot);
+            $('[name="id_emp"]').val(data.id_emp);
+            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+            $('.modal-title').text('Presupuesto'); // Set title to Bootstrap modal title
+
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            swal('Error get data from ajax');
+        }
+    });
 }

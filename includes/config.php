@@ -8,9 +8,11 @@ class Conectar
 
     public function __construct()
     {
+         require_once("controller/utilidadesController.php");
         try {
-            $this->dbh = new PDO('mysql:host=localhost;dbname=componente', 'root', '00000000');
+            $this->dbh = new PDO('mysql:host=localhost;dbname=componente', 'root', '12345678');
             $this->dbh->exec("SET CHARACTER SET utf8");
+
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage();
             die();

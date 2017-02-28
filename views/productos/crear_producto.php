@@ -1,13 +1,15 @@
 <section class="content-header">
+  <center>
   <h1>
     Productos
     <small></small>
   </h1>
+  </center>
 </section>
 <hr>
 <section class="content">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header">
           <h3 class="box-title">Registro de Productos</h3>
@@ -95,3 +97,24 @@
 </div><!-- /.row -->
 </section><!-- /.content -->
 </div>
+<script type="text/javascript">
+    window.onload = function () {
+        document.crear_producto.focus();
+        document.crear_producto.addEventListener('submit', validarFormulario);
+    }
+
+    function validarFormulario(evObject) {
+        evObject.preventDefault();
+        var todoCorrecto = true;
+        var formulario = document.crear_producto;
+        for (var i=0; i<formulario.length; i++) {
+            if(formulario[i].type =='text') {
+             if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+                 swal ('No puede haber campos vacíos');
+                 todoCorrecto=false;
+             }
+         }
+     }
+     if (todoCorrecto ==true) {formulario.submit();}
+ }
+</script>

@@ -2,12 +2,9 @@ function guardar_venta(){
   var id_venta = $('#cod_factura').val();
   var id_cliente = $("#id_cliente").val();
   var codigo = $("#codigo").val();
-  var forma_pago = $("#forma_pago").val();
   if(id_cliente===''){
     swal('Debes introducir el cliente');
-  }else if(forma_pago===''){
-      swal('Debes elegir la forma de pago');
-    }else{
+  }else{
         $.ajax({
           url: '?controller=ventas&action=create',
           type: "POST",
@@ -15,9 +12,9 @@ function guardar_venta(){
           dataType: "JSON",
           success: function(data)
           {
-            swal('Se ha guardado la compra exitosamente');
-            window.open(`views/reportes/factura_venta.php?cod_venta=${id_venta}`, '_blank')
-
+           //  window.open(`views/reportes/factura_presu.php?cod_presu=${id_presu}`, '_blank')
+           // location.reload()
+             window.open(`?controller=index&action=venta&cod=${id_venta}`, '_self')
           },
           error: function (jqXHR, textStatus, errorThrown)
           {
@@ -27,6 +24,7 @@ function guardar_venta(){
         });
       }
 }
+
 function buscar_cliente_venta(){
   var rif=$('#rif-entrada').val();
   $.ajax({
@@ -69,32 +67,44 @@ function buscar_producto_venta(){
     dataType: "JSON",
     success: function(data)
     {
-      $('[name="codigo-entrada"]').val(data.codigo);
-      $('[name="precio"]').val(data.precio);
-      $('[name="descripcion"]').val(data.descripcion);
-      $('[name="stock"]').val(data.stock);
-      $('[name="stock_m"]').val(data.stock_minimo);
-      if (data==1) {
-        $('#codigo').focus();
-        swal('Debes introducir el codigo');
-      }else if (data == false) {
+        if (data.stock<=100) {
+            swal('El producto esta en stock minimo');
+        }else{
+            $('[name="codigo-entrada"]').val(data.codigo);
+            $('[name="precio"]').val(data.precio);
+            $('[name="descripcion"]').val(data.descripcion);
+            $('[name="stock"]').val(data.stock);
+            $('[name="stock_m"]').val(data.stock_minimo);
+           // console.log(data.stock);
+        }
+        if (data==1) {
+            $('#codigo').focus();
+            swal('Debes introducir el codigo');
+        }else if (data == false) {
             // $('[name="codigo-entrada"]').parent().parent().addClass('has-error');
             swal('El producto no existe');
-          };
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-         console.log("error")
-       }
-     });
+        };
+
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+     console.log("error")
+ }
+});
 }
 
 function agregar_carrito_venta(){
 //funcion agregar al carrito
 var cantidad = $("#cantidad").val();
+var existencia = $("#existencia").val();
+cantidad = parseInt(cantidad);
+existencia = parseInt(existencia);
 var codigo = $("#codigo").val();
 var precio = $("#precio").val();
-if(codigo!=''){
+if (cantidad > existencia) {
+  swal('No hay suficientes productos en stock')
+}else{
+    if(codigo!=''){
   if(cantidad!=''){
     $.ajax({
       url: '?controller=ventas&action=agregar',
@@ -111,7 +121,7 @@ if(codigo!=''){
           $("#existencia").val('');
           $("#stock").val('');
           $("#minimo").val('');
-          $(".detalle-producto").load('views/ventas/detalle.php');
+          $(".detail").load('views/ventas/detalleventa.php');
         }else{
           swal(data.msj);
         }
@@ -128,19 +138,25 @@ if(codigo!=''){
   swal('Seleccione un producto');
   $('#codigo').focus();
 }
+
 }
 
-function eliminar_carrito_compra(codigo){
-  if (confirm("¿ Realmente desea eliminarlo de la lista?"))
+
+
+
+}
+
+function eliminar_carrito_venta(codigo){
+  if (confirm("¿Desea eliminarlo de la lista?"))
  {
   $.ajax({
-    url: '?controller=ventass&action=eliminar',
+    url: '?controller=ventas&action=quitar',
     type: 'post',
     data: {'codigo':codigo},
     dataType: 'json'
   }).done(function(data){
     if(data.success==true){
-     $(".detalle-producto").load('views/ventas/detalle.php');
+     $(".detail").load('views/ventas/detalleventa.php');
    }else{
     swal(data.msj);
   }

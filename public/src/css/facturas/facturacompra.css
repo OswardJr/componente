@@ -4,9 +4,12 @@
 	margin-bottom: 1em;
 	margin-right: 1em;
 }
+* {
+  background-color: #ffffff;
+}
+
 body{
 	font:12px Arial, Tahoma, Verdana, Helvetica, sans-serif;
-	background-color:#fff;
 	color:#000;
 	margin:0;
 	padding: 0;

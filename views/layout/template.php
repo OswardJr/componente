@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="shortcut icon" href="<?php echo Conectar::ruta()?>public/img/favicon.ico" class="next-head">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/boostrapAdmin.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/css/dataTables.bootstrap.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/css/skins/skin-blue-light.css">  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/plugins/sweetalert/css/sweetalert.css">
+  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/plugins/jquery-ui/jquery-ui.css">  <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/plugins/sweetalert/css/sweetalert.css">
   <link rel="stylesheet" href="<?php echo Conectar::ruta()?>public/src/css/app.css">
 </head>
 <body class="skin-blue-light fixed body">
@@ -41,6 +43,8 @@
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/datatables/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/slimScroll/js/jquery.slimscroll.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/dist/plugins/bootstrap-admin/js/app.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/chart.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/app.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/clientes.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/login.js"></script>
@@ -50,5 +54,7 @@
     <script src="<?php echo Conectar::ruta()?>public/src/js/usuarios.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/presupuesto.js"></script>
     <script src="<?php echo Conectar::ruta()?>public/src/js/venta.js"></script>
+    <script src="<?php echo Conectar::ruta()?>public/src/js/query.js"></script>
+
   </body>
   </html>

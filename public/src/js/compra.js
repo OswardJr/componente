@@ -15,15 +15,15 @@ function guardar_compra(){
           dataType: "JSON",
           success: function(data)
           {
-            window.open(`views/reportes/factura_compra.php?cod_compra=${id_compra}`, '_blank')
+             // window.open(`views/reportes/factura_compra.php?cod_compra=${id_compra}`, '_blank')
+             window.open(`?controller=index&action=prueba&cod=${id_compra}`, '_self')
 
-           location.reload()
+            // location.reload()
 
           },
           error: function (jqXHR, textStatus, errorThrown)
           {
-            alert('Error');
-
+            swal("Error del servidor")
           }
         });
       }

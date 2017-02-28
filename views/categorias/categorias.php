@@ -42,15 +42,15 @@
         <form action="" id="form" class="form-horizontal" method="POST">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label col-md-3">Nombre</label>
-              <div class="col-md-9">
+              <label class="control-label col-xs-3">Nombre</label>
+              <div class="col-xs-9">
                 <input name="nombre" placeholder="" class="form-control" type="text" >
                 <span class="help-block"></span>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Descripcion</label>
-              <div class="col-md-9">
+              <label class="control-label col-xs-3">Descripcion</label>
+              <div class="col-xs-9">
                 <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required></textarea>
                 <span class="help-block"></span>
               </div>

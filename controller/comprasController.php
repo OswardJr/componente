@@ -6,7 +6,9 @@
 	{
 		public function __construct(){
       require_once("model/comprasModel.php");
+      require_once("model/provModel.php");
       require_once("model/prodModel.php");
+      require_once("controller/utilidadesController.php");
 
       if (($_SESSION['id_emp']) == "") {
         header("Location: ".Conectar::ruta()."?controller=login");
@@ -15,6 +17,9 @@
     //carga la vista de nueva compra
     public function index(){
      unset($_SESSION['detalle']);
+      $ivaEnt = new utilidadesController;
+      $impuesto = $ivaEnt->valorIva();
+      $bancos = $ivaEnt->valorBancos();
       $c= new compra;
       $numorden = $c->numorden();
       require_once("model/categoriaModel.php");
@@ -31,7 +36,24 @@
       $data = array();
       foreach ($compras as $com) {
         $fecha = date_create($com['fecha']);//funcion para voltear la fecha
-        $row = array($com['codigo'],
+        $row = array(
+            $com['codigo'],
+          $com['proveedor'],
+        date_format($fecha, 'd-m-Y'),//se voltea la fecha
+        $com['monto']);
+        $data[] = $row;
+      }
+      $output = array("data" => $data);
+      echo json_encode($output);
+    }
+    public function buscar()
+    {
+      $c = new compra();
+      $compras = $c->get_compras() ;
+      $data = array();
+      foreach ($compras as $com) {
+        $fecha = date_create($com['fecha']);//funcion para voltear la fecha
+        $row = array($com['prov'],
           $com['proveedor'],
         date_format($fecha, 'd-m-Y'),//se voltea la fecha
         $com['monto'],
@@ -53,6 +75,9 @@
         $id_emp = $_POST['id_emp'];
         $fecha_actual = $_POST['fecha'];
         $forma_pago = $_POST['forma_pago'];
+        $banco = $_POST['banco'];
+        $nro_cuenta = $_POST['nro_cuenta'];
+        $nro_comprobante = $_POST['nro_comprobante'];
         $impuesto = $_POST['impuesto'];
         $subtot = $_POST['subtotal'];
         $tot = $_POST['total'];
@@ -67,9 +92,29 @@
         foreach ($_POST['precio_p'] as $key => $value) {
           $datos[$key]['precio_p']=$value;
         }
-        $compra->create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$impuesto,$subtot,$tot,$status,$datos);
+        $compra->create_compra($cod_compra,$id_prov,$id_emp,$fecha_actual,$forma_pago,$banco,$nro_cuenta,$nro_comprobante,$impuesto,$subtot,$tot,$status,$datos);
       }
     }
+
+      public function listadoprov()
+  {
+    require_once("views/layout/template.php");
+    require_once("views/compras/listadoProv.php");
+    $f = new compra();
+    $rif = $_POST["rif"];
+    if (isset($_POST["rif"])){
+          $compras = $f->get_compras_by_id($rif);
+      }else{
+        $rif = $_POST[""];
+        $compras = $f->get_compras_by_id($rif);
+  }
+}
+
+ public function listadoprovfecha(){
+    require_once("views/layout/template.php");
+    require_once("views/compras/listadoprovfecha.php");
+  }
+
     // agrega producto al carrito de compras
     public function agregar(){
      $objProducto = new producto();
@@ -88,6 +133,11 @@
   public function listado(){
     require_once("views/layout/template.php");
     require_once("views/compras/listadoCompras.php");
+  }
+  public function listadoP()
+  {
+    require_once("views/layout/template.php");
+    require_once("views/compras/listadoProv.php");
   }
   //busca un proveedor
   public function buscarProveedor(){
@@ -158,6 +208,19 @@ public function eliminar(){
     }
   }
 }
+
+public function autoProv(){
+  $searchTerm = $_GET['term'];
+  $p = new proveedor();
+  $p->auto_prov($searchTerm);
+}
+
+public function autoProd(){
+  $searchTerm = $_GET['term'];
+  $producto = new producto();
+  $producto->auto_prod($searchTerm);
+}
+
 }
 
 

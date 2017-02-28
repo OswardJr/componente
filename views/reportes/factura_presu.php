@@ -3,10 +3,10 @@ require('../../includes/dompdf/dompdf_config.inc.php');
 require_once '../../includes/config.php';
 require_once '../../model/presupuestosModel.php';
 $cod_presu = $_GET["cod_presu"];
-$dc = new presupuesto();
-$c = new presupuesto();
-$det_presupuesto = $dc->detalle_presupuesto($cod_presu);
-$presupuesto = $c->obtener_presupuesto($cod_presu);
+$a = new presupuesto();
+$b = new presupuesto();
+$det_presupuesto = $a->detalle_presupuesto($cod_presu);
+$presupuesto = $b->obtener_presupuesto($cod_presu);
 session_start();
 $codigo='<html>
 <head>
@@ -14,36 +14,52 @@ $codigo='<html>
 </head>
 <body>
   <header>
-    <img src="../../images/logo_empresa.jpg" />
-    <div id="me">
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Urb. La fundación. Cagua</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Manzana 6, casa Nro. 33</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Edo Aragua. ZP 2122</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Telf.:(0244)396.4520</h4>
+      <div id="me">
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Sector Los Meregotos, Cagua</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Manzana 6, casa Nro. 33</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Edo Aragua. ZP 2122</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Telf.:(0244)396.4520</h4>          
     </div>
+
+    <img src="/AppServ/www/componente/public/img/logo.png" class="img-responsive" style="float:right;" alt="Image"/>
+
   </header>
   <hr>
   <div id="linea">
     <h3>Presupuesto</h3>
   </div>';
   $codigo.='<table class="encabezado " style="width:100%;">';
-foreach ($presupuesto as $k => $det_c) {
-  $fecha = date_create($det_c['fecha']);//funcion para voltear la fecha
+foreach ($presupuesto as $k => $det_p) {
+  $fecha = date_create($det_p['fecha']);//funcion para voltear la fecha
+  $code = str_pad($det_p[codigo], 6, "0", STR_PAD_LEFT);
   $codigo.='
   <tr>
-    <td style="text-align:left;">N° de orden: '.$det_c['codigo'].'</td>
-    <td style="text-align:left;">Válido por: '. $det_c['fecha_vencimiento'].'</td>
-    <td style="text-align:left;">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
+    <td style="text-align:left;">N° de orden: '.$code.'</td>
+    <br>
+    <td></td>   
+    <td></td>         
+    <td style="text-align:left;">N° de orden: '.$code.'</td>    
   </tr>
   <tr>
-    <td style="text-align:left;" >Rif: '.$det_c['rif'].'</td>
-    <td style="text-align:left;" >Razon social: '. $det_c['razon_social'].'</td>
-    <td style="text-align:left;" >Telefono: '.$det_c['telefono'].'</td>
+      <td></td>   
+    <td></td>   
+    <td></td>   
+    <td></td>   
+
+  </tr>
+  <tr>
+    <td style="text-align:left;" >Rif: '.$det_p['rif'].'</td>
+    <td style="text-align:left;" >Cliente: '. $det_p['razon_social'].'</td>
+    <td style="text-align:left;" >Telefono: '.$det_p['telefono'].'</td>
+    <td style="text-align:left;">Fecha: '.date_format($fecha, 'd-m-Y').'</td>    
+  </tr>
+  <tr>
+    <td style="text-align:left;">Válido por: '. $det_p['fecha_vencimiento'].'</td>
+    <td style="text-align:left;" >Domicilio: '.$det_p['direccion'].'</td>    
   </tr>
   </table>
   <table class="encabezado" style="margin-top:0px;width:100%;">
   <tr>
-    <td style="text-align:left;" >Domicilio: '.$det_c['direccion'].'</td>
   </tr>
 
     ';
@@ -53,13 +69,13 @@ foreach ($presupuesto as $k => $det_c) {
     $codigo.='<thead>
     <tr>
     <th style="width:100px;text-align:center;">Codigo</th>
-    <th style="width:400px;text-align:center;">Descripción</th>
+    <th style="width:400px;text-align:center;">Productos</th>
     <th style="width:100px;text-align:center;">Cantidad</th>
     <th style="width:100px;text-align:center;">Precio</th>
     </tr>
     </thead>';
     $cont = count($det_presupuesto);
-    $filas = 24 - $cont;
+    $filas = 1 - $cont;
 foreach ($det_presupuesto as $k => $detalle) {
   $codigo.='<tr>
     <td style="width:100px;text-align:left;">'. $detalle['codigo'].'</td>
@@ -77,7 +93,7 @@ for ($i=1; $i < $filas; $i++) {
     }
    $codigo.='</tr>';
   $codigo.='</table>';
-  $codigo.='<table class="collapse" style="margin-left:389px;">';
+  $codigo.='<table class="collapse" style="margin-left:389px;margin-top:350px">';
 
   foreach ($presupuesto as $k => $totales) {
   $codigo.='<tr>

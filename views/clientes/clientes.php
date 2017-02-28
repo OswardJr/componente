@@ -42,36 +42,36 @@
                 <form action="#" id="forma" class="form-horizontal">
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Rif</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Rif</label>
+                            <div class="col-xs-9">
                                 <input name="rif" class="form-control" type="text" disabled="true" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Razon social</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Razon social</label>
+                            <div class="col-xs-9">
                                 <input name="razon_social" placeholder="Last Name" class="form-control" type="text" disabled="true" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Telefono</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Telefono</label>
+                            <div class="col-xs-9">
                                 <input name="telefono"  class="form-control" type="text" disabled="true" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Email</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Email</label>
+                            <div class="col-xs-9">
                                 <input name="email" class="form-control" type="text" disabled="true" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Direccion</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Direccion</label>
+                            <div class="col-xs-9">
                                 <textarea name="direccion" placeholder="Address" class="form-control" disabled="true" ></textarea>
                                 <span class="help-block"></span>
                             </div>
@@ -98,36 +98,36 @@
                 <form action="" id="form" class="form-horizontal" method="POST">
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                            <div class="col-xs-9">
                                 <input name="rif" class="form-control" type="text"  >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Razon social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Razon social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                            <div class="col-xs-9">
                                 <input name="razon_social" placeholder="Last Name" class="form-control" type="text"  >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Telefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Telefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                            <div class="col-xs-9">
                                 <input name="telefono"  class="form-control" type="text"  >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Email</label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Email</label>
+                            <div class="col-xs-9">
                                 <input name="email" class="form-control" type="text"  >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Direccion<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-                            <div class="col-md-9">
+                            <label class="control-label col-xs-3">Direccion<a class="campos-required" title="Campo Obligatorio."> *</a></label>
+                            <div class="col-xs-9">
                                 <textarea name="direccion" placeholder="Address" class="form-control"  ></textarea>
                                 <span class="help-block"></span>
                             </div>
@@ -148,20 +148,20 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript">
-    var table;
-    $(document).ready(function() {
-                                                //datatables
+  var table;
+  $(document).ready(function() {
+     //datatables
                                                 table = $('#table').DataTable({
-                                                    "scrollX": true,
+                                                  "scrollX": true,
                                                 "processing": true, //Feature control the processing indicator.
                                                 "ajax": {
-                                                    "url": "?controller=clientes&action=all",
-                                                    "type": "POST"
+                                                  "url": "?controller=clientes&action=all",
+                                                  "type": "POST"
                                                 },
-                                            });
-                                            });
-    function recargar()
-    {
+                                              });
+                                              });
+  function recargar()
+  {
                                                 table.ajax.reload(null,false); //reload datatable ajax
-                                            }
+                                              }
                                         </script>

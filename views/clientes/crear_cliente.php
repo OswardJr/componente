@@ -13,12 +13,11 @@
           <h3 class="box-title">Nuevo cliente</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <form name="crear_cliente" action="" method="post" id="crear_cliente">
-            <!-- text input -->
+          <form name="crear_clientes" action="" method="post" id="crear_clientes">
             <div class="form-group col-xs-6 " style="margin-bottom: 0px; height: 60px">
               <label>Rif<a class="campos-required" title="Campo Obligatorio."> *</a></label>
               <div class="input-group input-group-sm">
-                <input type="text" name="rif" id="rif" class="form-control " placeholder="J-12345678-9" value="<? echo $rif?>" required>
+                <input type="text" name="rif" id="rif" class="form-control " pattern="^([JVEG]{1})-([0-9]{8})-([0-9]{1})$" title="El formato debe ser J-12345678-9"  placeholder="J-12345678-9" onkeyup="this.value=this.value.toUpperCase()" value="<? echo $rif?>" required="true" >
                 <span class="input-group-btn">
                   <button  data-toggle="tooltip" title="Consultar" class="btn btn-info btn-flat fa fa-search
                   " type="button"  onClick="buscarCliente()" name="btn-search"></button>
@@ -27,12 +26,12 @@
               <center><span id="mensaje" class="help-block"></span></center>
             </div>
             <div class="form-group col-xs-6">
-              <label>Raz&oacuten social<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-              <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Nombre de la empresa" required>
+              <label>Raz&oacuten social<a class="campos-required" pattern="[A-Z]" title="Campo Obligatorio."> *</a></label>
+              <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Nombre de la empresa" required="true">
             </div>
             <div class="form-group col-xs-6">
               <label>Tel&eacutefono<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-              <input type="text" name="telefono" id="telefono" class="form-control" placeholder="0243-XXXXXXX" required>
+              <input type="text" name="telefono" id="telefono" pattern="^([0-9]{4})-([0-9]{7})$" class="form-control" placeholder="0243-XXXXXXX" required="true">
             </div>
             <div class="form-group col-xs-6">
               <label>Email</label>
@@ -41,7 +40,7 @@
             <!-- textarea -->
             <div class="form-group col-xs-offset-3 col-xs-6">
               <label>Direcci&oacuten<a class="campos-required" title="Campo Obligatorio."> *</a></label>
-              <textarea type="text" name="direccion" id="direccion" class="form-control" placeholder="Direccion exacta" required></textarea>
+              <textarea type="text" name="direccion" id="direccion" class="form-control" placeholder="Direccion exacta" ></textarea>
             </div>
             <center class="col-xs-offset-3 col-xs-6">
               <span class="" style="font-weight:bold;">Los campos marcados con <a class="obli" rel="tooltip" style="font-size:20px;">*</a> son Obligatorios.</span><br><br>
@@ -60,3 +59,25 @@
 </div><!-- /.row -->
 </section><!-- /.content -->
 </div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        document.crear_clientes.focus();
+        document.crear_clientes.addEventListener('submit', validarFormulario);
+    }
+
+    function validarFormulario(evObject) {
+        evObject.preventDefault();
+        var todoCorrecto = true;
+        var formulario = document.crear_clientes;
+        for (var i=0; i<formulario.length; i++) {
+            if(formulario[i].type =='text') {
+             if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+                 swal ('No puede haber campos vacíos');
+                 todoCorrecto=false;
+             }
+         }
+     }
+     if (todoCorrecto ==true) {formulario.submit();}
+ }
+</script>

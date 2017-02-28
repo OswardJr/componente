@@ -10,14 +10,16 @@ $codigo='<html>
   <link rel="stylesheet" href="../../public/src/css/facturas/facturacompra.css" type="text/css" />
 </head>
 <body>
-  <header>
-    <img src="../../images/logo_empresa.jpg" />
-    <div id="me">
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Urb. La fundación. Cagua</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Manzana 6, casa Nro. 33</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Edo Aragua. ZP 2122</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Telf.:(0244)396.4520</h4>
+<header>
+      <div id="me">
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Sector Los Meregotos, Cagua</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Manzana 6, casa Nro. 33</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Edo Aragua. ZP 2122</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Telf.:(0244)396.4520</h4>          
     </div>
+
+    <img src="/AppServ/www/componente/public/img/logo.png" class="img-responsive" style="float:left;" alt="Image"/>
+
   </header>
   <hr>
   <div id="linea">

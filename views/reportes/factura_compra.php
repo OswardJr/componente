@@ -13,14 +13,16 @@ $codigo='<html>
   <link rel="stylesheet" href="../../public/src/css/facturas/facturacompra.css" type="text/css" />
 </head>
 <body>
-  <header>
-    <img src="../../images/logo_empresa.jpg" />
-    <div id="me">
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Urb. La fundación. Cagua</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Manzana 6, casa Nro. 33</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Edo Aragua. ZP 2122</h4>
-      <h4 style="text-align:right;border:solid 0px;width:100%;">Telf.:(0244)396.4520</h4>
+<header>
+      <div id="me">
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Sector Los Meregotos, Cagua</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Manzana 6, casa Nro. 33</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Edo Aragua. ZP 2122</h4>
+      <h4 style="text-align:left;border:solid 0px;margin-left:70px;width:50%;">Telf.:(0244)396.4520</h4>          
     </div>
+
+    <img src="/AppServ/www/componente/public/img/logo.png" class="img-responsive" style="float:left;" alt="Image"/>
+
   </header>
   <hr>
   <div id="linea">
@@ -29,21 +31,28 @@ $codigo='<html>
   $codigo.='<table class="encabezado " style="width:100%;">';
 foreach ($compra as $k => $det_c) {
   $fecha = date_create($det_c['fecha']);//funcion para voltear la fecha
+  $code = str_pad($det_c[codigo], 6, "0", STR_PAD_LEFT);
   $codigo.='
   <tr>
-    <td style="text-align:left;">N° de orden: '.$det_c['codigo'].'</td>
-    <td style="text-align:left;">Forma de pago: '. $det_c['forma_pago'].'</td>
-    <td style="text-align:left;">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
+    <td style="text-align:left;">N° de orden: '.$code.'</td>
+    <td></td>
+    <td></td>    
+    <td style="text-align:left;">N° de orden: '.$code.'</td>    
   </tr>
   <tr>
     <td style="text-align:left;" >Rif: '.$det_c['rif'].'</td>
     <td style="text-align:left;" >Razon social: '. $det_c['razon_social'].'</td>
     <td style="text-align:left;" >Telefono: '.$det_c['telefono'].'</td>
+    <td style="text-align:left;">Fecha: '.date_format($fecha, 'd-m-Y').'</td>
   </tr>
   </table>
   <table class="encabezado" style="margin-top:0px;width:100%;">
   <tr>
     <td style="text-align:left;" >Domicilio: '.$det_c['direccion'].'</td>
+    <td style="text-align:left;" >Banco: '.$det_c['banco'].'</td>
+    <td style="text-align:left;">Forma de pago: '. $det_c['forma_pago'].'</td>
+    <td style="text-align:left;" >Número de Comprobante: '.$det_c['nro_comprobante'].'</td>    
+
   </tr>
 
     ';
@@ -59,7 +68,7 @@ foreach ($compra as $k => $det_c) {
     </tr>
     </thead>';
     $cont = count($det_compra);
-    $filas = 24 - $cont;
+    $filas = 1 - $cont;
 foreach ($det_compra as $k => $detalle) {
   $codigo.='<tr>
     <td style="width:100px;text-align:left;">'. $detalle['codigo'].'</td>
@@ -77,7 +86,7 @@ for ($i=1; $i < $filas; $i++) {
     }
    $codigo.='</tr>';
   $codigo.='</table>';
-  $codigo.='<table class="collapse" style="margin-left:389px;">';
+  $codigo.='<table class="collapse" style="margin-left:389px;margin-top:350px">';
 
   foreach ($compra as $k => $totales) {
   $codigo.='<tr>

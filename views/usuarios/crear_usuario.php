@@ -51,9 +51,23 @@
               <select name="rol" id="input" class="form-control" required>
                 <option value="">Seleccione</option>
                 <option value="Administrador">Administrador</option>
-                <option value="Secretaria">Secretaria</option>
+                <option value="empleado">Empleado</option>
               </select>
             </div>
+            <div class="form-group">
+                <label class="control-label">Pregunta secreta</label>
+                   <select name="pregunta" id="preguntaselect" class="form-control" required="true">
+                    <option id="pregunta" value="">Seleccione</option>
+                    <option id="pregunta" value="Lugar de nacimiento de la madre">Lugar de nacimiento de la madre</option>
+                    <option id="pregunta" value="Nombre de su abuela">Nombre de su abuela</option>
+                    <option id="pregunta" value="Nombre de su primera mascota">Nombre de su primera mascota</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label ">Respuesta</label>
+                <input name="respuesta"  class="form-control" type="text" >
+                <span class="help-block"></span>
+        </div>
             <input type="hidden" name="status" value="activo" />
             <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
             <center>
@@ -72,3 +86,24 @@
 </div><!-- /.row -->
 </section><!-- /.content -->
 </div>
+<script type="text/javascript">
+    window.onload = function () {
+        document.crear_usuario.focus();
+        document.crear_usuario.addEventListener('submit', validarFormulario);
+    }
+
+    function validarFormulario(evObject) {
+        evObject.preventDefault();
+        var todoCorrecto = true;
+        var formulario = document.crear_usuario;
+        for (var i=0; i<formulario.length; i++) {
+            if(formulario[i].type =='text') {
+             if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+                 swal ('No puede haber campos vacíos');
+                 todoCorrecto=false;
+             }
+         }
+     }
+     if (todoCorrecto ==true) {formulario.submit();}
+ }
+</script>

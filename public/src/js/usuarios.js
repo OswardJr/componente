@@ -30,11 +30,13 @@ function ver_usuario(valor){
         success: function(data)
         {
 
-            $('[name="cedula"]').val(data.ci_emp);
+            $('#cedula1').val(data.ci_usuario);
             $('[name="nombre"]').val(data.primer_nombre);
             $('[name="apellido"]').val(data.primer_apellido);
             $('[name="username"]').val(data.username);
             $('[name="rol"]').val(data.rol);
+            $('[name="pregunta"]').val(data.pregunta);
+            $('[name="respuesta"]').val(data.respuesta);
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Ver usuario'); // Set title to Bootstrap modal title
 
@@ -58,11 +60,13 @@ function editar_usuario(valor){
         dataType: "JSON",
         success: function(data)
         {
-            $('[name="cedula"]').val(data.ci_emp);
+            $('#cedula2').val(data.ci_usuario);
             $('[name="nombre"]').val(data.primer_nombre);
             $('[name="apellido"]').val(data.primer_apellido);
             $('[name="username"]').val(data.username);
             $('#rol').val(data.rol);
+            $('[name="pregunta"]').val(data.pregunta);
+            $('[name="respuesta"]').val(data.respuesta);
             $('[name="id_emp"]').val(data.id_emp);
             $('#modal_form1').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Editar usuario'); // Set title to Bootstrap modal title

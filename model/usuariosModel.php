@@ -2,19 +2,21 @@
 
 class usuario extends Conectar
 {
-
     public function get_users(){
-       try
-       {
+     try
+     {
         $query = $this->dbh->prepare(
             'SELECT
             ci_usuario AS cedula,
             primer_nombre AS nombre,
             primer_apellido AS apellido,
             username,
-            rol
+            rol,
+            pregunta
             FROM
             empleados
+            WHERE
+            status = "activo"
             ');
         $query->execute();
         return $query->fetchAll();
@@ -54,22 +56,28 @@ public function comprobar_user($cedula)
     }
 }
 
-public function create_user($cedula,$nombre,$apellido,$username,$password,$rol,$status)
+public function create_user($cedula,$nombre,$apellido,$username,$password,$rol,$pregunta,$respuesta,$status)
 {
     try {
-        $query = $this->dbh->prepare('INSERT INTO empleados VALUES(null,?,?,?,?,?,?)');
+        $query = $this->dbh->prepare('INSERT INTO empleados VALUES(null,?,?,?,?,?,?,?,?)');
         $query->bindParam(1, $cedula);
         $query->bindParam(2, $nombre);
         $query->bindParam(3, $apellido);
         $query->bindParam(4, $username);
         $query->bindParam(5, $password);
         $query->bindParam(6, $rol);
+        $query->bindParam(7, $pregunta);
+        $query->bindParam(8, $respuesta);
         $query->execute();
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Registró un nuevo usuario';
+        $utilidades->setMovimientos($responsable,$accion);
         /* Alerta de notificacion de registro */
         echo utf8_decode("<script type='text/javascript'>
             swal('Registro exitoso.');
-            window.location='?controller=usuarios&action=index';
         </script>");
         exit();
 
@@ -85,24 +93,36 @@ public function delete_user($cedula)
         $query->bindParam(1, $cedula);
         $query->execute();
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Eliminó un usuario';
+        $utilidades->setMovimientos($responsable,$accion);
     } catch (PDOException $e) {
         $e->getMessage();
     }
 }
 
-public function update_user($cedula,$nombre,$apellido,$username,$rol,$id_emp){
+public function update_user($cedula,$nombre,$apellido,$username,$rol,$pregunta, $respuesta, $id_emp){
     try {
-        $query = $this->dbh->prepare('UPDATE empleados SET ci_usuario = ?, primer_nombre = ?, primer_apellido = ?, username = ?, rol = ?  WHERE id_emp = ?');
+        $query = $this->dbh->prepare('UPDATE empleados SET ci_usuario = ?, primer_nombre = ?, primer_apellido = ?, username = ?, rol = ? ,pregunta=? , respuesta= ? WHERE id_emp = ?');
         $query->bindParam(1, $cedula);
         $query->bindParam(2, $nombre);
         $query->bindParam(3, $apellido);
         $query->bindParam(4, $username);
         $query->bindParam(5, $rol);
-        $query->bindParam(6, $id_emp);
+        $query->bindParam(6, $pregunta);
+        $query->bindParam(7, $respuesta);
+        $query->bindParam(8, $id_emp);
         $query->execute();
         $data = "1";
         echo json_encode($data);
         $this->dbh = null;
+        //bitacora
+        $utilidades = new utilidadesController;
+        $responsable = $_SESSION['nombre'];
+        $accion = 'Actualizó los datos de un usuario';
+        $utilidades->setMovimientos($responsable,$accion);
         exit();
 
     } catch (PDOException $e) {
@@ -134,6 +154,10 @@ public function login($username, $contrasena)
                     echo 0; // retorno que no se logueo
                 }
                 $this->dbh = null;
+                $utilidades = new utilidadesController;
+                $responsable = $_SESSION['nombre'];
+                $accion = 'Inició sesión';
+                $utilidades->setMovimientos($responsable,$accion);
             }catch (PDOException $e)
             {
                 $e->prueba();
